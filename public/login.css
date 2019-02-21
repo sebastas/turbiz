@@ -1,30 +1,3 @@
-
-/* BASIC */
-
-body {
-    font-family: "Poppins", sans-serif;
-    height: 100vh;
-}
-
-a {
-    color: #92badd;
-    display:inline-block;
-    text-decoration: none;
-    font-weight: 400;
-}
-
-h2 {
-    text-align: center;
-    font-size: 16px;
-    font-weight: 600;
-    text-transform: uppercase;
-    display:inline-block;
-    margin: 40px 8px 10px 8px;
-    color: #cccccc;
-}
-
-
-
 /* STRUCTURE */
 
 .wrapper {
@@ -60,21 +33,6 @@ h2 {
     border-radius: 0 0 10px 10px;
 }
 
-
-
-/* TABS */
-
-h2.inactive {
-    color: #cccccc;
-}
-
-h2.active {
-    color: #0d0d0d;
-    border-bottom: 2px solid #5fbae9;
-}
-
-
-
 /* FORM TYPOGRAPHY*/
 
 input[type=button], input[type=submit], input[type=reset]  {
@@ -87,8 +45,8 @@ input[type=button], input[type=submit], input[type=reset]  {
     display: inline-block;
     text-transform: uppercase;
     font-size: 13px;
-    <!-- -webkit-box-shadow: 0 10px 30px 0 #c59b76; -->
-    <!-- box-shadow: 0 10px 30px 0 #c59b76; -->
+    /*-webkit-box-shadow: 0 10px 30px 0 #c59b76;*/
+    /*box-shadow: 0 10px 30px 0 #c59b76;*/
     -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
     margin: 5px 20px 40px 20px;
@@ -101,6 +59,7 @@ input[type=button], input[type=submit], input[type=reset]  {
 
 input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
     background-color: #c59b76;
+    cursor: pointer;
 }
 
 input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
@@ -122,7 +81,7 @@ input[type=text], input[type=password] {
     font-size: 16px;
     margin: 5px;
     width: 85%;
-    border: 2px solid #f6f6f6;
+    /*border: 2px solid #f6f6f6;*/
     -webkit-transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
     -ms-transition: all 0.5s ease-in-out;
@@ -132,7 +91,7 @@ input[type=text], input[type=password] {
     border-radius: 5px 5px 5px 5px;
 }
 
-input[type=text]:focus {
+input[type=text]:focus, input[type=password]:focus {
     background-color: #fff;
     border-bottom: 2px solid #5fbae9;
 }
@@ -245,11 +204,6 @@ input[type=text]:placeholder {
     width: 100%;
 }
 
-body {
-    background-color: #c0c781;
-}
-
-
 /* OTHERS */
 
 *:focus {
@@ -262,4 +216,8 @@ body {
 
 h3 {
     font-family: "Karla", serif;
+}
+
+body {
+    background-color: #c0c781;
 }
