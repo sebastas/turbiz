@@ -4,10 +4,10 @@ import mysql from 'mysql';
 export let connection;
 function connect() {
   connection = mysql.createConnection({
-    host: 'mysql.stud.iie.ntnu.no',
-    user: '[username]',
-    password: '[password]',
-    database: '[username]'
+    host: 'mysql-ait.stud.idi.ntnu.no',
+    user: 'g_idri1005_08',
+    password: 'DyxsPvhb',
+    database: 'g_idri1005_08'
   });
 
   // Connect to MySQL-server
