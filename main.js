@@ -14,7 +14,7 @@ require('electron-reload')(path.join(__dirname, 'src'), {
 
 let mainWindow;
 app.on('ready', () => {
-  mainWindow = new BrowserWindow({ width: 800, height: 600, webPreferences: { nodeIntegration: true }, icon: "logo.png" });
+  mainWindow = new BrowserWindow({ width: 800, height: 600, webPreferences: { nodeIntegration: true }, icon: "src/logo.png" });
 
   // Open Development Tools
   mainWindow.openDevTools();
