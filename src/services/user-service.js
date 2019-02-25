@@ -26,9 +26,9 @@ class UserService {
     });
   }
 
-  addUser(name, email, success) {
-    let sql = "insert into Students (name, email) values (?, ?)";
-    connection.query(sql, [name, email], (error, results) => {
+  addUser(name, email, number, username, password, success) {
+    let sql = "insert into Ansatte (navn, epost, tlf, brukernavn, passord) values (?, ?, ?, ?, ?)";
+    connection.query(sql, [name, email, number, username, password], (error, results) => {
       if (error) return console.error(error);
 
       success();

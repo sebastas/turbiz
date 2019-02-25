@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import { account } from './Login';
-import { Navbar } from './Navbar';
+import { Topnav } from './Topnav';
 
 import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
@@ -17,7 +17,7 @@ export class Home extends Component {
   render() {
     return(
       <div>
-        <Navbar />
+        <Topnav />
         <h1>Home</h1>
       </div>
     )

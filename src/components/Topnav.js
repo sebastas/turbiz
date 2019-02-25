@@ -5,7 +5,7 @@ import { account } from './Login';
 import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
 
-export class Navbar extends Component {
+export class Topnav extends Component {
 
   render() {
     if (account === "admin") {
@@ -48,7 +48,7 @@ export class Navbar extends Component {
     }
   }
   addUser() {
-
+    history.push("/register")
   }
 
   changePassword() {
