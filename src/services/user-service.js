@@ -10,16 +10,16 @@ class UserService {
     });
   }
 
-  getUser(id, success) {
-    connection.query('select * from Ansatte where id=?', [id], (error, results) => {
+  getUser(username, success) {
+    connection.query('select * from Ansatte where brukernavn=?', [username], (error, results) => {
       if (error) return console.error(error);
 
       success(results[0]);
     });
   }
 
-  updateUser(id, name, email, success) {
-    connection.query('update Students set name=?, email=? where id=?', [name, email, id], (error, results) => {
+  updateUser(id, password, success) {
+    connection.query('update Ansatte set passord=? where ansatt_id=?', [password, id], (error, results) => {
       if (error) return console.error(error);
 
       success();

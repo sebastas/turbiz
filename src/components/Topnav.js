@@ -52,7 +52,7 @@ export class Topnav extends Component {
   }
 
   changePassword() {
-
+    history.push("/account/"+ account + "/edit")
   }
 
   logOut() {

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import { userService} from '../services/user-service';
+import { Topnav } from './Topnav';
 
 import createHashHistory from 'history/createHashHistory';
-import { Topnav } from './Topnav';
 const history = createHashHistory();
 
 export class Register extends Component {
@@ -13,6 +13,9 @@ export class Register extends Component {
   number = "";
   username = "";
   password = "";
+  userExists = false;
+  users = [];
+  isComplete = true;
 
   render() {
 
@@ -63,10 +66,11 @@ export class Register extends Component {
                     <div className="input-group">
                       <span className="input-group-addon"><i className="fa fa-users fa" aria-hidden="true"/></span>
                       <input type="text" className="form-control" name="username" id="username"
-                             placeholder="Brukernavn" required={true} onChange={event => (this.username = event.target.value)}/>
+                             placeholder="Brukernavn" required={true} onChange={event => (this.validateUser(event))}/>
                     </div>
                   </div>
                 </div>
+                <p style={{display: this.userExists ? 'block' : 'none', color: 'red'}}>Brukernavnet finnes fra før</p>
 
                 <div className="form-group">
                   <label htmlFor="password" className="cols-sm-2 control-label">Passord</label>
@@ -79,7 +83,7 @@ export class Register extends Component {
                   </div>
                 </div>
 
-
+                <p style={{display: this.isComplete ? 'none' : 'block', color: 'red'}}>Vennligst fyll inn all info</p>
                 <div className="form-group ">
                   <button type="button" className="btn btn-primary btn-lg btn-block login-button" id="createUser" onClick={this.create}>Opprett bruker</button>
                 </div>
@@ -91,9 +95,32 @@ export class Register extends Component {
     )
   }
 
-  create() {
-    userService.addUser(this.name, this.email, this.number, this.username, this.password, () => {
-      history.push("/home");
+  mounted() {
+    userService.getUsers(users => {
+      this.users = users;
     });
+  }
+
+  validateUser(event) {
+    this.username = event.target.value;
+    for (let user of this.users) {
+      if (user.brukernavn === this.username) {
+        this.userExists = true;
+        return;
+      } else {
+        this.userExists = false;
+      }
+    }
+  }
+
+  create() {
+    this.isComplete = this.name.length > 0 && this.email.length > 0 && this.number.length === 8 &&
+      this.username.length > 0 && this.password.length > 4;
+
+    if (this.isComplete && !this.userExists) {
+      userService.addUser(this.name, this.email, this.number, this.username, this.password, () => {
+        history.push("/home");
+      });
+    }
   }
 }
