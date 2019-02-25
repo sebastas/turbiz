@@ -214,10 +214,10 @@ input[type=text]:placeholder {
     width:60%;
 }
 
-h3 {
+.titleFont {
     font-family: "Karla", serif;
 }
 
-body {
+#login {
     background-color: #c0c781;
 }
