@@ -19,7 +19,12 @@ export class Home extends Component {
       <div>
         <Topnav />
         <h1>Home</h1>
+        <button type="button" onClick={this.overview}>Bestillingsoversikt</button>
       </div>
     )
+  }
+
+  overview() {
+    history.push("/overview");
   }
 }
