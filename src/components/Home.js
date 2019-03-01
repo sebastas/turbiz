@@ -18,13 +18,22 @@ export class Home extends Component {
     return(
       <div>
         <Topnav />
-        <h1>Home</h1>
-        <button type="button" onClick={this.overview}>Bestillingsoversikt</button>
+
+        <div id="container">
+        <button type="button" id="knapp" class="btn btn-primary btn-lg" onClick={this.bestilling}>Bestillingsoversikt</button>
+        <button type="button" id ="knapp" class="btn btn-primary btn-lg" onClick={this.statusUtstyr}>Status utstyr</button>
+        <button type="button" id="knapp" class="btn btn-primary btn-lg">Utstyrsregistrering</button>
+        </div>
+
       </div>
     )
   }
 
-  overview() {
+  bestilling() {
     history.push("/overview");
+  }
+
+  statusUtstyr() {
+    history.push("/status");
   }
 }
