@@ -11,15 +11,12 @@ export class Ordertime extends Component {
     return(
       <div>
         <Topnav />
-        <div class="btn-group">
-          <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Velg sted </button>
         <select name="place">
-          <optionRallarvegen</a>
-          <a class="dropdown-item" href="#">Sted 2</a>
-          <a class="dropdown-item" href="#">Sted 3 </a>
-          </div>
-          </div>
+          <option value="Sted1">Rallarvegen</option>
+          <option value="Sted2">sted 2</option>
+          <option value="Sted3">sted 3</option>
+        </select>
+
           <button type="button" id="back" onClick={this.hjem}>Tilbake</button>
         </div>
     )
