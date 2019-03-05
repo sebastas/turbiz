@@ -3,6 +3,7 @@ import { Component } from 'react-simplified';
 import { account } from './Login';
 import { Topnav } from './Topnav';
 import { Ordertime } from './leieintervall';
+import { Status } from './Status';
 
 import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
@@ -15,19 +16,20 @@ export class Home extends Component {
     }
   }
 
-  render() {
-    return(
-      <div>
-        <Topnav/>
-        <div id="container">
-        <button type="button" id="knapp" className="btn btn-primary btn-lg knapp" onClick={this.bestilling}>Bestillingsoversikt</button>
-        <button type="button" id ="knapp" className="btn btn-primary btn-lg knapp" onClick={this.statusUtstyr}>Status utstyr</button>
-        <button type="button" id="knapp" className="btn btn-primary btn-lg knapp" onClick={this.leiePeriode}>Utstyrsregistrering</button>
-        </div>
-
-      </div>
-    )
-  }
+    render() {
+        return(
+            <div className="gradient">
+                <Topnav/>
+                <div>
+                    <div id="container">
+                        <button type="button" id="knapp" className="btn btn-primary btn-lg knapp" onClick={this.bestilling}>Bestillingsoversikt</button>
+                        <button type="button" id ="knapp" className="btn btn-primary btn-lg knapp" onClick={this.statusUtstyr}>Status utstyr</button>
+                        <button type="button" id="knapp" className="btn btn-primary btn-lg knapp">Utstyrsregistrering</button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
 
   bestilling() {
     history.push("/overview");
