@@ -60,9 +60,8 @@ export class BicycleReg extends Component {
                 <input type="text" name="" className="input" onChange={event => (this.name = event.target.value)}></input>
               </div>
             </div>
-          </div>
 
-            <div className="row">
+
               <div className="col-sm-6">
                 <div className="inputBox ">
                   <div className="inputText">Type</div>
@@ -78,9 +77,8 @@ export class BicycleReg extends Component {
                 <input type="text" name="" className="input" onChange={event => (this.ppt = event.target.value)}></input>
               </div>
             </div>
-          </div>
 
-            <div className="row">
+
               <div className="col-sm-6">
                 <div className="inputBox ">
                   <div className="inputText">Pris per dag</div>
@@ -96,9 +94,9 @@ export class BicycleReg extends Component {
                   <input type="text" name="" className="input" onChange={event => (this.description = event.target.value)}></input>
                 </div>
               </div>
-            </div>
 
-            <div className="row">
+
+
               <div className="col-sm-6">
                 <div className="inputBox ">
                   <div className="inputText">Status</div>
@@ -114,9 +112,9 @@ export class BicycleReg extends Component {
                   <input type="text" name="" className="input" onChange={event => (this.location = event.target.value)}></input>
                 </div>
               </div>
-            </div>
 
-            <div className="row">
+
+
               <div className="col-sm-6">
                 <div className="inputBox ">
                   <div className="inputText">Sted</div>
@@ -192,9 +190,8 @@ export class EqReg extends Component {
                 <input type="text" name="" className="input" onChange={event => (this.name = event.target.value)}></input>
               </div>
             </div>
-          </div>
 
-          <div className="row">
+
             <div className="col-sm-6">
               <div className="inputBox">
                 <div className="inputText">Type</div>
@@ -210,9 +207,9 @@ export class EqReg extends Component {
                 <input type="text" name="" className="input" onChange={event => (this.price = event.target.value)}></input>
               </div>
             </div>
-          </div>
 
-          <div className="row">
+
+
             <div className="col-sm-6">
               <div className="inputBox">
                 <div className="inputText">Beskrivelse</div>
@@ -228,9 +225,9 @@ export class EqReg extends Component {
                 <input type="text" name="" className="input" onChange={event => (this.status = event.target.value)}></input>
               </div>
             </div>
-          </div>
+          
 
-          <div className="row">
+
             <div className="col-sm-6">
               <div className="inputBox">
                 <div className="inputText">Tilhørighet</div>
