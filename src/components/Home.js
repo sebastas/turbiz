@@ -15,6 +15,7 @@ export class Home extends Component {
     }
   }
 
+<<<<<<< HEAD
   render() {
     return(
       <div>
@@ -28,4 +29,28 @@ export class Home extends Component {
   Status() {
     history.push("/Status")
   }
+=======
+    render() {
+        return(
+            <div className="gradient">
+                <Topnav/>
+                <div>
+                    <div id="container">
+                        <button type="button" id="knapp" className="btn btn-primary btn-lg knapp" onClick={this.bestilling}>Bestillingsoversikt</button>
+                        <button type="button" id ="knapp" className="btn btn-primary btn-lg knapp" onClick={this.statusUtstyr}>Status utstyr</button>
+                        <button type="button" id="knapp" className="btn btn-primary btn-lg knapp">Utstyrsregistrering</button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+  bestilling() {
+    history.push("/overview");
+  }
+
+  statusUtstyr() {
+    history.push("/status");
+  }
+>>>>>>> 9d3c9758621994a26ba064b553d0387d0dc24ab3
 }

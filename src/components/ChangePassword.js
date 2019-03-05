@@ -34,7 +34,7 @@ export class ChangePassword extends Component {
                     </div>
                   </div>
                 </div>
-                <p style={{display: this.correctPass ? 'none' : 'block', color: 'red'}}>Vannligst oppgi riktig passord</p>
+                <p style={{display: this.correctPass ? 'none' : 'block', color: 'red'}}>Vennligst oppgi riktig passord</p>
 
 
                 <div className="form-group">
