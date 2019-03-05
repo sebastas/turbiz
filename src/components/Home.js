@@ -15,7 +15,6 @@ export class Home extends Component {
     }
   }
 
-<<<<<<< HEAD
   render() {
     return(
       <div>
@@ -29,7 +28,6 @@ export class Home extends Component {
   Status() {
     history.push("/Status")
   }
-=======
     render() {
         return(
             <div className="gradient">
@@ -52,5 +50,4 @@ export class Home extends Component {
   statusUtstyr() {
     history.push("/status");
   }
->>>>>>> 9d3c9758621994a26ba064b553d0387d0dc24ab3
 }
