@@ -5,7 +5,7 @@ import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { Topnav } from './Topnav';
 import { Home } from './Home';
 
-import { utstyrService} from '../services/utstyrService';
+import { utstyrService } from '../services/utstyrService';
 
 import createHashHistory from 'history/createHashHistory';
 import { account } from './Login';
@@ -171,6 +171,7 @@ export class BicycleEdit extends Component {
         Tilhørighet: <input type="text" value={this.location} onChange={event => (this.location = event.target.value)} /> <br/>
         Sted: <input type="text" value={this.currentLocation} onChange={event => (this.currentLocation = event.target.value)} /> <br/>
         <button type="button" className="btn btn-primary btn-sm" onClick={this.save}>Lagre</button>
+        <button type="button" className="btn btn-primary btn-sm x" onClick={this.delete}>Slett</button>
       </form>
       </div>
     )
@@ -192,6 +193,12 @@ export class BicycleEdit extends Component {
   save() {
     utstyrService.updateBicycle(this.props.match.params.id, this.name, this.type, this.ppt,
       this.ppd, this.description, this.status, this.location, this.currentLocation, () => {
+      history.push('/syklerStatus');
+    });
+  }
+
+  delete() {
+    utstyrService.deleteBicycle(this.props.match.params.id, () => {
       history.push('/syklerStatus');
     });
   }
@@ -220,6 +227,7 @@ export class EquipmentEdit extends Component {
         Tilhørighet: <input type="text" value={this.location} onChange={event => (this.location = event.target.value)} /> <br/>
         Sted: <input type="text" value={this.currentLocation} onChange={event => (this.currentLocation = event.target.value)} /> <br/>
         <button type="button" className="btn btn-primary btn-sm" onClick={this.save}>Lagre</button>
+        <button type="button" className="btn btn-primary btn-sm x" onClick={this.delete}>Slett</button>
       </form>
       </div>
     )
@@ -240,6 +248,12 @@ export class EquipmentEdit extends Component {
   save() {
     utstyrService.updateEquipment(this.props.match.params.id, this.name, this.type,
       this.price, this.description, this.status, this.location, this.currentLocation, () => {
+      history.push('/tilbehorStatus');
+    });
+  }
+
+  delete() {
+    utstyrService.deleteEquipment(this.props.match.params.id, () => {
       history.push('/tilbehorStatus');
     });
   }

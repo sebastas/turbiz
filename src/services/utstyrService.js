@@ -53,5 +53,21 @@ class UtstyrService {
       success();
     });
   }
+
+  deleteBicycle(id, success) {
+    connection.query('delete from Sykkel where sykkel_id=?', [id], (error, results) => {
+      if (error) return console.error(error);
+
+      success();
+    });
+  }
+
+  deleteEquipment(id, success) {
+    connection.query('delete from Utstyr where utstyr_id=?', [id], (error, results) => {
+      if (error) return console.error(error);
+
+      success();
+    });
+  }
 }
 export let utstyrService = new UtstyrService();
