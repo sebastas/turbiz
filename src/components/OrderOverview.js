@@ -17,7 +17,7 @@ export class OrderOverview extends Component {
             <div>
                 <Topnav/>
                 <h3>Bestillingsoversikt</h3>
-                <input id="myInput" type="text" placeholder="Search.."/>
+                <input id="myInput" type="text" placeholder="Search.." onChange={event => this.search(event)}/>
                 <br/><br/>
 
                 <table className="table table-striped">
@@ -48,16 +48,14 @@ export class OrderOverview extends Component {
     mounted() {
         orderService.getOrders(orders => {
             this.orders = orders;
+            this.loaded = true;
         });
     }
-}
 
-// Search function
-$(document).ready(function(){
-    $("#myInput").on("keyup", function() {
-        let value = $(this).val().toLowerCase();
+    search(event) {
+        let value = event.target.value.toLowerCase();
         $("#myTable tr").filter(function() {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
-    });
-});
+    }
+}

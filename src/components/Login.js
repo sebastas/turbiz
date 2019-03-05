@@ -17,7 +17,7 @@ export class Login extends Component {
 
   render() {
     return(
-      <div id="login">
+      <div className="gradient">
         <div className="wrapper fadeInDown">
           <div id="formContent">
 
