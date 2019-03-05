@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 export class Card extends Component {
   render() {
     return (
-      <div className="card">
+      <div className="card" id={this.props.id}>
         <div className="card-body">
           <h5 className="card-title">{this.props.title}</h5>
           <div className="card-text">{this.props.children}</div>
@@ -97,7 +97,7 @@ export class NavBar extends Component {
 class ButtonSuccess extends Component {
   render() {
     return (
-      <button type="button" className="btn btn-success" onClick={this.props.onClick}>
+      <button type="button" className="btn btn-success" onClick={this.props.onClick} id={this.props.id}>
         {this.props.children}
       </button>
     );
@@ -109,7 +109,7 @@ class ButtonSuccess extends Component {
 class ButtonDanger extends Component {
   render() {
     return (
-      <button type="button" className="btn btn-danger" onClick={this.props.onClick}>
+      <button type="button" className="btn btn-danger" onClick={this.props.onClick} id={this.props.id}>
         {this.props.children}
       </button>
     );
@@ -121,7 +121,7 @@ class ButtonDanger extends Component {
 class ButtonLight extends Component {
   render() {
     return (
-      <button type="button" className="btn btn-light" onClick={this.props.onClick}>
+      <button type="button" className="btn btn-light" onClick={this.props.onClick} id={this.props.id}>
         {this.props.children}
       </button>
     );

@@ -6,6 +6,7 @@ import createHashHistory from 'history/createHashHistory';
 import {Topnav} from "./Topnav";
 import {orderService} from "../services/order-service";
 import {userService} from "../services/user-service";
+import { Column, Row } from './widgets';
 const history = createHashHistory();
 
 export class OrderOverview extends Component {
@@ -16,31 +17,39 @@ export class OrderOverview extends Component {
     return(
       <div>
         <Topnav/>
-        <h3>Bestillingsoversikt</h3>
-        <input id="myInput" type="text" placeholder="Search.." onChange={event => this.search(event)}/>
-        <br/><br/>
-
-        <table className="table table-striped">
-          <thead>
-          <tr>
-            <th>Bestillings ID</th>
-            <th>Fra</th>
-            <th>Til</th>
-            <th>Behandler</th>
-          </tr>
-          </thead>
-          <tbody id="myTable">
-          {this.orders.map(order => (
-            <tr key={order.bestilling_id} id={order.bestilling_id} onClick={event => this.redirect(event)}>
-              <td>{order.bestilling_id}</td>
-              <td>{order.fra.toString().substring(0, 15)}</td>
-              <td>{order.til.toString().substring(0, 15)}</td>
-              <td>{order.brukernavn}</td>
-            </tr>
-          ))
-          }
-          </tbody>
-        </table>
+        <br/>
+        <Row>
+          <Column>
+            <h3>Bestillingsoversikt</h3>
+          </Column>
+          <Column right>
+            <input id="myInput" type="text" placeholder="Search.." onChange={event => this.search(event)}/>
+          </Column>
+        </Row>
+        <Row>
+          <Column>
+            <table className="table table-striped table-hover">
+              <thead>
+              <tr>
+                <th>Bestilling ID</th>
+                <th>Fra</th>
+                <th>Til</th>
+                <th>Behandler</th>
+              </tr>
+              </thead>
+              <tbody id="myTable">
+              {this.orders.map(order => (
+                <tr key={order.bestilling_id} className="clickable-row" id={order.bestilling_id} onClick={event => this.redirect(event)} onMouseOver={this.select}>
+                  <td>{order.bestilling_id}</td>
+                  <td>{order.fra.toString().substring(0, 15)}</td>
+                  <td>{order.til.toString().substring(0, 15)}</td>
+                  <td>{order.brukernavn}</td>
+                </tr>
+              ))}
+              </tbody>
+            </table>
+          </Column>
+        </Row>
       </div>
     )
   }
@@ -62,5 +71,12 @@ export class OrderOverview extends Component {
   redirect(event) {
     let index = event.target.parentNode.id;
     history.push("/overview/" + index);
+    let root = document.getElementById('root');
+    root.style.cursor = 'default';
+  }
+
+  select() {
+    let root = document.getElementById('root');
+    root.style.cursor = 'pointer';
   }
 }
