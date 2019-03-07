@@ -42,8 +42,6 @@ ReactDOM.render(
         <Route exact path={"/registrer"} component={Registrer}/>
         <Route exact path={"/bicycleReg"} component={BicycleReg}/>
         <Route exact path={"/eqReg"} component={EqReg}/>
-
-
       </div>
     </HashRouter>,
   document.getElementById('root')
