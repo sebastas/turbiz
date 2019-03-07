@@ -6,10 +6,6 @@ import { Login } from './components/Login';
 import { Home } from './components/Home';
 import { Register } from './components/Register';
 import { ChangePassword } from './components/ChangePassword';
-<<<<<<< HEAD
-import {leggTilUtstyr} from './components/leggTilUtstyr';
-import {leggTilSykkel} from './components/leggTilSykkel';
-=======
 import { Status } from './components/Status';
 import { SyklerStatus } from './components/Status';
 import { TilbehorStatus } from './components/Status';
@@ -22,8 +18,6 @@ import {Registrer} from "./components/EqReg";
 import {BicycleReg} from "./components/EqReg";
 import {EqReg} from "./components/EqReg";
 
-
->>>>>>> c824c8296482b3da8e9ebe312a2538f5dce44c81
 
 // import createHashHistory from 'history/createHashHistory';
 // const history = createHashHistory(); // Use history.push(...) to programmatically change path, for instance after successfully saving a student
