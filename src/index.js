@@ -19,7 +19,6 @@ import {BicycleReg} from "./components/EqReg";
 import {EqReg} from "./components/EqReg";
 
 
-
 // import createHashHistory from 'history/createHashHistory';
 // const history = createHashHistory(); // Use history.push(...) to programmatically change path, for instance after successfully saving a student
 
@@ -43,8 +42,6 @@ ReactDOM.render(
         <Route exact path={"/registrer"} component={Registrer}/>
         <Route exact path={"/bicycleReg"} component={BicycleReg}/>
         <Route exact path={"/eqReg"} component={EqReg}/>
-
-
       </div>
     </HashRouter>,
   document.getElementById('root')
