@@ -26,13 +26,37 @@ class OrderService {
         });
     }
 
+    // getBikes(orderId, success) {
+    //     let sql = "select *\n" +
+    //       "from Sykkel\n" +
+    //       "inner join Bestilling B on Sykkel.bestilling_id = B.bestilling_id\n" +
+    //       "where B.bestilling_id = ?";
+    //     connection.query(sql, [orderId], (error, results) => {
+    //         if (error) return console.error(error);
+    //
+    //         success(results);
+    //     });
+    // }
+    //
+    // getEquipment(orderId, success) {
+    //     let sql = "select *\n" +
+    //       "from Utstyr\n" +
+    //       "inner join Bestilling B on Utstyr.bestilling_id = B.bestilling_id\n" +
+    //       "where B.bestilling_id = ?";
+    //     connection.query(sql, [orderId], (error, results) => {
+    //         if (error) return console.error(error);
+    //
+    //         success(results);
+    //     });
+    // }
+
     getBikes(orderId, success) {
         let sql = "select *\n" +
           "from Sykkel\n" +
-          "inner join Bestilling B on Sykkel.bestilling_id = B.bestilling_id\n" +
-          "where B.bestilling_id = ?";
+          "inner join Bestilling_Sykkel BS on Sykkel.sykkel_id = BS.sykkel_id\n" +
+          "where bestilling_id = ?";
         connection.query(sql, [orderId], (error, results) => {
-            if (error) return console.error(error);
+            if (error) console.error(error);
 
             success(results);
         });
@@ -41,10 +65,10 @@ class OrderService {
     getEquipment(orderId, success) {
         let sql = "select *\n" +
           "from Utstyr\n" +
-          "inner join Bestilling B on Utstyr.bestilling_id = B.bestilling_id\n" +
-          "where B.bestilling_id = ?";
+          "inner join Bestilling_Utstyr BU on Utstyr.utstyr_id = BU.utstyr_id\n" +
+          "where bestilling_id = ?";
         connection.query(sql, [orderId], (error, results) => {
-            if (error) return console.error(error);
+            if (error) console.error(error);
 
             success(results);
         });

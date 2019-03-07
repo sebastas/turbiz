@@ -20,10 +20,12 @@ export class OrderDetails extends Component {
 
   render() {
     return(
-      <div>
+      <div className="gradient">
         <Topnav/>
         <Row>
-          <Column width={2}/>
+          <Column width={2}>
+            <Button.Danger id="backToOverview" onClick={this.back}>Tilbake</Button.Danger>
+          </Column>
           <Column width={4}>
             <Card title="Generell info" id="order-info">
               <Row>
@@ -61,7 +63,10 @@ export class OrderDetails extends Component {
             </Card>
           </Column>
           <Column width={3}>
-            <Button.Success onClick={this.confirmDelivery} id="confirm-delivery">Bekreft levering</Button.Success>
+            { this.order.delivered === 0 ?
+              <Button.Success onClick={this.confirmDelivery} id="confirm-delivery">Bekreft levering</Button.Success> :
+              <Card title="Levert" id="delivered"/>
+            }
           </Column>
         </Row>
         <Row>
@@ -152,6 +157,7 @@ export class OrderDetails extends Component {
       this.order.to = order.til.toString().substring(0, 15);
       this.order.hours = order.timer;
       this.order.processor = order.brukernavn;
+      this.order.delivered = order.levert;
     });
 
     orderService.getBikes(this.props.match.params.id, bikes => {
@@ -171,5 +177,9 @@ export class OrderDetails extends Component {
         console.log("Godkjenn utstyr før du bekrefter");
       }
     });
+  }
+
+  back() {
+    history.push("/overview");
   }
 }

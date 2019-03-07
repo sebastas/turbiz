@@ -11,3 +11,17 @@
     height: 40%;
     width: 100%;
 }
+
+#backToOverview {
+    margin: 20%;
+    height: 20%;
+    width: 80%;
+}
+
+#delivered {
+    margin: 20%;
+    height: 35%;
+    width: 100%;
+    text-align: center;
+    padding: 5%;
+}
