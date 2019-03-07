@@ -15,6 +15,7 @@ const dialogOptions = {type: 'info', buttons: ['Ja', 'Nei'], message: 'Er du sik
 export class OrderDetails extends Component {
 
   order = {};
+  customer = {};
   bikes = [];
   equipment = [];
 
@@ -60,6 +61,31 @@ export class OrderDetails extends Component {
                   {this.order.processor}
                 </Column>
               </Row>
+              <br/>
+              <Row>
+                <Column>
+                  Kunde:
+                </Column>
+                <Column>
+                  {this.customer.name}
+                </Column>
+              </Row>
+              <Row>
+                <Column>
+                  Epost:
+                </Column>
+                <Column>
+                  {this.customer.email}
+                </Column>
+              </Row>
+              <Row>
+                <Column>
+                  Telefon:
+                </Column>
+                <Column>
+                  {this.customer.phone}
+                </Column>
+              </Row>
             </Card>
           </Column>
           <Column width={3}>
@@ -70,7 +96,6 @@ export class OrderDetails extends Component {
           </Column>
         </Row>
         <Row>
-          {/*<Column width={1}/>*/}
           <Column width={12}>
             <Card title="Utstyr som lånes" id="equipment-info">
               <Card title="Sykler">
@@ -167,12 +192,26 @@ export class OrderDetails extends Component {
     orderService.getEquipment(this.props.match.params.id, equipment => {
       this.equipment = equipment;
     });
+
+    orderService.getCustomerInfo(this.props.match.params.id, customer => {
+      this.customer.name = customer.navn;
+      this.customer.email = customer.epost;
+      this.customer.phone = customer.tlf;
+    });
   }
 
   confirmDelivery() {
     dialog.showMessageBox(dialogOptions, i => {
       if (i === 0) {
         console.log("Utstyret ble bekreftet levert");
+        for (let bike of this.bikes) {
+          orderService.updateBikeStatus(bike.sykkel_id, "Ledig", () => {});
+        }
+        for (let equip of this.equipment) {
+          orderService.updateEquipStatus(equip.utstyr_id, "Ledig", () => {});
+        }
+        history.push("/overview");
+        orderService.updateOrderStatusDelivered(this.order.id, () => {});
       } else {
         console.log("Godkjenn utstyr før du bekrefter");
       }

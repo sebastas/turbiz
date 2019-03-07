@@ -73,6 +73,45 @@ class OrderService {
             success(results);
         });
     }
+
+    getCustomerInfo(orderId, success) {
+        let sql = "select *\n" +
+          "from Kunde\n" +
+          "inner join Bestilling B on Kunde.kunde_id = B.kunde_id\n" +
+          "where bestilling_id = ?";
+        connection.query(sql, [orderId], (error, results) => {
+            if (error) console.error(error);
+
+            success(results[0]);
+        });
+    }
+
+    updateOrderStatusDelivered(orderId, success) {
+        let sql = "update Bestilling set levert = 1 where bestilling_id = ?";
+        connection.query(sql, [orderId], (error, results) => {
+            if (error) console.error(error);
+
+            success();
+        });
+    }
+
+    updateBikeStatus(bikeId, statusMessage, success) {
+        let sql = "update Sykkel set status = ? where sykkel_id = ?";
+        connection.query(sql, [statusMessage, bikeId], (error, results) => {
+           if (error) console.error(error);
+
+           success();
+        });
+    }
+
+    updateEquipStatus(equipId, statusMessage, success) {
+        let sql = "update Utstyr set status = ? where utstyr_id = ?";
+        connection.query(sql, [statusMessage, equipId], (error, results) => {
+            if (error) console.error(error);
+
+            success();
+        });
+    }
 }
 
 export let orderService = new OrderService();
