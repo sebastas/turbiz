@@ -4,6 +4,7 @@ import { userService} from '../services/user-service';
 import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { Topnav } from './Topnav';
 import { Home } from './Home';
+import { Card, Column, List, Row, Button } from './widgets';
 
 import { utstyrService } from '../services/utstyrService';
 
@@ -12,12 +13,28 @@ import { account } from './Login';
 const history = createHashHistory();
 
 export class Status extends Component {
+
   render(){
     return(
       <div>
-        <Topnav />
-        <button type="button" className="btn btn-primary btn-lg btn-block" onClick={this.sStatus}>Sykler</button>
-        <button type="button" className="btn btn-primary btn-lg btn-block" onClick={this.tStatus}>Tilbehør</button>
+      <Topnav/>
+      <br/>
+        <Row>
+          <Column>
+            <h2>Status utstyr</h2>
+          </Column>
+        </Row>
+        <br/>
+        <Row>
+          <Column width={-1}>
+          <Column>
+            <Button.Success onClick={this.sStatus} id="sStatus">Sykler</Button.Success>
+          </Column>
+          </Column>
+          <Column>
+            <Button.Success onClick={this.tStatus} id="tStatus">Tilbehør</Button.Success>
+          </Column>
+        </Row>
       </div>
     )
   }
@@ -28,7 +45,10 @@ export class Status extends Component {
   tStatus(){
     history.push("/tilbehorStatus")
   }
+
 }
+
+
 
 export class SyklerStatus extends Component {
   bicycles = [];
@@ -37,45 +57,58 @@ export class SyklerStatus extends Component {
     return(
       <div>
         <Status />
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th>Sykkel_id</th>
-              <th>Navn</th>
-              <th>Type</th>
-              <th>Pris per time</th>
-              <th>Pris per dag</th>
-              <th>Beskrivelse</th>
-              <th>Status</th>
-              <th>tilhorighet</th>
-              <th>Sted</th>
-              <th>bestillings_id</th>
-              <th>Info</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.bicycles.map(bicycle => (
-              <tr key={bicycle.sykkel_id}>
-                <td>{bicycle.sykkel_id}</td>
-                <td>{bicycle.navn}</td>
-                <td>{bicycle.type}</td>
-                <td>{bicycle.ppt}</td>
-                <td>{bicycle.ppd}</td>
-                <td>{bicycle.beskrivelse}</td>
-                <td>{bicycle.status}</td>
-                <td>{bicycle.tilhorighet}</td>
-                <td>{bicycle.sted}</td>
-                <td>{bicycle.bestilling_id}</td>
-                <td><NavLink to={'/syklerStatus/' + bicycle.sykkel_id + '/edit'}>?</NavLink></td>
+        <Row>
+          <Column>
+            <h3>Sykler</h3>
+          </Column>
+        </Row>
+        <Row>
+          <Column>
+            <input id="searchB" type="text" placeholder="Search.." onChange={event => this.search(event)}/>
+          </Column>
+        </Row>
+        <Row>
+          <Column>
+          <table className="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Sykkel_id</th>
+                <th>Navn</th>
+                <th>Type</th>
+                <th>Pris per time</th>
+                <th>Pris per dag</th>
+                <th>Beskrivelse</th>
+                <th>Status</th>
+                <th>tilhorighet</th>
+                <th>Sted</th>
+                <th>bestillings_id</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-
-        <button type="button" className="btn btn-primary btn-sm" onClick={this.goBack}>Tilbake</button>
-
+            </thead>
+            <tbody id="myTableB">
+              {this.bicycles.map(bicycle => (
+                <tr key={bicycle.sykkel_id} className="clickable-row" id={bicycle.sykkel_id} onClick={event => this.redirect(event)} onMouseOver={this.select}>
+                  <td>{bicycle.sykkel_id}</td>
+                  <td>{bicycle.navn}</td>
+                  <td>{bicycle.type}</td>
+                  <td>{bicycle.ppt}</td>
+                  <td>{bicycle.ppd}</td>
+                  <td>{bicycle.beskrivelse}</td>
+                  <td>{bicycle.status}</td>
+                  <td>{bicycle.tilhorighet}</td>
+                  <td>{bicycle.sted}</td>
+                  <td>{bicycle.bestilling_id}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          </Column>
+        </Row>
+        <Row>
+          <Column>
+            <Button.Success onClick={this.goBack} id="sBackButton">Tilbake</Button.Success>
+          </Column>
+        </Row>
       </div>
-
     )
 
   }
@@ -88,63 +121,117 @@ export class SyklerStatus extends Component {
   goBack() {
     history.push("/home")
   }
+
+  search(event) {
+    let value = event.target.value.toLowerCase();
+    $("#myTableB tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  }
+
+  redirect(event) {
+    let index = event.target.parentNode.id;
+    history.push('/syklerStatus/' + index + '/edit');
+    let root = document.getElementById('root');
+    root.style.cursor = 'default';
+  }
+
+  select() {
+    let root = document.getElementById('root');
+    root.style.cursor = 'pointer';
+  }
+
 }
 
 export class TilbehorStatus extends Component {
-  equpiments=[]
+  equipments=[]
 
   render(){
     return(
       <div>
-        <Status/>
-        <table className="table table-striped">
-  <thead>
-    <tr>
-      <th>Utstyr_id</th>
-      <th>Navn</th>
-      <th>Type</th>
-      <th>Pris</th>
-      <th>Beskrivelse</th>
-      <th>Status</th>
-      <th>Tilhorighet</th>
-      <th>Sted</th>
-      <th>bestilling_id</th>
-      <th>Info</th>
-    </tr>
-  </thead>
-  <tbody>
-    {this.equpiments.map(equpiment => (
-      <tr key={equpiment.utstyr_id}>
-        <td>{equpiment.utstyr_id}</td>
-        <td>{equpiment.navn}</td>
-        <td>{equpiment.type}</td>
-        <td>{equpiment.pris}</td>
-        <td>{equpiment.beskrivelse}</td>
-        <td>{equpiment.status}</td>
-        <td>{equpiment.tilhorighet}</td>
-        <td>{equpiment.sted}</td>
-        <td>{equpiment.bestilling_id}</td>
-        <td><NavLink to={'/tilbehorStatus/' + equpiment.utstyr_id + '/edit'}>?</NavLink></td>
-      </tr>
-    ))}
-  </tbody>
-  </table>
-
-  <button type="button" className="btn btn-primary btn-sm" onClick={this.goBack}>Tilbake</button>
-
+        <Status />
+        <Row>
+          <Column>
+            <h3>Tilbehør</h3>
+          </Column>
+        </Row>
+        <Row>
+          <Column>
+            <input id="searchE" type="text" placeholder="Search.." onChange={event => this.search(event)}/>
+          </Column>
+        </Row>
+        <Row>
+          <Column>
+            <table className="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th>Utstyr_id</th>
+                  <th>Navn</th>
+                  <th>Type</th>
+                  <th>Pris</th>
+                  <th>Beskrivelse</th>
+                  <th>Status</th>
+                  <th>Tilhorighet</th>
+                  <th>Sted</th>
+                  <th>bestilling_id</th>
+                </tr>
+              </thead>
+              <tbody id="myTableEq">
+                {this.equipments.map(equipment => (
+                      <tr key={equipment.utstyr_id} className="clickable-row" id={equipment.utstyr_id} onClick={event => this.redirect(event)} onMouseOver={this.select}>
+                      <td>{equipment.utstyr_id}</td>
+                      <td>{equipment.navn}</td>
+                      <td>{equipment.type}</td>
+                      <td>{equipment.pris}</td>
+                      <td>{equipment.beskrivelse}</td>
+                      <td>{equipment.status}</td>
+                      <td>{equipment.tilhorighet}</td>
+                      <td>{equipment.sted}</td>
+                      <td>{equipment.bestilling_id}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </Column>
+          </Row>
+          <Row>
+            <Column>
+              <Button.Success onClick={this.goBack} id="tBackButton">Tilbake</Button.Success>
+            </Column>
+          </Row>
       </div>
     )
   }
 
   mounted(){
     utstyrService.getEquipment(equipment => {
-      this.equpiments = equipment;
+      this.equipments = equipment;
     });
   }
 
   goBack(){
     history.push("/home")
   }
+
+  search(event) {
+    let value = event.target.value.toLowerCase();
+    $("#myTableEq tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  }
+
+  redirect(event) {
+    let index = event.target.parentNode.id;
+    history.push('/tilbehorStatus/' + index + '/edit');
+    let root = document.getElementById('root');
+    root.style.cursor = 'default';
+  }
+
+  select() {
+    let root = document.getElementById('root');
+    root.style.cursor = 'pointer';
+  }
+
 }
 
 export class BicycleEdit extends Component {
@@ -161,18 +248,98 @@ export class BicycleEdit extends Component {
     return(
       <div>
       <Topnav />
-      <form>
-        Navn: <input type="text" value={this.name} onChange={event => (this.name = event.target.value)} /> <br/>
-        Type: <input type="text" value={this.type} onChange={event => (this.type = event.target.value)} /> <br/>
-        Pris per time: <input type="text" value={this.ppt} onChange={event => (this.ppt = event.target.value)} /> <br/>
-        Pris per dag: <input type="text" value={this.ppd} onChange={event => (this.ppd = event.target.value)} /> <br/>
-        Beskrivelse: <input type="text" value={this.description} onChange={event => (this.description = event.target.value)} /> <br/>
-        Status: <input type="text" value={this.status} onChange={event => (this.status = event.target.value)} /> <br/>
-        Tilhørighet: <input type="text" value={this.location} onChange={event => (this.location = event.target.value)} /> <br/>
-        Sted: <input type="text" value={this.currentLocation} onChange={event => (this.currentLocation = event.target.value)} /> <br/>
-        <button type="button" className="btn btn-primary btn-sm" onClick={this.save}>Lagre</button>
-        <button type="button" className="btn btn-primary btn-sm x" onClick={this.delete}>Slett</button>
-      </form>
+      <div className="container-fluid">
+<div className="container">
+  <div className="formBox">
+    <form>
+        <div className="row">
+          <div className="col-sm-12">
+            <h1>Sykkelregistrering</h1>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-sm-6">
+            <div className="inputBox ">
+              <div className="inputText">Navn</div>
+                <input type="text" value={this.name} onChange={event => (this.name = event.target.value)} />
+            </div>
+          </div>
+
+
+            <div className="col-sm-6">
+              <div className="inputBox ">
+                <div className="inputText">Type</div>
+                  <input type="text" value={this.type} onChange={event => (this.type = event.target.value)} />
+              </div>
+            </div>
+          </div>
+
+        <div className="row">
+          <div className="col-sm-6">
+            <div className="inputBox ">
+              <div className="inputText">Pris per time</div>
+                <input type="text" value={this.ppt} onChange={event => (this.ppt = event.target.value)} />
+            </div>
+          </div>
+
+
+            <div className="col-sm-6">
+              <div className="inputBox ">
+                <div className="inputText">Pris per dag</div>
+                  <input type="text" value={this.ppd} onChange={event => (this.ppd = event.target.value)} />
+              </div>
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-sm-6">
+              <div className="inputBox ">
+                <div className="inputText">Beskrivelse</div>
+                  <input type="text" value={this.description} onChange={event => (this.description = event.target.value)} />
+              </div>
+            </div>
+
+
+
+            <div className="col-sm-6">
+              <div className="inputBox ">
+                <div className="inputText">Status</div>
+                  <input type="text" value={this.status} onChange={event => (this.status = event.target.value)} />
+              </div>
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-sm-6">
+              <div className="inputBox ">
+                <div className="inputText">Tilhørighet</div>
+                  <input type="text" value={this.location} onChange={event => (this.location = event.target.value)} />
+              </div>
+            </div>
+
+
+
+            <div className="col-sm-6">
+              <div className="inputBox ">
+                <div className="inputText">Sted</div>
+                  <input type="text" value={this.currentLocation} onChange={event => (this.currentLocation = event.target.value)} />
+              </div>
+            </div>
+          </div>
+
+        <div className="row">
+          <div className="col-sm-12">
+            <input type="submit" name="" className="button" value="Lagre" onClick={this.save}></input>
+            <input type="submit" name="" className="button" value="Slett" onClick={this.delete}></input>
+            <input type="submit" name="" className="button" value="Tilbake" onClick={this.goBack}></input>
+          </div>
+        </div>
+    </form>
+  </div>
+</div>
+</div>
+
       </div>
     )
   }
@@ -202,6 +369,10 @@ export class BicycleEdit extends Component {
       history.push('/syklerStatus');
     });
   }
+
+  goBack() {
+    history.push("/syklerStatus")
+  };
 }
 
 export class EquipmentEdit extends Component {
@@ -218,18 +389,87 @@ export class EquipmentEdit extends Component {
     return(
       <div>
       <Topnav />
-      <form>
-        Navn: <input type="text" value={this.name} onChange={event => (this.name = event.target.value)} /> <br/>
-        Type: <input type="text" value={this.type} onChange={event => (this.type = event.target.value)} /> <br/>
-        Pris: <input type="text" value={this.price} onChange={event => (this.price = event.target.value)} /> <br/>
-        Beskrivelse: <input type="text" value={this.description} onChange={event => (this.description = event.target.value)} /> <br/>
-        Status: <input type="text" value={this.status} onChange={event => (this.status = event.target.value)} /> <br/>
-        Tilhørighet: <input type="text" value={this.location} onChange={event => (this.location = event.target.value)} /> <br/>
-        Sted: <input type="text" value={this.currentLocation} onChange={event => (this.currentLocation = event.target.value)} /> <br/>
-        <button type="button" className="btn btn-primary btn-sm" onClick={this.save}>Lagre</button>
-        <button type="button" className="btn btn-primary btn-sm x" onClick={this.delete}>Slett</button>
-      </form>
-      </div>
+      <div className="container-fluid">
+<div className="container">
+  <div className="formBox">
+    <form>
+        <div className="row">
+          <div className="col-sm-12">
+            <h1>Sykkelregistrering</h1>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-sm-6">
+            <div className="inputBox ">
+              <div className="inputText">Navn</div>
+                <input type="text" value={this.name} onChange={event => (this.name = event.target.value)} />
+            </div>
+          </div>
+
+
+            <div className="col-sm-6">
+              <div className="inputBox ">
+                <div className="inputText">Type</div>
+                  <input type="text" value={this.type} onChange={event => (this.type = event.target.value)} />
+              </div>
+            </div>
+          </div>
+
+        <div className="row">
+          <div className="col-sm-6">
+            <div className="inputBox ">
+              <div className="inputText">Pris</div>
+                <input type="text" value={this.price} onChange={event => (this.price = event.target.value)} />
+            </div>
+          </div>
+
+            <div className="col-sm-6">
+              <div className="inputBox ">
+                <div className="inputText">Beskrivelse</div>
+                  <input type="text" value={this.description} onChange={event => (this.description = event.target.value)} />
+              </div>
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-sm-6">
+              <div className="inputBox ">
+                <div className="inputText">Status</div>
+                  <input type="text" value={this.status} onChange={event => (this.status = event.target.value)} />
+              </div>
+            </div>
+
+            <div className="col-sm-6">
+              <div className="inputBox ">
+                <div className="inputText">Tilhørighet</div>
+                  <input type="text" value={this.location} onChange={event => (this.location = event.target.value)} />
+              </div>
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-sm-6">
+              <div className="inputBox ">
+                <div className="inputText">Sted</div>
+                  <input type="text" value={this.currentLocation} onChange={event => (this.currentLocation = event.target.value)} />
+              </div>
+            </div>
+          </div>
+
+
+        <div className="row">
+          <div className="col-sm-12">
+            <input type="submit" name="" className="button" value="Lagre" onClick={this.save}></input>
+            <input type="submit" name="" className="button" value="Slett" onClick={this.delete}></input>
+            <input type="submit" name="" className="button" value="Tilbake" onClick={this.goBack}></input>
+          </div>
+        </div>
+    </form>
+  </div>
+</div>
+</div>
+</div>
     )
   }
 
@@ -257,4 +497,10 @@ export class EquipmentEdit extends Component {
       history.push('/tilbehorStatus');
     });
   }
+
+  goBack() {
+    history.push("/tilbehorStatus")
+    };
+
+
 }

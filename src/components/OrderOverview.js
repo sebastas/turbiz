@@ -35,15 +35,17 @@ export class OrderOverview extends Component {
                 <th>Fra</th>
                 <th>Til</th>
                 <th>Behandler</th>
+                <th>Levert</th>
               </tr>
               </thead>
               <tbody id="myTable">
               {this.orders.map(order => (
-                <tr key={order.bestilling_id} className="clickable-row" id={order.bestilling_id} onClick={event => this.redirect(event)} onMouseOver={this.select}>
+                <tr key={order.bestilling_id} id={order.bestilling_id} onClick={event => this.redirect(event)} onMouseOver={this.select}>
                   <td>{order.bestilling_id}</td>
                   <td>{order.fra.toString().substring(0, 15)}</td>
                   <td>{order.til.toString().substring(0, 15)}</td>
                   <td>{order.brukernavn}</td>
+                  <td>{order.levert === 1 ? '✓' : '-'}</td>
                 </tr>
               ))}
               </tbody>
@@ -57,7 +59,6 @@ export class OrderOverview extends Component {
   mounted() {
     orderService.getOrders(orders => {
       this.orders = orders;
-      this.loaded = true;
     });
   }
 
