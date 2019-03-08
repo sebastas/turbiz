@@ -34,8 +34,8 @@ export class BicycleReg extends Component {
   ppd="";
   description="";
   status="";
-  location="";
-  currentLocation="";
+  location=1;
+  places=[]
 
   render() {
     return(
@@ -108,18 +108,13 @@ export class BicycleReg extends Component {
             <div className="row">
               <div className="col-sm-6">
                 <div className="inputBox ">
-                  <div className="inputText">Tilhørighet</div>
-                  <input type="text" name="" className="input" onChange={event => (this.location = event.target.value)}></input>
-                </div>
-              </div>
-
-
-
-              <div className="col-sm-6">
-                <div className="inputBox ">
                   <div className="inputText">Sted</div>
-                  <input type="text" name="" className="input" onChange={event => (this.currentLocation = event.target.value)}></input>
-                </div>
+                  <select onChange={event => (this.location = event.target.value)}>
+                  {this.places.map(place => (
+                      <option key={place.sted_id} value={place.sted_id}>{place.sted_navn}</option>
+                  ))}
+                  </select>
+                 </div>
               </div>
             </div>
 
@@ -136,6 +131,13 @@ export class BicycleReg extends Component {
       </div>
     )
   }
+
+  mounted(){
+    registrerService.getPlace(this.location, place => {
+      this.places = place;
+    })
+  }
+
   sReg(){
     history.push("/bicycleReg")
   }
@@ -149,7 +151,7 @@ export class BicycleReg extends Component {
   }
 
   save(){
-    registrerService.addBicycle(this.props.match.params.id, this.name, this.type, this.ppt, this.ppd, this.description, this.status, this.location, this.currentLocation, () => {
+    registrerService.addBicycle(this.props.match.params.id, this.name, this.type, this.ppt, this.ppd, this.description, this.status, this.location, () => {
       history.push("/syklerStatus")
     });
   }
@@ -164,8 +166,8 @@ export class EqReg extends Component {
   price="";
   description="";
   status="";
-  location="";
-  currentLocation="";
+  location=1;
+  places=[];
 
   render() {
     return(
@@ -225,22 +227,17 @@ export class EqReg extends Component {
                 <input type="text" name="" className="input" onChange={event => (this.status = event.target.value)}></input>
               </div>
             </div>
-          
 
 
-            <div className="col-sm-6">
-              <div className="inputBox">
-                <div className="inputText">Tilhørighet</div>
-                <input type="text" name="" className="input" onChange={event => (this.location = event.target.value)}></input>
-              </div>
-            </div>
-          </div>
 
-          <div className="row">
             <div className="col-sm-6">
               <div className="inputBox">
                 <div className="inputText">Sted</div>
-                <input type="text" name="" className="input" onChange={event => (this.currentLocation = event.target.value)}></input>
+                <select onChange={event => (this.location = event.target.value)}>
+                {this.places.map(place => (
+                    <option key={place.sted_id} value={place.sted_id}>{place.sted_navn}</option>
+                ))}
+                </select>
               </div>
             </div>
           </div>
@@ -259,6 +256,13 @@ export class EqReg extends Component {
       </div>
     )
   }
+
+  mounted(){
+    registrerService.getPlace(this.location, place => {
+      this.places = place;
+    })
+  }
+
   sReg(){
     history.push("/bicycleReg")
   }
@@ -272,7 +276,7 @@ export class EqReg extends Component {
   }
 
   save(){
-    registrerService.addEq(this.props.match.params.id, this.name, this.type, this.price, this.description, this.status, this.location, this.currentLocation, () => {
+    registrerService.addEq(this.props.match.params.id, this.name, this.type, this.price, this.description, this.status, this.location, () => {
       history.push("/tilbehorStatus")
     });
   }
