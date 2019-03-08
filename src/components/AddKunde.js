@@ -6,13 +6,11 @@ import { Topnav } from './Topnav';
 import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
 
+export let kundeInfo = {};
+
 export class AddKunde extends Component {
-  kunde_name = '';
-  kunde_email = '';
-  kunde_number = '';
-  userExists = false;
-  users = [];
   isComplete = true;
+  kunde = {};
 
   render() {
     return (
@@ -38,7 +36,7 @@ export class AddKunde extends Component {
                         id="name"
                         placeholder="Fullt navn"
                         required={true}
-                        onChange={event => (this.name = event.target.value)}
+                        onChange={event => (this.kunde.navn = event.target.value)}
                       />
                     </div>
                   </div>
@@ -60,7 +58,7 @@ export class AddKunde extends Component {
                         id="email"
                         placeholder="Epost"
                         required={true}
-                        onChange={event => (this.email = event.target.value)}
+                        onChange={event => (this.kunde.epost = event.target.value)}
                       />
                     </div>
                   </div>
@@ -82,7 +80,7 @@ export class AddKunde extends Component {
                         id="phone"
                         placeholder="Telefonnummer"
                         required={true}
-                        onChange={event => (this.number = event.target.value)}
+                        onChange={event => (this.kunde.telefon = event.target.value)}
                       />
                     </div>
                   </div>
@@ -107,25 +105,19 @@ export class AddKunde extends Component {
     );
   }
 
-  validateUser(event) {
-    this.username = event.target.value;
-    for (let user of this.users) {
-      if (user.brukernavn === this.username) {
-        this.userExists = true;
-        return;
-      } else {
-        this.userExists = false;
-      }
-    }
+  create() {
+    kundeInfo = this.kunde;
+    //console.log(kundeInfo);
+    history.push('/velgUtstyr');
   }
 
-  create() {
+  /*  create() {
     this.isComplete = this.name.length > 0 && this.email.length > 0 && this.number.length === 8;
 
     if (this.isComplete && !this.userExists) {
       userService.addUser(this.name, this.email, this.number, () => {
-        history.push('/home');
+        history.push('/velgUtstyr');
       });
     }
-  }
+  }*/
 }
