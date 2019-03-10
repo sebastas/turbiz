@@ -14,7 +14,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
     "bootstrap": "^4.3.1",
-    "date-fns": "^1.30.1",
+    "date-fns": "^2.0.0-alpha.27",
     "electron": "^4.0.2",
     "electron-reload": "^1.4.0",
     "mysql": "^2.16.0",

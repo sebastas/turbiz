@@ -25,3 +25,25 @@
     text-align: center;
     padding: 5%;
 }
+
+#order-date {
+    margin: 5%;
+}
+
+#order-date h5 {
+    font-size: 2em;
+    margin-bottom: 2%;
+}
+
+.date-label {
+ font-size: 1.4em;
+}
+
+#order-date-section2 {
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+
+#order-date-section2 h5 {
+    font-size: 1.5em;
+}

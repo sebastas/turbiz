@@ -10,13 +10,6 @@ function connect() {
     database: 'g_idri1005_08'
   });
 
-  // connection = mysql.createConnection({
-  //   host: 'mysql-ait.stud.idi.ntnu.no',
-  //   user: 'sebastas',
-  //   password: 'NEv8ieQw',
-  //   database: 'sebastas'
-  // });
-
   // Connect to MySQL-server
   connection.connect(error => {
     if (error) console.error(error); // If error, show error in console and return from this function
