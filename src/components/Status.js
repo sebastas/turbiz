@@ -35,6 +35,7 @@ export class Status extends Component {
             <Button.Success onClick={this.tStatus} id="tStatus">Tilbehør</Button.Success>
           </Column>
         </Row>
+        <br/>
       </div>
     )
   }
@@ -79,9 +80,7 @@ export class SyklerStatus extends Component {
                 <th>Pris per dag</th>
                 <th>Beskrivelse</th>
                 <th>Status</th>
-                <th>tilhorighet</th>
                 <th>Sted</th>
-                <th>bestillings_id</th>
               </tr>
             </thead>
             <tbody id="myTableB">
@@ -94,9 +93,7 @@ export class SyklerStatus extends Component {
                   <td>{bicycle.ppd}</td>
                   <td>{bicycle.beskrivelse}</td>
                   <td>{bicycle.status}</td>
-                  <td>{bicycle.tilhorighet}</td>
-                  <td>{bicycle.sted}</td>
-                  <td>{bicycle.bestilling_id}</td>
+                  <td>{bicycle.sted_navn}</td>
                 </tr>
               ))}
             </tbody>
@@ -171,9 +168,7 @@ export class TilbehorStatus extends Component {
                   <th>Pris</th>
                   <th>Beskrivelse</th>
                   <th>Status</th>
-                  <th>Tilhorighet</th>
                   <th>Sted</th>
-                  <th>bestilling_id</th>
                 </tr>
               </thead>
               <tbody id="myTableEq">
@@ -185,9 +180,7 @@ export class TilbehorStatus extends Component {
                       <td>{equipment.pris}</td>
                       <td>{equipment.beskrivelse}</td>
                       <td>{equipment.status}</td>
-                      <td>{equipment.tilhorighet}</td>
-                      <td>{equipment.sted}</td>
-                      <td>{equipment.bestilling_id}</td>
+                      <td>{equipment.sted_navn}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -242,7 +235,7 @@ export class BicycleEdit extends Component {
   description="";
   status="";
   location="";
-  currentLocation="";
+  places=[];
 
   render(){
     return(
@@ -313,17 +306,12 @@ export class BicycleEdit extends Component {
           <div className="row">
             <div className="col-sm-6">
               <div className="inputBox ">
-                <div className="inputText">Tilhørighet</div>
-                  <input type="text" value={this.location} onChange={event => (this.location = event.target.value)} />
-              </div>
-            </div>
-
-
-
-            <div className="col-sm-6">
-              <div className="inputBox ">
                 <div className="inputText">Sted</div>
-                  <input type="text" value={this.currentLocation} onChange={event => (this.currentLocation = event.target.value)} />
+                  <select onChange={event => (this.location = event.target.value)}>
+                  {this.places.map(place => (
+                      <option key={place.sted_id} value={place.sted_id}>{place.sted_navn}</option>
+                  ))}
+                  </select>
               </div>
             </div>
           </div>
@@ -352,14 +340,18 @@ export class BicycleEdit extends Component {
       this.ppd = bicycle.ppd;
       this.description = bicycle.beskrivelse;
       this.status = bicycle.status;
-      this.location = bicycle.tilhorighet;
-      this.currentLocation = bicycle.sted;
+      this.location = bicycle.sted;
+      utstyrService.getPlace(this.location, place => {
+        this.places = place;
+      })
     });
+
+
   }
 
   save() {
     utstyrService.updateBicycle(this.props.match.params.id, this.name, this.type, this.ppt,
-      this.ppd, this.description, this.status, this.location, this.currentLocation, () => {
+      this.ppd, this.description, this.status, this.location, () => {
       history.push('/syklerStatus');
     });
   }
@@ -382,8 +374,7 @@ export class EquipmentEdit extends Component {
   description="";
   status="";
   location="";
-  currentLocation="";
-
+  places=[];
 
   render(){
     return(
@@ -442,20 +433,17 @@ export class EquipmentEdit extends Component {
 
             <div className="col-sm-6">
               <div className="inputBox ">
-                <div className="inputText">Tilhørighet</div>
-                  <input type="text" value={this.location} onChange={event => (this.location = event.target.value)} />
-              </div>
+                <div className="inputText">Sted</div>
+                <select onChange={event => (this.location = event.target.value)}>
+                {this.places.map(place => (
+                    <option key={place.sted_id} value={place.sted_id}>{place.sted_navn}</option>
+                ))}
+                </select>
+               </div>
             </div>
           </div>
 
-          <div className="row">
-            <div className="col-sm-6">
-              <div className="inputBox ">
-                <div className="inputText">Sted</div>
-                  <input type="text" value={this.currentLocation} onChange={event => (this.currentLocation = event.target.value)} />
-              </div>
-            </div>
-          </div>
+
 
 
         <div className="row">
@@ -480,14 +468,16 @@ export class EquipmentEdit extends Component {
       this.price = equip.pris;
       this.description = equip.beskrivelse;
       this.status = equip.status;
-      this.location = equip.tilhorighet;
-      this.currentLocation = equip.sted;
+      this.location = equip.sted;
+      utstyrService.getPlace(this.location, place => {
+        this.places = place;
+      })
     });
   }
 
   save() {
     utstyrService.updateEquipment(this.props.match.params.id, this.name, this.type,
-      this.price, this.description, this.status, this.location, this.currentLocation, () => {
+      this.price, this.description, this.status, this.location, () => {
       history.push('/tilbehorStatus');
     });
   }

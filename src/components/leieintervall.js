@@ -4,11 +4,13 @@ import createHashHistory from 'history/createHashHistory';
 import { account } from './Login';
 import {Topnav} from "./Topnav";
 const history = createHashHistory();
+import { DateRange } from "./DateRange";
 
 export class Ordertime extends Component {
 
   render(){
     return(
+      <div>
       <div>
         <Topnav />
         <select name="place">
@@ -16,9 +18,12 @@ export class Ordertime extends Component {
           <option value="Sted2">sted 2</option>
           <option value="Sted3">sted 3</option>
         </select>
-
-          <button type="button" id="back" onClick={this.hjem}>Tilbake</button>
-        </div>
+      </div>
+      <div>
+      <DateRange/>
+        <button type="button" id="back" className="btn btn-primary btn-mg" onClick={this.hjem}>Tilbake</button>
+      </div>
+    </div>
     )
   }
   hjem() {

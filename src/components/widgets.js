@@ -52,7 +52,7 @@ export class Row extends Component {
 export class Column extends Component {
   render() {
     return (
-      <div
+      <div id={this.props.id}
         className={'col' + (this.props.width ? '-' + this.props.width : '') + (this.props.right ? ' text-right' : '')}
       >
         {this.props.children}

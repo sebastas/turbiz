@@ -1,0 +1,13 @@
+#back {
+  position: absolute;
+  margin-left: 10px;
+  margin-top: 40%;
+}
+
+#dValg {
+  margin-left: 10px;
+  font-weight: bold;
+}
+#datoValg {
+  margin-left: 40px;
+}
