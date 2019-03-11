@@ -1,16 +1,17 @@
 #order-equipment {
-    margin: 5%;
+    margin: 3%;
 }
 
 #order-equipment h5 {
     font-size: 2em;
 }
 
-#register-bikes {
+#register-bikes, #register-equip {
     margin-top: 2%;
+    margin-bottom: 2%;
 }
 
-#register-bikes h5 {
+#register-bikes h5, #register-equip h5 {
     font-size: 1.25em;
 }
 
@@ -19,7 +20,8 @@
 }
 
 #select-location-label {
-    margin-top: 8%;
+    margin-top: 5%;
+    font-size: 1.25em;
 }
 
 .equipment-input {
