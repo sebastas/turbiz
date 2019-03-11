@@ -210,7 +210,7 @@ export class OrderDetails extends Component {
         for (let equip of this.equipment) {
           orderService.updateEquipStatus(equip.utstyr_id, "Ledig", () => {});
         }
-        history.push("/overview");
+        history.push("/order/overview");
         orderService.updateOrderStatusDelivered(this.order.id, () => {});
       } else {
         console.log("Godkjenn utstyr før du bekrefter");
