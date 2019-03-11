@@ -6,7 +6,7 @@ import createHashHistory from 'history/createHashHistory';
 import {Topnav} from "./Topnav";
 import {orderService} from "../services/order-service";
 import {userService} from "../services/user-service";
-import { Column, Row } from './widgets';
+import { Column, Row, Button } from './widgets';
 const history = createHashHistory();
 
 export class OrderOverview extends Component {
@@ -21,6 +21,9 @@ export class OrderOverview extends Component {
         <Row>
           <Column>
             <h3>Bestillingsoversikt</h3>
+          </Column>
+          <Column width={2}>
+            <Button.Success onClick={this.new}>Ny bestilling</Button.Success>
           </Column>
           <Column right>
             <input id="myInput" type="text" placeholder="Search.." onChange={event => this.search(event)}/>
@@ -71,7 +74,7 @@ export class OrderOverview extends Component {
 
   redirect(event) {
     let index = event.target.parentNode.id;
-    history.push("/overview/" + index);
+    history.push("/order/overview/" + index);
     let root = document.getElementById('root');
     root.style.cursor = 'default';
   }
@@ -79,5 +82,9 @@ export class OrderOverview extends Component {
   select() {
     let root = document.getElementById('root');
     root.style.cursor = 'pointer';
+  }
+
+  new() {
+    history.push("/order/new/customer")
   }
 }

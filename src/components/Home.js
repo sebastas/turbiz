@@ -33,7 +33,7 @@ export class Home extends Component {
   }
 
   bestilling() {
-    history.push("/overview");
+    history.push("/order/overview");
   }
 
   statusUtstyr() {

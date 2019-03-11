@@ -10,7 +10,11 @@ export let kundeInfo = {};
 
 export class AddKunde extends Component {
   isComplete = true;
-  kunde = {};
+  kunde = {
+    navn: "",
+    epost: "",
+    telefon: ""
+  };
 
   render() {
     return (
@@ -106,18 +110,10 @@ export class AddKunde extends Component {
   }
 
   create() {
-    kundeInfo = this.kunde;
-    //console.log(kundeInfo);
-    history.push('/velgUtstyr');
-  }
-
-  /*  create() {
-    this.isComplete = this.name.length > 0 && this.email.length > 0 && this.number.length === 8;
-
-    if (this.isComplete && !this.userExists) {
-      userService.addUser(this.name, this.email, this.number, () => {
-        history.push('/velgUtstyr');
-      });
+    this.isComplete = this.kunde.navn.length > 0 && this.kunde.epost.length > 0 && this.kunde.telefon.length === 8;
+    if (this.isComplete) {
+      kundeInfo = this.kunde;
+      history.push('/order/new/equipment');
     }
-  }*/
+  }
 }

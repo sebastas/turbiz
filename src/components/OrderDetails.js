@@ -219,6 +219,6 @@ export class OrderDetails extends Component {
   }
 
   back() {
-    history.push("/overview");
+    history.push("/order/overview");
   }
 }
