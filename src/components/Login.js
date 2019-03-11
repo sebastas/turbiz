@@ -5,7 +5,6 @@ import { userService} from '../services/user-service';
 import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
 
-export let account = "";
 
 export class Login extends Component {
 
@@ -50,7 +49,8 @@ export class Login extends Component {
       if (this.username === user.brukernavn && this.password === user.passord) {
         this.loggedIn = true;
         this.wrongPass = false;
-        account = this.username;
+        // account = this.username;
+        localStorage.setItem("account", this.username);
       } else {
         this.wrongPass = true;
       }

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import { account } from './Login';
 import { Topnav } from './Topnav';
 
 import createHashHistory from 'history/createHashHistory';

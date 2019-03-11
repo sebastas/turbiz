@@ -21,7 +21,6 @@ export class OrderDate extends Component {
     hours: 0
   };
   rentType = "hourly";
-  locations =[];
 
   render() {
     return(

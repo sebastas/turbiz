@@ -61,7 +61,7 @@ export class OrderEquipment extends Component {
               </Row>
               <Row>
                 <Column width={6}>
-                  <Card title="Sykkel" id="register-bikes">
+                  <Card title="Sykler" id="register-bikes">
                     <Row>
                       <Column>
                         <List>

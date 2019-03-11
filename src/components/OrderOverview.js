@@ -1,11 +1,9 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import { account } from './Login';
 
 import createHashHistory from 'history/createHashHistory';
 import {Topnav} from "./Topnav";
 import {orderService} from "../services/order-service";
-import {userService} from "../services/user-service";
 import { Column, Row, Button } from './widgets';
 const history = createHashHistory();
 
