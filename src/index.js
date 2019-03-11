@@ -19,8 +19,8 @@ import {BicycleReg} from "./components/EqReg";
 import {EqReg} from "./components/EqReg";
 import { OrderDate } from './components/OrderDate';
 import { AddKunde } from './components/AddKunde';
-import { VelgUtstyr } from './components/VelgUtstyr';
 import { OrderEquipment } from './components/OrderEquipment';
+import { NewOrderDetails } from './components/NewOrderDetails';
 
 
 // import createHashHistory from 'history/createHashHistory';
@@ -51,6 +51,7 @@ class App extends Component {
           <Route exact path={"/order/new/customer"} component={AddKunde}/>
           <Route exact path={"/order/new/equipment"} component={OrderEquipment}/>
           <Route exact path={"/order/new/time"} component={OrderDate}/>
+          <Route exact path={"/order/new/overview"} component={NewOrderDetails}/>
         </div>
       </HashRouter>
     )

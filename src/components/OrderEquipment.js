@@ -81,7 +81,8 @@ export class OrderEquipment extends Component {
                                     </button>
                                   </span>
                                     <input type="text" className="form-control input-number" value={this.bestilling.terreng}
-                                           min="0" max={this.available.terreng} onChange={event => this.bestilling.terreng = event.target.value}/>
+                                           min="0" max={this.available.terreng} disabled={true}
+                                           onChange={event => this.bestilling.terreng = event.target.value}/>
                                     <span className="input-group-btn">
                                       <button type="button" className="btn btn-success btn-number" datatype="plus"
                                               disabled={this.bestilling.terreng === this.available.terreng}
@@ -113,7 +114,8 @@ export class OrderEquipment extends Component {
                                     </button>
                                   </span>
                                   <input type="text" className="form-control input-number" value={this.bestilling.downhill}
-                                         min="0" max={this.available.downhill} onChange={event => this.bestilling.downhill = event.target.value}/>
+                                         min="0" max={this.available.downhill} disabled={true}
+                                         onChange={event => this.bestilling.downhill = event.target.value}/>
                                   <span className="input-group-btn">
                                       <button type="button" className="btn btn-success btn-number" datatype="plus"
                                               disabled={this.bestilling.downhill === this.available.downhill}
@@ -144,7 +146,8 @@ export class OrderEquipment extends Component {
                                     </button>
                                   </span>
                                   <input type="text" className="form-control input-number" value={this.bestilling.racer}
-                                         min="0" max={this.available.racer} onChange={event => this.bestilling.racer = event.target.value}/>
+                                         min="0" max={this.available.racer} disabled={true}
+                                         onChange={event => this.bestilling.racer = event.target.value}/>
                                   <span className="input-group-btn">
                                       <button type="button" className="btn btn-success btn-number" datatype="plus"
                                               disabled={this.bestilling.racer === this.available.racer}
@@ -175,7 +178,8 @@ export class OrderEquipment extends Component {
                                     </button>
                                   </span>
                                   <input type="text" className="form-control input-number" value={this.bestilling.barnesykkel}
-                                         min="0" max={this.available.barnesykkel} onChange={event => this.bestilling.barnesykkel = event.target.value}/>
+                                         min="0" max={this.available.barnesykkel} disabled={true}
+                                         onChange={event => this.bestilling.barnesykkel = event.target.value}/>
                                   <span className="input-group-btn">
                                       <button type="button" className="btn btn-success btn-number" datatype="plus"
                                               disabled={this.bestilling.barnesykkel === this.available.barnesykkel}
@@ -206,7 +210,8 @@ export class OrderEquipment extends Component {
                                     </button>
                                   </span>
                                   <input type="text" className="form-control input-number" value={this.bestilling.hybrid}
-                                         min="0" max={this.available.hybrid} onChange={event => this.bestilling.hybrid = event.target.value}/>
+                                         min="0" max={this.available.hybrid} disabled={true}
+                                         onChange={event => this.bestilling.hybrid = event.target.value}/>
                                   <span className="input-group-btn">
                                       <button type="button" className="btn btn-success btn-number" datatype="plus"
                                               disabled={this.bestilling.hybrid === this.available.hybrid}
@@ -247,7 +252,8 @@ export class OrderEquipment extends Component {
                                     </button>
                                   </span>
                                   <input type="text" className="form-control input-number" value={this.bestilling.hjelm}
-                                         min="0" max={this.available.hjelm} onChange={event => this.bestilling.hjelm = event.target.value}/>
+                                         min="0" max={this.available.hjelm} disabled={true}
+                                         onChange={event => this.bestilling.hjelm = event.target.value}/>
                                   <span className="input-group-btn">
                                       <button type="button" className="btn btn-success btn-number" datatype="plus"
                                               disabled={this.bestilling.hjelm === this.available.hjelm}
@@ -278,7 +284,8 @@ export class OrderEquipment extends Component {
                                     </button>
                                   </span>
                                   <input type="text" className="form-control input-number" value={this.bestilling.lås}
-                                         min="0" max={this.available.lås} onChange={event => this.bestilling.lås = event.target.value}/>
+                                         min="0" max={this.available.lås} disabled={true}
+                                         onChange={event => this.bestilling.lås = event.target.value}/>
                                   <span className="input-group-btn">
                                       <button type="button" className="btn btn-success btn-number" datatype="plus"
                                               disabled={this.bestilling.lås === this.available.lås}
@@ -309,7 +316,8 @@ export class OrderEquipment extends Component {
                                     </button>
                                   </span>
                                   <input type="text" className="form-control input-number" value={this.bestilling.beskytter}
-                                         min="0" max={this.available.beskytte} onChange={event => this.bestilling.beskytter = event.target.value}/>
+                                         min="0" max={this.available.beskytte} disabled={true}
+                                         onChange={event => this.bestilling.beskytter = event.target.value}/>
                                   <span className="input-group-btn">
                                       <button type="button" className="btn btn-success btn-number" datatype="plus"
                                               disabled={this.bestilling.beskytter === this.available.beskytter}
@@ -340,7 +348,8 @@ export class OrderEquipment extends Component {
                                     </button>
                                   </span>
                                   <input type="text" className="form-control input-number" value={this.bestilling.lappesaker}
-                                         min="0" max={this.available.lappesaker} onChange={event => this.bestilling.lappesaker = event.target.value}/>
+                                         min="0" max={this.available.lappesaker} disabled={true}
+                                         onChange={event => this.bestilling.lappesaker = event.target.value}/>
                                   <span className="input-group-btn">
                                       <button type="button" className="btn btn-success btn-number" datatype="plus"
                                               disabled={this.bestilling.lappesaker === this.available.lappesaker}
@@ -371,7 +380,8 @@ export class OrderEquipment extends Component {
                                     </button>
                                   </span>
                                   <input type="text" className="form-control input-number" value={this.bestilling.sykkelveske}
-                                         min="0" max={this.available.sykkelveske} onChange={event => this.bestilling.sykkelveske = event.target.value}/>
+                                         min="0" max={this.available.sykkelveske} disabled={true}
+                                         onChange={event => this.bestilling.sykkelveske = event.target.value}/>
                                   <span className="input-group-btn">
                                       <button type="button" className="btn btn-success btn-number" datatype="plus"
                                               disabled={this.bestilling.sykkelveske === this.available.sykkelveske}
@@ -402,7 +412,8 @@ export class OrderEquipment extends Component {
                                     </button>
                                   </span>
                                   <input type="text" className="form-control input-number" value={this.bestilling.barnehenger}
-                                         min="0" max={this.available.barnehenger} onChange={event => this.bestilling.barnehenger = event.target.value}/>
+                                         min="0" max={this.available.barnehenger} disabled={true}
+                                         onChange={event => this.bestilling.barnehenger = event.target.value}/>
                                   <span className="input-group-btn">
                                       <button type="button" className="btn btn-success btn-number" datatype="plus"
                                               disabled={this.bestilling.barnehenger === this.available.barnehenger}
@@ -433,7 +444,8 @@ export class OrderEquipment extends Component {
                                     </button>
                                   </span>
                                   <input type="text" className="form-control input-number" value={this.bestilling.lastehenger}
-                                         min="0" max={this.available.lastehenger} onChange={event => this.bestilling.lastehenger = event.target.value}/>
+                                         min="0" max={this.available.lastehenger} disabled={true}
+                                         onChange={event => this.bestilling.lastehenger = event.target.value}/>
                                   <span className="input-group-btn">
                                       <button type="button" className="btn btn-success btn-number" datatype="plus"
                                               disabled={this.bestilling.lastehenger === this.available.lastehenger}
@@ -464,7 +476,8 @@ export class OrderEquipment extends Component {
                                     </button>
                                   </span>
                                   <input type="text" className="form-control input-number" value={this.bestilling.barnesete}
-                                         min="0" max={this.available.barnesete} onChange={event => this.bestilling.barnesete = event.target.value}/>
+                                         min="0" max={this.available.barnesete} disabled={true}
+                                         onChange={event => this.bestilling.barnesete = event.target.value}/>
                                   <span className="input-group-btn">
                                       <button type="button" className="btn btn-success btn-number" datatype="plus"
                                               disabled={this.bestilling.barnesete === this.available.barnesete}
@@ -487,10 +500,13 @@ export class OrderEquipment extends Component {
                 </Column>
               </Row>
               <Row>
-                <Column>
-                  <Button.Light onClick={this.back}>Forrige</Button.Light>
+                <Column width={2}>
+                  <Button.Light onClick={this.back} id="order-equipment-back">Forrige</Button.Light>
                 </Column>
-                <Button.Success onClick={this.next}>Neste</Button.Success>
+                <Column width={8}/>
+                <Column width={2}>
+                <Button.Success onClick={this.next} id="order-equipment-next">Neste</Button.Success>
+                </Column>
               </Row>
             </Card>
           </Column>

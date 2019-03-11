@@ -1,3 +1,7 @@
+#order-details-card {
+    margin: 3%
+}
+
 #order-info {
     margin: 20px;
 }
@@ -36,14 +40,20 @@
 }
 
 .date-label {
- font-size: 1.4em;
+    font-size: 1.4em;
+    margin-top: 10%;
 }
 
-#order-date-section2 {
-    margin-top: 2%;
-    margin-bottom: 5%;
+#order-date-input {
+    margin-top: 5%;
 }
 
-#order-date-section2 h5 {
+#order-date-rent-hour h5 {
     font-size: 1.5em;
+}
+
+#order-date-back, #order-date-next {
+    width: 100%;
+    height: 100%;
+    margin-top: 5%;
 }

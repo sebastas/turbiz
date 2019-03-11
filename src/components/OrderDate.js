@@ -28,74 +28,68 @@ export class OrderDate extends Component {
       <div id="register-order-time" className="gradient">
         <Topnav/>
         <Row>
-          <Column width={1}/>
-          <Column width={10}>
+          <Column width={2}/>
+          <Column width={8}>
             <Card title="Velg dato for leie" id="order-date">
               <Row>
-                <Column width={1}>
-                  <label htmlFor="dateFrom" className="date-label">Fra</label>
+                <Column width={6}>
+                  <Row>
+                    <Column width={4}>
+                      <label htmlFor="dateFrom" className="date-label">Fra</label>
+                    </Column>
+                    <Column width={8}>
+                      <DatePicker
+                        id="dateFrom"
+                        dateFormat="dd MMMM YYYY"
+                        selected={this.orderDate.start}
+                        selectsStart
+                        startDate={this.orderDate.start}
+                        endDate={this.orderDate.end}
+                        onChange={this.handleChangeStart}
+                        minDate={new Date()}
+                        todayButton="I dag"
+                        locale="nb"
+                      />
+                    </Column>
+                  </Row>
+                  <Row>
+                    <Column width={4}>
+                      <label htmlFor="dateTo" className="date-label">Til</label>
+                    </Column>
+                    <Column width={8}>
+                      <DatePicker
+                        id="dateTo"
+                        dateFormat="dd MMMM YYYY"
+                        selected={this.orderDate.end}
+                        selectsEnd
+                        startDate={this.orderDate.start}
+                        endDate={this.orderDate.end}
+                        onChange={this.handleChangeEnd}
+                        minDate={new Date()}
+                        todayButton="I dag"
+                        locale="nb"
+                      />
+                    </Column>
+                  </Row>
                 </Column>
                 <Column width={5}>
-                  <DatePicker
-                    id="dateFrom"
-                    dateFormat="dd MMMM YYYY"
-                    selected={this.orderDate.start}
-                    selectsStart
-                    startDate={this.orderDate.start}
-                    endDate={this.orderDate.end}
-                    onChange={this.handleChangeStart}
-                    minDate={new Date()}
-                    todayButton="I dag"
-                    locale="nb"
-                  />
-                </Column>
-                <Column width={1}>
-                  <label htmlFor="dateTo" className="date-label">Til</label>
-                </Column>
-                <Column width={5}>
-                  <DatePicker
-                    id="dateTo"
-                    dateFormat="dd MMMM YYYY"
-                    selected={this.orderDate.end}
-                    selectsEnd
-                    startDate={this.orderDate.start}
-                    endDate={this.orderDate.end}
-                    onChange={this.handleChangeEnd}
-                    minDate={new Date()}
-                    todayButton="I dag"
-                    locale="nb"
-                  />
+                  <Card title="Timesleie" id="order-date-rent-hour">
+                    <select className="custom-select" onChange={event => this.orderDate.hours = event.target.value} disabled={this.rentType !== 'hourly'}>
+                      <option value={2}>2 timer</option>
+                      <option value={4}>4 timer</option>
+                      <option value={6}>6 timer</option>
+                      <option value={8}>8 timer</option>
+                    </select>
+                  </Card>
                 </Column>
               </Row>
-              <div id="order-date-section2">
-                <Row>
-                  <Column width={6}>
-                    <Card title="Velg utleveringssted">
-                      <select className="custom-select" onChange={event => this.orderDate.location = event.target.value}>
-                        {
-
-                        }
-                      </select>
-                    </Card>
-                  </Column>
-                  <Column width={6}>
-                    <Card title="Timesleie">
-                      <select className="custom-select" onChange={event => this.orderDate.hours = event.target.value} disabled={this.rentType !== 'hourly'}>
-                        <option value={2}>2 timer</option>
-                        <option value={4}>4 timer</option>
-                        <option value={6}>6 timer</option>
-                        <option value={8}>8 timer</option>
-                      </select>
-                    </Card>
-                  </Column>
-                </Row>
-              </div>
               <Row>
-                <Column>
-                  <Button.Light onClick={this.back}>Forrige</Button.Light>
+                <Column width={2}>
+                  <Button.Light onClick={this.back} id="order-date-back">Forrige</Button.Light>
                 </Column>
-                <Column right>
-                  <Button.Success onClick={this.next}>Neste</Button.Success>
+                <Column width={8}/>
+                <Column width={2}>
+                  <Button.Success onClick={this.next} id="order-date-next">Neste</Button.Success>
                 </Column>
               </Row>
             </Card>
@@ -103,10 +97,6 @@ export class OrderDate extends Component {
         </Row>
       </div>
     )
-  }
-
-  mounted() {
-
   }
 
   handleChange = ({ startDate, endDate }) => {
@@ -137,10 +127,10 @@ export class OrderDate extends Component {
 
   next() {
     dateInfo = this.orderDate;
-    // history.push("/");
+    history.push("/order/new/overview");
   }
 
   back() {
-    // history.push("/");
+    history.push("/order/new/equipment");
   }
 }

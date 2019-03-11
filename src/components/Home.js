@@ -25,7 +25,6 @@ export class Home extends Component {
             <button type="button" id="knapp" className="btn btn-primary btn-lg knapp" onClick={this.bestilling}>Bestillingsoversikt</button>
             <button type="button" id ="knapp" className="btn btn-primary btn-lg knapp" onClick={this.statusUtstyr}>Status utstyr</button>
             <button type="button" id="knapp" className="btn btn-primary btn-lg knapp" onClick={this.utstyrReg}>Utstyrsregistrering</button>
-            <button onClick={this.datepick} className="knapp">Date</button>
           </div>
         </div>
       </div>
@@ -41,8 +40,5 @@ export class Home extends Component {
   }
   utstyrReg() {
     history.push("/registrer");
-  }
-  datepick() {
-    history.push("/date");
   }
 }
