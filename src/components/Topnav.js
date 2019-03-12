@@ -21,6 +21,10 @@ export class Topnav extends Component {
               <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a className="dropdown-item" onClick={this.addUser}
                    style={{display: localStorage.getItem("account") === "admin" ? "block" : "none"}}>Ny ansatt</a>
+                <a className="dropdown-item" onClick={this.employees}
+                   style={{display: localStorage.getItem("account") === "admin" ? "block" : "none"}}>Ansattoversikt</a>
+                <a className="dropdown-item" onClick={this.addPlace}
+                   style={{display: localStorage.getItem("account") === "admin" ? "block" : "none"}}>Nytt sted</a>
                 <a className="dropdown-item" onClick={this.changePassword}>Endre passord</a>
                 <a className="dropdown-item" onClick={this.logOut}>Logg ut</a>
               </div>
@@ -42,6 +46,12 @@ export class Topnav extends Component {
     localStorage.clear();
     history.push("/");
   }
+
+  addPlace() {
+    history.push("/newPlace");
+  }
+
+  employees() {
+    history.push("/employeesOverview");
+  }
 }
-
-
