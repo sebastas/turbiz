@@ -77,29 +77,5 @@ class UtstyrService {
       success(results);
     });
   }
-
-  getAvailableBikesFromLocationType(location, type, success) {
-    let sql ="select count(*) as total\n" +
-      "from Sykkel\n" +
-      "where status = 'Ledig'\n" +
-      "and sted = ? and type = ?";
-    connection.query(sql, [location, type], (error, results) => {
-      if (error) return console.error(error);
-
-      success(results[0]);
-    });
-  }
-
-  getAvailableEquipFromLocationType(location, type, success) {
-    let sql ="select count(*) as total\n" +
-      "from Utstyr\n" +
-      "where status = 'Ledig'\n" +
-      "and sted = ? and type = ?";
-    connection.query(sql, [location, type], (error, results) => {
-      if (error) return console.error(error);
-
-      success(results[0]);
-    });
-  }
 }
 export let utstyrService = new UtstyrService();

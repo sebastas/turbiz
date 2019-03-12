@@ -85,6 +85,15 @@ export class OrderDetails extends Component {
                     {this.customer.phone}
                   </Column>
                 </Row>
+                <br/>
+                <Row>
+                  <Column>
+                    Pris:
+                  </Column>
+                  <Column>
+                    {this.order.price} kr
+                  </Column>
+                </Row>
               </Card>
             </Column>
             <Column width={3}>
@@ -183,6 +192,7 @@ export class OrderDetails extends Component {
       this.order.hours = order.timer;
       this.order.processor = order.brukernavn;
       this.order.delivered = order.levert;
+      this.order.price = order.pris;
     });
 
     orderService.getBikes(this.props.match.params.id, bikes => {

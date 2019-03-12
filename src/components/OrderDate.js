@@ -71,7 +71,9 @@ export class OrderDate extends Component {
                 </Column>
                 <Column width={5}>
                   <Card title="Timesleie" id="order-date-rent-hour">
-                    <select className="custom-select" onChange={event => this.orderDate.hours = event.target.value} disabled={this.rentType !== 'hourly'} value={this.orderDate.hours}>
+                    <select className="custom-select" onChange={event => this.orderDate.hours = event.target.value}
+                            disabled={this.rentType !== 'hourly'} value={this.orderDate.hours}>
+                      <option style={{display: this.rentType !== 'hourly' ? 'block' : 'none'}} value={0}>Dagsleie</option>
                       <option value={2}>2 timer</option>
                       <option value={4}>4 timer</option>
                       <option value={6}>6 timer</option>
@@ -106,7 +108,7 @@ export class OrderDate extends Component {
 
     if (this.formatDate(this.orderDate.start) !== this.formatDate(this.orderDate.end)) {
       this.rentType = "daily";
-      this.orderDate.hours = 0;
+      this.orderDate.hours = "0";
     } else {
       this.rentType = "hourly";
     }
@@ -122,9 +124,10 @@ export class OrderDate extends Component {
 
     if (this.formatDate(startDate) !== this.formatDate(endDate)) {
       this.rentType = "daily";
-      this.orderDate.hours = 0;
+      this.orderDate.hours = "0";
     } else {
       this.rentType = "hourly";
+      this.orderDate.hours = "2";
     }
 
     this.orderDate.start = startDate;

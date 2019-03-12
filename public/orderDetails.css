@@ -30,6 +30,7 @@
     padding: 5%;
 }
 
+/*Order date*/
 #order-date {
     margin: 5%;
 }
@@ -56,4 +57,28 @@
     width: 100%;
     height: 100%;
     margin-top: 5%;
+}
+
+
+/*New Order Details*/
+#redirect-customer, #redirect-equipment, #redirect-time {
+    width: 100%;
+    height: 120%;
+    background-color: #D3D3D3;
+}
+
+#new-order-title {
+    margin: 2%;
+}
+
+#new-order-info {
+    margin: 5%;
+}
+
+#new-order-price {
+    margin: 3%;
+}
+
+#new-equipment-info {
+    margin: 2%;
 }

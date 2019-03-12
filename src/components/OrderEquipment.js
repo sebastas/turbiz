@@ -5,14 +5,15 @@ import { Column, Row, Button, Card, List } from './widgets';
 
 import createHashHistory from 'history/createHashHistory';
 import { utstyrService } from '../services/utstyrService';
+import { orderService } from '../services/order-service';
 const history = createHashHistory();
 
 export class OrderEquipment extends Component {
 
   locations = [];
-  selectedLocation = 1;
 
   bestilling = {
+    sted: 1,
     terreng: 0,
     downhill: 0,
     racer: 0,
@@ -45,7 +46,7 @@ export class OrderEquipment extends Component {
                       <label htmlFor="select-location" id="select-location-label">Velg sted</label>
                     </Column>
                     <Column width={4}>
-                      <select className="custom-select" id="select-location" onChange={event => this.updateAvailable(event.target.value)}>
+                      <select className="custom-select" id="select-location" onChange={event => this.updateAvailable(event.target.value)} value={this.bestilling.sted}>
                         {
                           this.locations.map(location => (
                             <option key={location.sted_id} value={location.sted_id}>{location.sted_navn}</option>
@@ -513,12 +514,12 @@ export class OrderEquipment extends Component {
   }
 
   mounted() {
-    utstyrService.getPlace(this.selectedLocation, locations => {
+    utstyrService.getPlace(this.bestilling.sted, locations => {
       this.locations = locations;
     });
 
     // Get number of available bikes from specific location
-    this.updateAvailable(this.selectedLocation);
+    this.updateAvailable(this.bestilling.sted);
 
     let equipment = JSON.parse(localStorage.getItem("equipment"));
     if (equipment) this.bestilling = equipment;
@@ -531,6 +532,7 @@ export class OrderEquipment extends Component {
    */
   updateAvailable(location) {
     this.bestilling = {
+      sted: location,
       terreng: 0,
       downhill: 0,
       racer: 0,
@@ -545,43 +547,43 @@ export class OrderEquipment extends Component {
       beskytter: 0,
       lappesaker:0
     };
-    utstyrService.getAvailableBikesFromLocationType(location, 'Terreng', bikes => {
+    orderService.getAvailableBikesFromLocationType(location, 'Terreng', bikes => {
       this.available.terreng = bikes.total;
     });
-    utstyrService.getAvailableBikesFromLocationType(location, "Downhill", bikes => {
+    orderService.getAvailableBikesFromLocationType(location, "Downhill", bikes => {
       this.available.downhill = bikes.total;
     });
-    utstyrService.getAvailableBikesFromLocationType(location, "Racer", bikes => {
+    orderService.getAvailableBikesFromLocationType(location, "Racer", bikes => {
       this.available.racer = bikes.total;
     });
-    utstyrService.getAvailableBikesFromLocationType(location, "Barnesykkel", bikes => {
+    orderService.getAvailableBikesFromLocationType(location, "Barnesykkel", bikes => {
       this.available.barnesykkel = bikes.total;
     });
-    utstyrService.getAvailableBikesFromLocationType(location, "Hybrid", bikes => {
+    orderService.getAvailableBikesFromLocationType(location, "Hybrid", bikes => {
       this.available.hybrid = bikes.total;
     });
-    utstyrService.getAvailableEquipFromLocationType(location, "Hjelm", equip => {
+    orderService.getAvailableEquipFromLocationType(location, "Hjelm", equip => {
       this.available.hjelm = equip.total;
     });
-    utstyrService.getAvailableEquipFromLocationType(location, "Lås", equip => {
+    orderService.getAvailableEquipFromLocationType(location, "Lås", equip => {
       this.available.lås = equip.total;
     });
-    utstyrService.getAvailableEquipFromLocationType(location, "Beskytter", equip => {
+    orderService.getAvailableEquipFromLocationType(location, "Beskytter", equip => {
       this.available.beskytter = equip.total;
     });
-    utstyrService.getAvailableEquipFromLocationType(location, "Lappesaker", equip => {
+    orderService.getAvailableEquipFromLocationType(location, "Lappesaker", equip => {
       this.available.lappesaker = equip.total;
     });
-    utstyrService.getAvailableEquipFromLocationType(location, "Sykkelveske", equip => {
+    orderService.getAvailableEquipFromLocationType(location, "Sykkelveske", equip => {
       this.available.sykkelveske = equip.total;
     });
-    utstyrService.getAvailableEquipFromLocationType(location, "Barnehenger", equip => {
+    orderService.getAvailableEquipFromLocationType(location, "Barnehenger", equip => {
       this.available.barnehenger = equip.total;
     });
-    utstyrService.getAvailableEquipFromLocationType(location, "Lastehenger", equip => {
+    orderService.getAvailableEquipFromLocationType(location, "Lastehenger", equip => {
       this.available.lastehenger = equip.total;
     });
-    utstyrService.getAvailableEquipFromLocationType(location, "Barnesete", equip => {
+    orderService.getAvailableEquipFromLocationType(location, "Barnesete", equip => {
       this.available.barnesete = equip.total;
     });
   }
