@@ -150,6 +150,15 @@ class OrderService {
            success();
         });
     }
+
+    getCustomers(success) {
+        let sql = "select * from Kunde";
+        connection.query(sql, (error, results) => {
+            if (error) console.error(error);
+
+            success(results);
+        })
+    }
 }
 
 export let orderService = new OrderService();

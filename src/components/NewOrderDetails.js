@@ -14,14 +14,8 @@ export class NewOrderDetails extends Component {
   time = {};
   bikes = [];
   equip = [];
-  price = {
-    days: 0,
-    bikes: 0,
-    equip: 0,
-    discount: 0,
-    discountPrice: 0,
-    total: 0
-  };
+  price = {};
+  loyalMember = false;
 
   render() {
     return(
@@ -116,6 +110,16 @@ export class NewOrderDetails extends Component {
                     {this.customer.telefon}
                   </Column>
                 </Row>
+                <div style={{color: 'green', display: this.loyalMember ? 'block' : 'none'}}>
+                  <Row>
+                    <Column>
+                      Lojal kunde:
+                    </Column>
+                    <Column>
+                      10% rabatt lagt til
+                    </Column>
+                  </Row>
+                </div>
               </Card>
             </Column>
             <Column width={2}/>
@@ -243,13 +247,14 @@ export class NewOrderDetails extends Component {
     this.getImports();
     this.getBikes();
     this.getEquip();
+    this.checkIfMember();
     setTimeout(this.calculatePrice, 250); // slight delay to get values in arrays
   }
 
   getImports() {
     let customer = JSON.parse(localStorage.getItem("customer"));
     let equipment = JSON.parse(localStorage.getItem("equipment"));
-    let time = JSON.parse(localStorage.getItem("time"))
+    let time = JSON.parse(localStorage.getItem("time"));
     let from = new Date(time.start);
     let to = new Date(time.end);
     console.log(customer);
@@ -320,7 +325,22 @@ export class NewOrderDetails extends Component {
     this.calculatePrice();
   }
 
+  checkIfMember() {
+    orderService.getCustomers(customers => {
+      for (let customer of customers) {
+        this.loyalMember = this.customer.epost === customer.epost;
+      }
+    });
+  }
+
   calculatePrice() {
+    this.price = {
+      days: 0,
+      bikes: 0,
+      equip: 0,
+      discount: 0,
+      total: 0
+    };
     let time = JSON.parse(localStorage.getItem("time"))
     let from = new Date(time.start);
     let to = new Date(time.end);
@@ -345,7 +365,17 @@ export class NewOrderDetails extends Component {
     this.price.total = this.price.bikes + this.price.equip;
 
     // Discounts
-    this.price.discount = 10;
+
+    if (this.loyalMember) {
+      this.price.discount += 10;
+    }
+
+    if (this.bikes.length >= 3) {
+      this.price.discount += 10; // 5% discount for 3+ bikes
+      if (this.bikes.length >= 5) {
+        this.price.discount += 5; // Another 3% off for 5+ bikes
+      }
+    }
 
     this.price.total = this.price.total * (1 - this.price.discount / 100);
 
@@ -353,5 +383,9 @@ export class NewOrderDetails extends Component {
 
   addCustomer() {
     orderService.addCustomer(this.customer, () => {});
+  }
+
+  confirmOrder() {
+
   }
 }

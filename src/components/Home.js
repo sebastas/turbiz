@@ -22,6 +22,13 @@ export class Home extends Component {
     )
   }
 
+  mounted() {
+    // Remove new order info from localstorage
+    localStorage.removeItem("customer");
+    localStorage.removeItem("equipment");
+    localStorage.removeItem("time");
+  }
+
   bestilling() {
     history.push("/order/overview");
   }

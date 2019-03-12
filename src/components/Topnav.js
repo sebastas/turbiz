@@ -32,12 +32,9 @@ export class Topnav extends Component {
       )
   }
 
-  addUser() {
-    history.push("/register")
-  }
 
   changePassword() {
-    history.push("/account/"+ localStorage.getItem("account") + "/edit")
+    history.push("/account/"+ localStorage.getItem("account") + "/edit");
   }
 
   logOut() {
