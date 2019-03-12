@@ -9,8 +9,8 @@ import {userService} from "../services/user-service";
 import { Column, Row, Button } from './widgets';
 const history = createHashHistory();
 
-export class Employees extends Component {
-  employees=[];
+export class LocationOverview extends Component {
+  locations=[];
 
   render(){
     return(
@@ -19,10 +19,10 @@ export class Employees extends Component {
         <br/>
         <Row>
           <Column>
-            <h3>Ansattoversikt</h3>
+            <h3>Stedsoversikt</h3>
           </Column>
           <Column>
-            <Button.Success onClick={this.new}>Ny ansatt</Button.Success>
+            <Button.Success onClick={this.new}>Nytt sted</Button.Success>
           </Column>
           <Column right>
             <input id="myInput" type="text" placeholder="Search.." onChange={event => this.search(event)}/>
@@ -30,24 +30,18 @@ export class Employees extends Component {
         </Row>
         <Row>
           <Column>
-            <table className="table table-striped table-hover">
+            <table className="table table-striped">
               <thead>
               <tr>
-                <th>Ansatt ID</th>
+                <th>Steds ID</th>
                 <th>Navn</th>
-                <th>Epost</th>
-                <th>Tlf</th>
-                <th>Brukernavn</th>
               </tr>
               </thead>
               <tbody id="myTable">
-              {this.employees.map(employee => (
-                <tr key={employee.ansatt_id} id={employee.ansatt_id} onClick={event => this.redirect(event)} onMouseOver={this.select}>
-                  <td>{employee.ansatt_id}</td>
-                  <td>{employee.navn}</td>
-                  <td>{employee.epost}</td>
-                  <td>{employee.tlf}</td>
-                  <td>{employee.brukernavn}</td>
+              {this.locations.map(location => (
+                <tr key={location.sted_id} id={location.sted_id}>
+                  <td>{location.sted_id}</td>
+                  <td>{location.sted_navn}</td>
                 </tr>
               ))}
               </tbody>
@@ -59,8 +53,8 @@ export class Employees extends Component {
   }
 
   mounted() {
-    adminService.getEmployees(employees => {
-      this.employees = employees;
+    adminService.getLocations(locations => {
+      this.locations = locations;
     });
   }
 
@@ -71,20 +65,8 @@ export class Employees extends Component {
     });
   }
 
-  redirect(event) {
-    let index = event.target.parentNode.id;
-    history.push("/employeeOverview/" + index);
-    let root = document.getElementById('root');
-    root.style.cursor = 'default';
-  }
-
-  select() {
-    let root = document.getElementById('root');
-    root.style.cursor = 'pointer';
-  }
-
   new() {
-    history.push("/register")
+    history.push("/newPlace")
   }
 
 }

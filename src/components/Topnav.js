@@ -16,15 +16,13 @@ export class Topnav extends Component {
             <span className="navbar-text"> Logget inn som: {localStorage.getItem("account")} </span>
             <div className="btn-group dropdown">
               <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Instillinger
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Innstillinger
               </button>
               <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a className="dropdown-item" onClick={this.addUser}
-                   style={{display: localStorage.getItem("account") === "admin" ? "block" : "none"}}>Ny ansatt</a>
                 <a className="dropdown-item" onClick={this.employees}
                    style={{display: localStorage.getItem("account") === "admin" ? "block" : "none"}}>Ansattoversikt</a>
-                <a className="dropdown-item" onClick={this.addPlace}
-                   style={{display: localStorage.getItem("account") === "admin" ? "block" : "none"}}>Nytt sted</a>
+                <a className="dropdown-item" onClick={this.locations}
+                   style={{display: localStorage.getItem("account") === "admin" ? "block" : "none"}}>Stedsoversikt</a>
                 <a className="dropdown-item" onClick={this.changePassword}>Endre passord</a>
                 <a className="dropdown-item" onClick={this.logOut}>Logg ut</a>
               </div>
@@ -47,8 +45,8 @@ export class Topnav extends Component {
     history.push("/");
   }
 
-  addPlace() {
-    history.push("/newPlace");
+  locations() {
+    history.push("/locationOverview");
   }
 
   employees() {

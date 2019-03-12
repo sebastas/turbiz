@@ -10,6 +10,14 @@ class AdminService {
     });
   }
 
+  getLocations(success) {
+    connection.query("select * from Sted", (error, results) => {
+      if (error) return console.error(error);
+
+      success(results)
+    })
+  }
+
   getEmployee(id, success){
     connection.query("select * from Ansatte where ansatt_id=?", [id], (error, results) => {
       if (error) return console.error(error);
