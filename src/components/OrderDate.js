@@ -11,8 +11,6 @@ import createHashHistory from "history/createHashHistory";
 const history = createHashHistory();
 registerLocale("nb", nb);
 
-export let dateInfo = {};
-
 export class OrderDate extends Component {
 
   orderDate = {
@@ -73,7 +71,7 @@ export class OrderDate extends Component {
                 </Column>
                 <Column width={5}>
                   <Card title="Timesleie" id="order-date-rent-hour">
-                    <select className="custom-select" onChange={event => this.orderDate.hours = event.target.value} disabled={this.rentType !== 'hourly'}>
+                    <select className="custom-select" onChange={event => this.orderDate.hours = event.target.value} disabled={this.rentType !== 'hourly'} value={this.orderDate.hours}>
                       <option value={2}>2 timer</option>
                       <option value={4}>4 timer</option>
                       <option value={6}>6 timer</option>
@@ -98,6 +96,22 @@ export class OrderDate extends Component {
     )
   }
 
+  mounted() {
+    let time = JSON.parse(localStorage.getItem("time"));
+    if (time) {
+      this.orderDate.start = new Date(time.start);
+      this.orderDate.end = new Date(time.end);
+      this.orderDate.hours = time.hours;
+    }
+
+    if (this.formatDate(this.orderDate.start) !== this.formatDate(this.orderDate.end)) {
+      this.rentType = "daily";
+      this.orderDate.hours = 0;
+    } else {
+      this.rentType = "hourly";
+    }
+  }
+
   handleChange = ({ startDate, endDate }) => {
     startDate = startDate || this.orderDate.start;
     endDate = endDate || this.orderDate.end;
@@ -106,8 +120,9 @@ export class OrderDate extends Component {
       endDate = startDate;
     }
 
-    if (startDate !== endDate) {
-      this.rentType = "daily"
+    if (this.formatDate(startDate) !== this.formatDate(endDate)) {
+      this.rentType = "daily";
+      this.orderDate.hours = 0;
     } else {
       this.rentType = "hourly";
     }
@@ -120,12 +135,12 @@ export class OrderDate extends Component {
 
   handleChangeEnd = end => this.handleChange({ endDate: end });
 
-  // formatDate(date) {
-  //   return date.toISOString().slice(0, 10);
-  // }
+  formatDate(date) {
+    return date.toISOString().slice(0, 10);
+  }
 
   next() {
-    dateInfo = this.orderDate;
+    localStorage.setItem("time", JSON.stringify(this.orderDate));
     history.push("/order/new/overview");
   }
 

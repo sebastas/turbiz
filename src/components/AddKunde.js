@@ -5,7 +5,6 @@ import { Topnav } from './Topnav';
 import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
 
-export let kundeInfo = {};
 
 export class AddKunde extends Component {
   isComplete = true;
@@ -39,6 +38,7 @@ export class AddKunde extends Component {
                         id="name"
                         placeholder="Fullt navn"
                         required={true}
+                        value={this.kunde.navn}
                         onChange={event => (this.kunde.navn = event.target.value)}
                       />
                     </div>
@@ -61,6 +61,7 @@ export class AddKunde extends Component {
                         id="email"
                         placeholder="Epost"
                         required={true}
+                        value={this.kunde.epost}
                         onChange={event => (this.kunde.epost = event.target.value)}
                       />
                     </div>
@@ -83,6 +84,7 @@ export class AddKunde extends Component {
                         id="phone"
                         placeholder="Telefonnummer"
                         required={true}
+                        value={this.kunde.telefon}
                         onChange={event => (this.kunde.telefon = event.target.value)}
                       />
                     </div>
@@ -108,10 +110,15 @@ export class AddKunde extends Component {
     );
   }
 
+  mounted() {
+    let customer = JSON.parse(localStorage.getItem("customer"));
+    if (customer) this.kunde = customer;
+  }
+
   create() {
     this.isComplete = this.kunde.navn.length > 0 && this.kunde.epost.length > 0 && this.kunde.telefon.length === 8;
     if (this.isComplete) {
-      kundeInfo = this.kunde;
+      localStorage.setItem("customer", JSON.stringify(this.kunde));
       history.push('/order/new/equipment');
     }
   }

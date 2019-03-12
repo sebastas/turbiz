@@ -16,4 +16,13 @@ export class NewOrderDetails extends Component {
       </div>
     )
   }
+
+  mounted() {
+    let customer = JSON.parse(localStorage.getItem("customer"));
+    let equipment = JSON.parse(localStorage.getItem("equipment"));
+    let time = JSON.parse(localStorage.getItem("time"));
+    console.log(customer);
+    console.log(equipment);
+    console.log(time);
+  }
 }

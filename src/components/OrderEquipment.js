@@ -5,10 +5,7 @@ import { Column, Row, Button, Card, List } from './widgets';
 
 import createHashHistory from 'history/createHashHistory';
 import { utstyrService } from '../services/utstyrService';
-import { bestillingInfo } from './VelgUtstyr';
 const history = createHashHistory();
-
-export let orderEquipment = {};
 
 export class OrderEquipment extends Component {
 
@@ -522,6 +519,9 @@ export class OrderEquipment extends Component {
 
     // Get number of available bikes from specific location
     this.updateAvailable(this.selectedLocation);
+
+    let equipment = JSON.parse(localStorage.getItem("equipment"));
+    if (equipment) this.bestilling = equipment;
   }
 
   /**
@@ -587,7 +587,7 @@ export class OrderEquipment extends Component {
   }
 
   next() {
-    orderEquipment = this.bestilling;
+    localStorage.setItem("equipment", JSON.stringify(this.bestilling));
     history.push('/order/new/time');
   }
 
