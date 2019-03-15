@@ -5,10 +5,7 @@ import { Topnav } from './Topnav';
 import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
 
-<<<<<<< HEAD
 export let kundeInfo = {}; //Lager et objekt som skal lagre informasjonen med videre
-=======
->>>>>>> ee78a301f114aa18173eddc5e3a37e9c68bbec68
 
 export class AddKunde extends Component {
   isComplete = true;
@@ -21,8 +18,7 @@ export class AddKunde extends Component {
   render() {
     return (
       <div>
-        {' '}
-        // Under er koden for inputboksene med logo på siden.I tillegg er det stilsetting på inputboksene
+        {/*Under er koden for inputboksene med logo på siden.I tillegg er det stilsetting på inputboksene*/}
         <Topnav />
         <div className="container">
           <div className="row main">
@@ -94,8 +90,8 @@ export class AddKunde extends Component {
                     </div>
                   </div>
                 </div>
-                // Koden under er validering over at all informasjonen du skriver inn er gylidg. Ellers vil du få en
-                feilmelding.
+                {/*Koden under er validering over at all informasjonen du skriver inn er gylidg. Ellers vil du få en*/}
+                {/*feilmelding.*/}
                 <p style={{ display: this.isComplete ? 'none' : 'block', color: 'red' }}>Vennligst fyll inn all info</p>
                 <div className="form-group ">
                   <button
@@ -115,16 +111,15 @@ export class AddKunde extends Component {
     );
   }
 
-<<<<<<< HEAD
   create() {
     kundeInfo = this.kunde; // Lagrer verdier som blir skrevet inn
 
     history.push('/velgUtstyr'); // Hendvender deg til neste side når du trykker videre
-=======
-  mounted() {
+  }
+
+    mounted() {
     let customer = JSON.parse(localStorage.getItem("customer"));
     if (customer) this.kunde = customer;
->>>>>>> ee78a301f114aa18173eddc5e3a37e9c68bbec68
   }
 
   create() {
