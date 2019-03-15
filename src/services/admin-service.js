@@ -3,7 +3,7 @@ import { connection } from '../mysql_connection';
 class AdminService {
 
   getEmployees(success){
-    connection.query("select * from Ansatte", (error, results) => {
+    connection.query("select * from Ansatte where ansatt_id > 1", (error, results) => {
       if (error) return console.error(error);
 
       success(results);
