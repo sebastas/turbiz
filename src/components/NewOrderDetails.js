@@ -5,6 +5,8 @@ import {orderService} from "../services/order-service";
 import { Card, Column, List, Row, Button } from './widgets';
 import differenceInCalendarDays from 'date-fns/differenceInCalendarDays'
 import createHashHistory from 'history/createHashHistory';
+import { userService } from '../services/user-service';
+import { utstyrService } from '../services/utstyrService';
 const history = createHashHistory();
 
 export class NewOrderDetails extends Component {
@@ -43,79 +45,79 @@ export class NewOrderDetails extends Component {
               <Card title="Generell info" id="new-order-info">
                 <div id="dagsleie" style={{display: this.time.hours === "0" ? 'block' : 'none'}}>
                   <Row>
-                    <Column>
+                    <Column width={5}>
                       Fra dato:
                     </Column>
-                    <Column>
+                    <Column width={7}>
                       {this.time.from}
                     </Column>
                   </Row>
                   <Row>
-                    <Column>
+                    <Column width={5}>
                       Til dato:
                     </Column>
-                    <Column>
+                    <Column width={7}>
                       {this.time.to}
                     </Column>
                   </Row>
                   <Row>
-                    <Column>
+                    <Column width={5}>
                       Antall dager:
                     </Column>
-                    <Column>
+                    <Column width={7}>
                       {this.price.days}
                     </Column>
                   </Row>
                 </div>
                 <div id="timesleie" style={{display: this.time.hours !== "0" ? 'block' : 'none'}}>
                   <Row>
-                    <Column>
+                    <Column width={5}>
                       Dato:
                     </Column>
-                    <Column>
+                    <Column width={7}>
                       {this.time.from}
                     </Column>
                   </Row>
                   <Row>
-                    <Column>
+                    <Column width={5}>
                       Antall timer:
                     </Column>
-                    <Column>
+                    <Column width={7}>
                       {this.time.hours}
                     </Column>
                   </Row>
                 </div>
                 <br/>
                 <Row>
-                  <Column>
+                  <Column width={5}>
                     Kunde:
                   </Column>
-                  <Column>
+                  <Column width={7}>
                     {this.customer.navn}
                   </Column>
                 </Row>
                 <Row>
-                  <Column>
+                  <Column width={5}>
                     Epost:
                   </Column>
-                  <Column>
+                  <Column width={7}>
                     {this.customer.epost}
                   </Column>
                 </Row>
                 <Row>
-                  <Column>
+                  <Column width={5}>
                     Telefon:
                   </Column>
-                  <Column>
+                  <Column width={7}>
                     {this.customer.telefon}
                   </Column>
                 </Row>
                 <div style={{color: 'green', display: this.loyalMember ? 'block' : 'none'}}>
                   <Row>
-                    <Column>
+                    <Column width={5}>
                       Lojal kunde:
                     </Column>
-                    <Column>
+                    <Column width={7}>
                       10% rabatt lagt til
                     </Column>
                   </Row>
@@ -236,7 +238,12 @@ export class NewOrderDetails extends Component {
               </Card>
             </Column>
           </Row>
-          <Button.Success onClick={this.test}>Testing</Button.Success>
+          <Row>
+            <Column width={4}/>
+            <Column width={4}>
+              <Button.Success onClick={this.confirmOrder} id="confirm-order-button">Bekreft bestilling</Button.Success>
+            </Column>
+          </Row>
         </Card>
       </div>
     )
@@ -244,6 +251,8 @@ export class NewOrderDetails extends Component {
 
 
   mounted() {
+    this.bikes = [];
+    this.equip = [];
     this.getImports();
     this.getBikes();
     this.getEquip();
@@ -305,10 +314,6 @@ export class NewOrderDetails extends Component {
     });
   }
 
-  back() {
-    history.push("/order/new/time")
-  }
-
   redirectCustomer() {
     history.push("/order/new/customer");
   }
@@ -320,9 +325,10 @@ export class NewOrderDetails extends Component {
   }
 
   test() {
-    console.log(this.bikes);
-    console.log(this.equip);
-    this.calculatePrice();
+    // console.log(this.bikes);
+    // console.log(this.equip);
+    // this.calculatePrice();
+    // this.confirmOrder();
   }
 
   checkIfMember() {
@@ -386,6 +392,45 @@ export class NewOrderDetails extends Component {
   }
 
   confirmOrder() {
+    if (!this.loyalMember) {
+      this.addCustomer();
+    }
+    // Gets the id of the newest user before performing insertions
+    orderService.getLatestFromTable("Kunde", customer => {
+      let customerId = customer.antall;
+      console.log(customerId);
+      let time = JSON.parse(localStorage.getItem("time"));
+      let from = new Date(time.start).toISOString().slice(0, 10);
+      let to = new Date(time.end).toISOString().slice(0, 10);
 
+      // Insert into Bestilling
+      userService.getUser(localStorage.getItem("account"), user => {
+        let employeeId = user.ansatt_id;
+        orderService.addOrder(from, to, time.hours, customerId, employeeId, this.price.total, () => {
+
+          // Insert into Bestilling_Sykkel and Bestilling_Utstyr using the newly created orderId from the insertion above
+          orderService.getLatestFromTable("Bestilling", order => {
+            let orderId = order.antall;
+            console.log(orderId);
+
+            // Insert every bike of this order into Bestilling_Sykkel and update it's status
+            for (let bike of this.bikes) {
+              orderService.addBikeOrder(orderId, bike.sykkel_id, () => {
+              });
+              orderService.updateBikeStatus(bike.sykkel_id, "Opptatt", this.equipment.sted, () => {});
+            }
+
+            // Insert every equipment of this order into Bestilling_Utstyr and update it's status
+            for (let equip of this.equip) {
+              orderService.addEquipOrder(orderId, equip.utstyr_id, () => {
+              });
+              orderService.updateEquipStatus(equip.utstyr_id, "Opptatt", this.equipment.sted, () => {});
+            }
+
+            history.push("/order/overview");
+          });
+        });
+      });
+    });
   }
 }

@@ -88,3 +88,8 @@
 #new-equipment-info {
     margin: 2%;
 }
+
+#confirm-order-button {
+    width: 100%;
+    height: 120%;
+}

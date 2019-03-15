@@ -33,6 +33,7 @@ export class OrderOverview extends Component {
               <thead>
               <tr>
                 <th>Bestilling ID</th>
+                <th>Kunde epost</th>
                 <th>Fra</th>
                 <th>Til</th>
                 <th>Behandler</th>
@@ -43,6 +44,7 @@ export class OrderOverview extends Component {
               {this.orders.map(order => (
                 <tr key={order.bestilling_id} id={order.bestilling_id} onClick={event => this.redirect(event)} onMouseOver={this.select}>
                   <td>{order.bestilling_id}</td>
+                  <td>{order.epost}</td>
                   <td>{order.fra.toString().substring(0, 15)}</td>
                   <td>{order.til.toString().substring(0, 15)}</td>
                   <td>{order.brukernavn}</td>

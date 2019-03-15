@@ -31,71 +31,130 @@ export class OrderDetails extends Component {
             </Column>
           </Row>
           <Row>
-            <Column width={4}>
+            <Column width={5}>
               <Card title="Generell info" id="order-info">
                 <Row>
-                  <Column>
+                  <Column width={5}>
                     Bestilling id:
                   </Column>
-                  <Column>
+                  <Column width={7}>
                     {this.order.id}
                   </Column>
                 </Row>
+                {
+                  this.order.hours === "0" || this.order.hours === null ?
+                    <div id="dagsleie">
+                      <Row>
+                        <Column width={5}>
+                          Fra dato:
+                        </Column>
+                        <Column width={7}>
+                          {this.order.from}
+                        </Column>
+                      </Row>
+                      <Row>
+                        <Column width={5}>
+                          Til dato:
+                        </Column>
+                        <Column width={7}>
+                          {this.order.to}
+                        </Column>
+                      </Row>
+                    </div> :
+                    <div id="timesleie">
+                      <Row>
+                        <Column width={5}>
+                          Dato:
+                        </Column>
+                        <Column width={7}>
+                          {this.order.from}
+                        </Column>
+                      </Row>
+                      <Row>
+                        <Column width={5}>
+                          Antall timer:
+                        </Column>
+                        <Column width={7}>
+                          {this.order.hours}
+                        </Column>
+                      </Row>
+                    </div>
+                }
+                {/*<div id="dagsleie" style={{display: this.order.hours === "0" ? 'block' : 'none'}}>*/}
+                  {/*<Row>*/}
+                    {/*<Column width={5}>*/}
+                      {/*Fra dato:*/}
+                    {/*</Column>*/}
+                    {/*<Column width={7}>*/}
+                      {/*{this.order.from}*/}
+                    {/*</Column>*/}
+                  {/*</Row>*/}
+                  {/*<Row>*/}
+                    {/*<Column width={5}>*/}
+                      {/*Til dato:*/}
+                    {/*</Column>*/}
+                    {/*<Column width={7}>*/}
+                      {/*{this.order.to}*/}
+                    {/*</Column>*/}
+                  {/*</Row>*/}
+                {/*</div>*/}
+                {/*<div id="timesleie" style={{display: this.order.hours ? 'block' : 'none'}}>*/}
+                  {/*<Row>*/}
+                    {/*<Column width={5}>*/}
+                      {/*Dato:*/}
+                    {/*</Column>*/}
+                    {/*<Column width={7}>*/}
+                      {/*{this.order.from}*/}
+                    {/*</Column>*/}
+                  {/*</Row>*/}
+                  {/*<Row>*/}
+                    {/*<Column width={5}>*/}
+                      {/*Antall timer:*/}
+                    {/*</Column>*/}
+                    {/*<Column width={7}>*/}
+                      {/*{this.order.hours}*/}
+                    {/*</Column>*/}
+                  {/*</Row>*/}
+                {/*</div>*/}
                 <Row>
-                  <Column>
-                    Fra dato:
-                  </Column>
-                  <Column>
-                    {this.order.from}
-                  </Column>
-                </Row>
-                <Row>
-                  <Column>
-                    Til dato:
-                  </Column>
-                  <Column>
-                    {this.order.to}
-                  </Column>
-                </Row>
-                <Row>
-                  <Column>
+                  <Column width={5}>
                     Behandler:
                   </Column>
-                  <Column>
+                  <Column width={7}>
                     {this.order.processor}
                   </Column>
                 </Row>
                 <br/>
                 <Row>
-                  <Column>
+                  <Column width={5}>
                     Kunde:
                   </Column>
-                  <Column>
+                  <Column width={7}>
                     {this.customer.name}
                   </Column>
                 </Row>
                 <Row>
-                  <Column>
+                  <Column width={5}>
                     Epost:
                   </Column>
-                  <Column>
+                  <Column width={7}>
                     {this.customer.email}
                   </Column>
                 </Row>
                 <Row>
-                  <Column>
+                  <Column width={5}>
                     Telefon:
                   </Column>
-                  <Column>
+                  <Column width={7}>
                     {this.customer.phone}
                   </Column>
                 </Row>
                 <br/>
                 <Row>
-                  <Column>
+                  <Column width={5}>
                     Pris:
                   </Column>
-                  <Column>
+                  <Column width={7}>
                     {this.order.price} kr
                   </Column>
                 </Row>
