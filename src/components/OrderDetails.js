@@ -238,10 +238,10 @@ export class OrderDetails extends Component {
       if (i === 0) {
         console.log("Utstyret ble bekreftet levert ved " + this.location);
         for (let bike of this.bikes) {
-          orderService.updateBikeStatus(bike.sykkel_id, "Ledig", () => {});
+          orderService.updateBikeStatus(bike.sykkel_id, "Ledig", this.location, () => {});
         }
         for (let equip of this.equipment) {
-          orderService.updateEquipStatus(equip.utstyr_id, "Ledig", () => {});
+          orderService.updateEquipStatus(equip.utstyr_id, "Ledig", this.location, () => {});
         }
         history.push("/order/overview");
         orderService.updateOrderStatusDelivered(this.order.id, () => {});

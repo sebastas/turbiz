@@ -71,18 +71,18 @@ class OrderService {
         });
     }
 
-    updateBikeStatus(bikeId, statusMessage, success) {
-        let sql = "update Sykkel set status = ? where sykkel_id = ?";
-        connection.query(sql, [statusMessage, bikeId], (error, results) => {
+    updateBikeStatus(bikeId, statusMessage, locationId, success) {
+        let sql = "update Sykkel set status = ?, sted = ? where sykkel_id = ?";
+        connection.query(sql, [statusMessage, locationId, bikeId], (error, results) => {
            if (error) console.error(error);
 
            success();
         });
     }
 
-    updateEquipStatus(equipId, statusMessage, success) {
-        let sql = "update Utstyr set status = ? where utstyr_id = ?";
-        connection.query(sql, [statusMessage, equipId], (error, results) => {
+    updateEquipStatus(equipId, statusMessage, locationId, success) {
+        let sql = "update Utstyr set status = ?, sted = ? where utstyr_id = ?";
+        connection.query(sql, [statusMessage, locationId, equipId], (error, results) => {
             if (error) console.error(error);
 
             success();
