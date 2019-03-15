@@ -3,7 +3,7 @@
 }
 
 #order-info {
-    margin: 20px;
+    margin: 40px;
 }
 
 #equipment-info {
@@ -11,20 +11,26 @@
 }
 
 #confirm-delivery {
-    margin: 20%;
-    height: 40%;
+    margin-top: 40px;
+    height: 50%;
+    width: 150%;
+}
+
+#confirm-delivery Button {
+    margin-top: 20px;
     width: 100%;
+    height: 50px;
 }
 
 #backToOverview {
-    margin: 20%;
-    height: 20%;
-    width: 80%;
+    margin-left: 40px;
+    height: 120%;
+    width: 20%;
+    background-color: #D3D3D3;
 }
 
 #delivered {
-    margin: 20%;
-    height: 35%;
+    margin-top: 40px;
     width: 100%;
     text-align: center;
     padding: 5%;

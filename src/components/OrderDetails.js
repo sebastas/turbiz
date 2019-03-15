@@ -4,6 +4,7 @@ import {Topnav} from "./Topnav";
 import {orderService} from "../services/order-service";
 import { Card, Column, List, Row, Button } from './widgets';
 import createHashHistory from 'history/createHashHistory';
+import { utstyrService } from '../services/utstyrService';
 const history = createHashHistory();
 
 // for popup
@@ -16,6 +17,8 @@ export class OrderDetails extends Component {
   customer = {};
   bikes = [];
   equipment = [];
+  locations = [];
+  location = 1;
 
   render() {
     return(
@@ -23,9 +26,11 @@ export class OrderDetails extends Component {
         <Topnav/>
         <Card id="order-details-card">
           <Row>
-            <Column width={2}>
-              <Button.Danger id="backToOverview" onClick={this.back}>Tilbake</Button.Danger>
+            <Column>
+              <Button.Light id="backToOverview" onClick={this.back}>Tilbake</Button.Light>
             </Column>
+          </Row>
+          <Row>
             <Column width={4}>
               <Card title="Generell info" id="order-info">
                 <Row>
@@ -96,10 +101,24 @@ export class OrderDetails extends Component {
                 </Row>
               </Card>
             </Column>
+            <Column width={2}/>
             <Column width={3}>
-              { this.order.delivered === 0 ?
-                <Button.Success onClick={this.confirmDelivery} id="confirm-delivery">Bekreft levering</Button.Success> :
-                <Card title="Levert" id="delivered"/>
+              { this.order.delivered === 1 ?
+                <Card id="delivered">
+                  <h4>Levert</h4>
+                </Card> :
+                <Card title="Bekreft levering" id="confirm-delivery">
+                  Velg sted:
+                  <select onChange={event => this.location = event.target.value} className="custom-select">
+                    {
+                      this.locations.map(location => (
+                        <option key={location.sted_id} value={location.sted_id}>{location.sted_navn}</option>
+                      ))
+                    }
+                  </select>
+                  <Button.Success onClick={this.confirmDelivery}>Bekreft levering</Button.Success>
+                </Card>
+
               }
             </Column>
           </Row>
@@ -208,12 +227,16 @@ export class OrderDetails extends Component {
       this.customer.email = customer.epost;
       this.customer.phone = customer.tlf;
     });
+
+    utstyrService.getPlace(1, locations => {
+      this.locations = locations;
+    });
   }
 
   confirmDelivery() {
     dialog.showMessageBox(dialogOptions, i => {
       if (i === 0) {
-        console.log("Utstyret ble bekreftet levert");
+        console.log("Utstyret ble bekreftet levert ved " + this.location);
         for (let bike of this.bikes) {
           orderService.updateBikeStatus(bike.sykkel_id, "Ledig", () => {});
         }
