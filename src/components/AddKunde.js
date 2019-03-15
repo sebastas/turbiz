@@ -1,16 +1,22 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import { account } from './Login';
 import { Topnav } from './Topnav';
 
 import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
 
+<<<<<<< HEAD
 export let kundeInfo = {}; //Lager et objekt som skal lagre informasjonen med videre
+=======
+>>>>>>> ee78a301f114aa18173eddc5e3a37e9c68bbec68
 
 export class AddKunde extends Component {
   isComplete = true;
-  kunde = {};
+  kunde = {
+    navn: "",
+    epost: "",
+    telefon: ""
+  };
 
   render() {
     return (
@@ -38,6 +44,7 @@ export class AddKunde extends Component {
                         id="name"
                         placeholder="Fullt navn"
                         required={true}
+                        value={this.kunde.navn}
                         onChange={event => (this.kunde.navn = event.target.value)}
                       />
                     </div>
@@ -59,6 +66,7 @@ export class AddKunde extends Component {
                         id="email"
                         placeholder="Epost"
                         required={true}
+                        value={this.kunde.epost}
                         onChange={event => (this.kunde.epost = event.target.value)}
                       />
                     </div>
@@ -80,6 +88,7 @@ export class AddKunde extends Component {
                         id="phone"
                         placeholder="Telefonnummer"
                         required={true}
+                        value={this.kunde.telefon}
                         onChange={event => (this.kunde.telefon = event.target.value)}
                       />
                     </div>
@@ -106,19 +115,23 @@ export class AddKunde extends Component {
     );
   }
 
+<<<<<<< HEAD
   create() {
     kundeInfo = this.kunde; // Lagrer verdier som blir skrevet inn
 
     history.push('/velgUtstyr'); // Hendvender deg til neste side når du trykker videre
+=======
+  mounted() {
+    let customer = JSON.parse(localStorage.getItem("customer"));
+    if (customer) this.kunde = customer;
+>>>>>>> ee78a301f114aa18173eddc5e3a37e9c68bbec68
   }
 
-  /*  create() {
-    this.isComplete = this.name.length > 0 && this.email.length > 0 && this.number.length === 8;
-
-    if (this.isComplete && !this.userExists) {
-      userService.addUser(this.name, this.email, this.number, () => {
-        history.push('/velgUtstyr');
-      });
+  create() {
+    this.isComplete = this.kunde.navn.length > 0 && this.kunde.epost.length > 0 && this.kunde.telefon.length === 8;
+    if (this.isComplete) {
+      localStorage.setItem("customer", JSON.stringify(this.kunde));
+      history.push('/order/new/equipment');
     }
-  }*/
+  }
 }

@@ -26,30 +26,6 @@ class OrderService {
         });
     }
 
-    // getBikes(orderId, success) {
-    //     let sql = "select *\n" +
-    //       "from Sykkel\n" +
-    //       "inner join Bestilling B on Sykkel.bestilling_id = B.bestilling_id\n" +
-    //       "where B.bestilling_id = ?";
-    //     connection.query(sql, [orderId], (error, results) => {
-    //         if (error) return console.error(error);
-    //
-    //         success(results);
-    //     });
-    // }
-    //
-    // getEquipment(orderId, success) {
-    //     let sql = "select *\n" +
-    //       "from Utstyr\n" +
-    //       "inner join Bestilling B on Utstyr.bestilling_id = B.bestilling_id\n" +
-    //       "where B.bestilling_id = ?";
-    //     connection.query(sql, [orderId], (error, results) => {
-    //         if (error) return console.error(error);
-    //
-    //         success(results);
-    //     });
-    // }
-
     getBikes(orderId, success) {
         let sql = "select *\n" +
           "from Sykkel\n" +
@@ -111,6 +87,77 @@ class OrderService {
 
             success();
         });
+    }
+
+
+    getAvailableBikesFromLocationType(location, type, success) {
+        let sql ="select count(*) as total\n" +
+          "from Sykkel\n" +
+          "where status = 'Ledig'\n" +
+          "and sted = ? and type = ?";
+        connection.query(sql, [location, type], (error, results) => {
+            if (error) return console.error(error);
+
+            success(results[0]);
+        });
+    }
+
+    getAvailableEquipFromLocationType(location, type, success) {
+        let sql ="select count(*) as total\n" +
+          "from Utstyr\n" +
+          "where status = 'Ledig'\n" +
+          "and sted = ? and type = ?";
+        connection.query(sql, [location, type], (error, results) => {
+            if (error) return console.error(error);
+
+            success(results[0]);
+        });
+    }
+
+    getBikesForOrder(location, type, amount, success) {
+        let sql = "select *\n" +
+          "from Sykkel\n" +
+          "where status = 'Ledig'\n" +
+          "and sted = ?\n" +
+          "and type = ?\n" +
+          "limit ?";
+        connection.query(sql, [location, type, amount], (error, results) => {
+            if (error) console.error(error);
+
+           success(results);
+        });
+    }
+
+    getEquipForOrder(location, type, amount, success) {
+        let sql = "select *\n" +
+          "from Utstyr\n" +
+          "where status = 'Ledig'\n" +
+          "and sted = ?\n" +
+          "and type = ?\n" +
+          "limit ?";
+        connection.query(sql, [location, type, amount], (error, results) => {
+            if (error) console.error(error);
+
+            success(results);
+        });
+    }
+
+    addCustomer(customer, success) {
+        let sql = "insert into Kunde (navn, epost, tlf) VALUES (?, ?, ?)";
+        connection.query(sql, [customer.navn, customer.epost, customer.telefon], (error, results) => {
+           if (error) console.error(error);
+
+           success();
+        });
+    }
+
+    getCustomers(success) {
+        let sql = "select * from Kunde";
+        connection.query(sql, (error, results) => {
+            if (error) console.error(error);
+
+            success(results);
+        })
     }
 }
 

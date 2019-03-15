@@ -4,7 +4,6 @@ import { userService} from '../services/user-service';
 import { Topnav } from './Topnav';
 
 import createHashHistory from 'history/createHashHistory';
-import { account } from './Login';
 const history = createHashHistory();
 
 export class ChangePassword extends Component {
@@ -71,7 +70,7 @@ export class ChangePassword extends Component {
   }
 
   mounted() {
-    userService.getUser(account, user => {
+    userService.getUser(localStorage.getItem("account"), user => {
       this.user = user;
     });
   }

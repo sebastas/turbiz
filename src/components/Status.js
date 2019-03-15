@@ -1,15 +1,12 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
 import { userService} from '../services/user-service';
-import { NavLink, HashRouter, Route } from 'react-router-dom';
 import { Topnav } from './Topnav';
-import { Home } from './Home';
 import { Card, Column, List, Row, Button } from './widgets';
 
 import { utstyrService } from '../services/utstyrService';
 
 import createHashHistory from 'history/createHashHistory';
-import { account } from './Login';
 const history = createHashHistory();
 
 export class Status extends Component {
