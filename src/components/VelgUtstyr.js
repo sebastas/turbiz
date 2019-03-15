@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from 'react'; // Kobler sammen filen med de andre filene under.
 import { Component } from 'react-simplified';
 import { account } from './Login';
 import { Topnav } from './Topnav';
@@ -11,7 +11,7 @@ const history = createHashHistory();
 export let bestillingInfo = {};
 
 export class VelgUtstyr extends Component {
-  bestilling = {};
+  bestilling = {}; // Lager et tomt objekt som skal kunne lagre verdiene som blir skrevet inn
 
   mounted() {
     console.log(kundeInfo);
@@ -20,9 +20,14 @@ export class VelgUtstyr extends Component {
   render() {
     return (
       <div>
+        {' '}
+        // Kodden under viser listene over de forskjellige utstyrene du kan velge og input bokser over hvor mange av
+        hvert utstyr.
         <Topnav />
         <h1 className="StorOverskrift"> Velg antall </h1>
         <Row>
+          {' '}
+          // Her har vi brukt widgets for å formatere elementene.
           <Column>
             <ul className="list-group">
               <h2 className="Overskrift"> Sykkel</h2>
@@ -197,7 +202,7 @@ export class VelgUtstyr extends Component {
     );
   }
   videre() {
-    bestillingInfo = this.bestilling;
-    history.push('/home');
+    bestillingInfo = this.bestilling; //Lagrer verdiene som blir skrevet inn.
+    history.push('/home'); // Tar deg med til neste side når du klikker neste.
   }
 }

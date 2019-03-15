@@ -6,7 +6,7 @@ import { Topnav } from './Topnav';
 import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
 
-export let kundeInfo = {};
+export let kundeInfo = {}; //Lager et objekt som skal lagre informasjonen med videre
 
 export class AddKunde extends Component {
   isComplete = true;
@@ -15,6 +15,8 @@ export class AddKunde extends Component {
   render() {
     return (
       <div>
+        {' '}
+        // Under er koden for inputboksene med logo på siden.I tillegg er det stilsetting på inputboksene
         <Topnav />
         <div className="container">
           <div className="row main">
@@ -41,7 +43,6 @@ export class AddKunde extends Component {
                     </div>
                   </div>
                 </div>
-
                 <div className="form-group">
                   <label htmlFor="kunde_email" className="cols-sm-2 control-label">
                     Epost
@@ -63,7 +64,6 @@ export class AddKunde extends Component {
                     </div>
                   </div>
                 </div>
-
                 <div className="form-group">
                   <label htmlFor="kunde_nummer" className="cols-sm-2 control-label">
                     Telefon
@@ -85,7 +85,8 @@ export class AddKunde extends Component {
                     </div>
                   </div>
                 </div>
-
+                // Koden under er validering over at all informasjonen du skriver inn er gylidg. Ellers vil du få en
+                feilmelding.
                 <p style={{ display: this.isComplete ? 'none' : 'block', color: 'red' }}>Vennligst fyll inn all info</p>
                 <div className="form-group ">
                   <button
@@ -106,9 +107,9 @@ export class AddKunde extends Component {
   }
 
   create() {
-    kundeInfo = this.kunde;
-    //console.log(kundeInfo);
-    history.push('/velgUtstyr');
+    kundeInfo = this.kunde; // Lagrer verdier som blir skrevet inn
+
+    history.push('/velgUtstyr'); // Hendvender deg til neste side når du trykker videre
   }
 
   /*  create() {
