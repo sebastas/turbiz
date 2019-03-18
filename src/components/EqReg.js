@@ -120,8 +120,8 @@ export class BicycleReg extends Component {
 
           <div className="row">
             <div className="col-sm-12">
-              <input type="submit" name="" className="button" value="Registrer" onClick={this.save}></input>
-              <input type="submit" name="" className="button" value="Tilbake" onClick={this.back}></input>
+              <button className="btn btn-light" onClick={this.back}>Tilbake</button>
+              <button className="btn btn-success" onClick={this.save}>Registrer</button>
             </div>
           </div>
       </form>
@@ -244,8 +244,8 @@ export class EqReg extends Component {
 
           <div className="row">
             <div className="col-sm-12">
-              <input type="submit" name="" className="button" value="Registrer" onClick={this.save}></input>
-              <input type="submit" name="" className="button" value="Tilbake" onClick={this.back}></input>
+              <button  className="btn btn-light" id="tilbake" onClick={this.back}>Tilbake</button>
+              <button  className="btn btn-success" id="reg" onClick={this.save}>Registrer</button>
             </div>
           </div>
       </form>
