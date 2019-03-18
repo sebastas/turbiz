@@ -1,10 +1,9 @@
-.list-group-2 {
+/* Stilsetting av elementene og listene til AddKunde.js og VelgUtstyr.js filene */
+
+/*.list-group-2 {
   width: 400px;
 }
 
-.list-group {
-  width: 400px;
-}
 .sykkel {
   width: 50px;
   float: right;
@@ -25,4 +24,4 @@
   padding: 25px 55px;
   margin-left: 450px;
   color: green;
-}
+}*/

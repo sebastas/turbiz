@@ -1,5 +1,9 @@
+#order-details-card {
+    margin: 3%
+}
+
 #order-info {
-    margin: 20px;
+    margin: 40px;
 }
 
 #equipment-info {
@@ -7,25 +11,32 @@
 }
 
 #confirm-delivery {
-    margin: 20%;
-    height: 40%;
+    margin-top: 40px;
+    height: 50%;
+    width: 150%;
+}
+
+#confirm-delivery Button {
+    margin-top: 20px;
     width: 100%;
+    height: 50px;
 }
 
 #backToOverview {
-    margin: 20%;
-    height: 20%;
-    width: 80%;
+    margin-left: 40px;
+    height: 120%;
+    width: 20%;
+    background-color: #D3D3D3;
 }
 
 #delivered {
-    margin: 20%;
-    height: 35%;
+    margin-top: 40px;
     width: 100%;
     text-align: center;
     padding: 5%;
 }
 
+/*Order date*/
 #order-date {
     margin: 5%;
 }
@@ -36,14 +47,49 @@
 }
 
 .date-label {
- font-size: 1.4em;
+    font-size: 1.4em;
+    margin-top: 10%;
 }
 
-#order-date-section2 {
-    margin-top: 2%;
-    margin-bottom: 5%;
+#order-date-input {
+    margin-top: 5%;
 }
 
-#order-date-section2 h5 {
+#order-date-rent-hour h5 {
     font-size: 1.5em;
+}
+
+#order-date-back, #order-date-next {
+    width: 100%;
+    height: 100%;
+    margin-top: 5%;
+}
+
+
+/*New Order Details*/
+#redirect-customer, #redirect-equipment, #redirect-time {
+    width: 100%;
+    height: 120%;
+    background-color: #D3D3D3;
+}
+
+#new-order-title {
+    margin: 2%;
+}
+
+#new-order-info {
+    margin: 5%;
+}
+
+#new-order-price {
+    margin: 3%;
+}
+
+#new-equipment-info {
+    margin: 2%;
+}
+
+#confirm-order-button {
+    width: 100%;
+    height: 120%;
 }

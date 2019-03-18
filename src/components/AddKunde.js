@@ -1,20 +1,24 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import { account } from './Login';
 import { Topnav } from './Topnav';
 
 import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
 
-export let kundeInfo = {};
+export let kundeInfo = {}; //Lager et objekt som skal lagre informasjonen med videre
 
 export class AddKunde extends Component {
   isComplete = true;
-  kunde = {};
+  kunde = {
+    navn: "",
+    epost: "",
+    telefon: ""
+  };
 
   render() {
     return (
       <div>
+        {/*Under er koden for inputboksene med logo på siden.I tillegg er det stilsetting på inputboksene*/}
         <Topnav />
         <div className="container">
           <div className="row main">
@@ -36,12 +40,12 @@ export class AddKunde extends Component {
                         id="name"
                         placeholder="Fullt navn"
                         required={true}
+                        value={this.kunde.navn}
                         onChange={event => (this.kunde.navn = event.target.value)}
                       />
                     </div>
                   </div>
                 </div>
-
                 <div className="form-group">
                   <label htmlFor="kunde_email" className="cols-sm-2 control-label">
                     Epost
@@ -58,12 +62,12 @@ export class AddKunde extends Component {
                         id="email"
                         placeholder="Epost"
                         required={true}
+                        value={this.kunde.epost}
                         onChange={event => (this.kunde.epost = event.target.value)}
                       />
                     </div>
                   </div>
                 </div>
-
                 <div className="form-group">
                   <label htmlFor="kunde_nummer" className="cols-sm-2 control-label">
                     Telefon
@@ -80,12 +84,14 @@ export class AddKunde extends Component {
                         id="phone"
                         placeholder="Telefonnummer"
                         required={true}
+                        value={this.kunde.telefon}
                         onChange={event => (this.kunde.telefon = event.target.value)}
                       />
                     </div>
                   </div>
                 </div>
-
+                {/*Koden under er validering over at all informasjonen du skriver inn er gylidg. Ellers vil du få en*/}
+                {/*feilmelding.*/}
                 <p style={{ display: this.isComplete ? 'none' : 'block', color: 'red' }}>Vennligst fyll inn all info</p>
                 <div className="form-group ">
                   <button
@@ -106,18 +112,21 @@ export class AddKunde extends Component {
   }
 
   create() {
-    kundeInfo = this.kunde;
-    //console.log(kundeInfo);
-    history.push('/velgUtstyr');
+    kundeInfo = this.kunde; // Lagrer verdier som blir skrevet inn
+
+    history.push('/velgUtstyr'); // Hendvender deg til neste side når du trykker videre
   }
 
-  /*  create() {
-    this.isComplete = this.name.length > 0 && this.email.length > 0 && this.number.length === 8;
+    mounted() {
+    let customer = JSON.parse(localStorage.getItem("customer"));
+    if (customer) this.kunde = customer;
+  }
 
-    if (this.isComplete && !this.userExists) {
-      userService.addUser(this.name, this.email, this.number, () => {
-        history.push('/velgUtstyr');
-      });
+  create() {
+    this.isComplete = this.kunde.navn.length > 0 && this.kunde.epost.length > 0 && this.kunde.telefon.length === 8;
+    if (this.isComplete) {
+      localStorage.setItem("customer", JSON.stringify(this.kunde));
+      history.push('/order/new/equipment');
     }
-  }*/
+  }
 }

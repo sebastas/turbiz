@@ -1,27 +1,28 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
+import { account } from './Login';
 
 import createHashHistory from 'history/createHashHistory';
 import {Topnav} from "./Topnav";
-import {orderService} from "../services/order-service";
+import {adminService} from "../services/admin-service";
+import {userService} from "../services/user-service";
 import { Column, Row, Button } from './widgets';
 const history = createHashHistory();
 
-export class OrderOverview extends Component {
+export class Employees extends Component {
+  employees=[];
 
-  orders = [];
-
-  render() {
+  render(){
     return(
       <div>
         <Topnav/>
         <br/>
         <Row>
           <Column>
-            <h3>Bestillingsoversikt</h3>
+            <h3>Ansattoversikt</h3>
           </Column>
-          <Column width={2}>
-            <Button.Success onClick={this.new}>Ny bestilling</Button.Success>
+          <Column>
+            <Button.Success onClick={this.new}>Ny ansatt</Button.Success>
           </Column>
           <Column right>
             <input id="myInput" type="text" placeholder="Search.." onChange={event => this.search(event)}/>
@@ -32,23 +33,21 @@ export class OrderOverview extends Component {
             <table className="table table-striped table-hover">
               <thead>
               <tr>
-                <th>Bestilling ID</th>
-                <th>Kunde epost</th>
-                <th>Fra</th>
-                <th>Til</th>
-                <th>Behandler</th>
-                <th>Levert</th>
+                <th>Ansatt ID</th>
+                <th>Navn</th>
+                <th>Epost</th>
+                <th>Tlf</th>
+                <th>Brukernavn</th>
               </tr>
               </thead>
               <tbody id="myTable">
-              {this.orders.map(order => (
-                <tr key={order.bestilling_id} id={order.bestilling_id} onClick={event => this.redirect(event)} onMouseOver={this.select}>
-                  <td>{order.bestilling_id}</td>
-                  <td>{order.epost}</td>
-                  <td>{order.fra.toString().substring(0, 15)}</td>
-                  <td>{order.til.toString().substring(0, 15)}</td>
-                  <td>{order.brukernavn}</td>
-                  <td>{order.levert === 1 ? '✓' : '-'}</td>
+              {this.employees.map(employee => (
+                <tr key={employee.ansatt_id} id={employee.ansatt_id} onClick={event => this.redirect(event)} onMouseOver={this.select}>
+                  <td>{employee.ansatt_id}</td>
+                  <td>{employee.navn}</td>
+                  <td>{employee.epost}</td>
+                  <td>{employee.tlf}</td>
+                  <td>{employee.brukernavn}</td>
                 </tr>
               ))}
               </tbody>
@@ -60,8 +59,8 @@ export class OrderOverview extends Component {
   }
 
   mounted() {
-    orderService.getOrders(orders => {
-      this.orders = orders;
+    adminService.getEmployees(employees => {
+      this.employees = employees;
     });
   }
 
@@ -74,7 +73,7 @@ export class OrderOverview extends Component {
 
   redirect(event) {
     let index = event.target.parentNode.id;
-    history.push("/order/overview/" + index);
+    history.push("/employeeOverview/" + index);
     let root = document.getElementById('root');
     root.style.cursor = 'default';
   }
@@ -85,6 +84,7 @@ export class OrderOverview extends Component {
   }
 
   new() {
-    history.push("/order/new/customer")
+    history.push("/register")
   }
+
 }

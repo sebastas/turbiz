@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Component } from 'react-simplified';
-import { account } from './Login';
 import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
 import { Topnav } from './Topnav';
@@ -109,7 +108,7 @@ export class BicycleReg extends Component {
               <div className="col-sm-6">
                 <div className="inputBox ">
                   <div className="inputText">Sted</div>
-                  <select onChange={event => (this.location = event.target.value)}>
+                  <select className="custom-select" onChange={event => (this.location = event.target.value)}>
                   {this.places.map(place => (
                       <option key={place.sted_id} value={place.sted_id}>{place.sted_navn}</option>
                   ))}
@@ -233,7 +232,7 @@ export class EqReg extends Component {
             <div className="col-sm-6">
               <div className="inputBox">
                 <div className="inputText">Sted</div>
-                <select onChange={event => (this.location = event.target.value)}>
+                <select className="custom-select" onChange={event => (this.location = event.target.value)}>
                 {this.places.map(place => (
                     <option key={place.sted_id} value={place.sted_id}>{place.sted_navn}</option>
                 ))}
