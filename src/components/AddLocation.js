@@ -10,6 +10,7 @@ const history = createHashHistory();
 
 export class AddLocation extends Component {
   location="";
+  address="";
   isComplete=true;
 
   render() {
@@ -33,6 +34,17 @@ export class AddLocation extends Component {
                   </div>
                 </div>
 
+                <div className="form-group">
+                  <label htmlFor="name" className="cols-sm-2 control-label">Adresse</label>
+                  <div className="cols-sm-10">
+                    <div className="input-group">
+                      <span className="input-group-addon"><i className="fa fa-map-marker-alt fa" aria-hidden="true"/></span>
+                      <input type="text" className="form-control" name="name" id="name" placeholder="Stedsnavn" required={true}
+                             onChange={event => (this.address = event.target.value)}/>
+                    </div>
+                  </div>
+                </div>
+
                 <p style={{display: this.isComplete ? 'none' : 'block', color: 'red'}}>Vennligst fyll inn info</p>
 
                 <div className="form-group ">
@@ -51,11 +63,11 @@ export class AddLocation extends Component {
   }
 
   create() {
-    this.isComplete=this.location.length > 1;
+    this.isComplete=this.location.length > 1 && this.address.length > 1;
 
     if (this.isComplete) {
-      adminService.addLocation(this.location, () => {
-        history.push('/home');
+      adminService.addLocation(this.location, this.address, () => {
+        history.push('/locationOverview');
       });
     }
   }

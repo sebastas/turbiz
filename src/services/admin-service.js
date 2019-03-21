@@ -51,8 +51,8 @@ class AdminService {
     })
   }
 
-  addLocation(location, success) {
-    connection.query('insert into Sted (sted_navn) values (?)', [location], (error, results) =>{
+  addLocation(location, adress, success) {
+    connection.query('insert into Sted (sted_navn, adresse) values (?, ?)', [location, adress], (error, results) =>{
       if (error) return console.error(error);
 
       success();

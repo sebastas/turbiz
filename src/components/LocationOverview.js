@@ -35,6 +35,7 @@ export class LocationOverview extends Component {
               <tr>
                 <th>Steds ID</th>
                 <th>Navn</th>
+                <th>Adresse</th>
               </tr>
               </thead>
               <tbody id="myTable">
@@ -42,6 +43,7 @@ export class LocationOverview extends Component {
                 <tr key={location.sted_id} id={location.sted_id}>
                   <td>{location.sted_id}</td>
                   <td>{location.sted_navn}</td>
+                  <td>{location.adresse}</td>
                 </tr>
               ))}
               </tbody>
