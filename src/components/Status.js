@@ -9,30 +9,22 @@ import { utstyrService } from '../services/utstyrService';
 import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
 
+const {dialog} = require('electron').remote;
+const dialogOptions = {type: 'info', buttons: ['Ja', 'Nei'], message: 'Er du sikker?'};
+
 export class Status extends Component {
 
   render(){
     return(
-      <div>
-      <Topnav/>
-      <br/>
-        <Row>
-          <Column>
-            <h2>Status utstyr</h2>
-          </Column>
-        </Row>
-        <br/>
-        <Row>
-          <Column width={-1}>
-          <Column>
-            <Button.Success onClick={this.sStatus} id="sStatus">Sykler</Button.Success>
-          </Column>
-          </Column>
-          <Column>
-            <Button.Success onClick={this.tStatus} id="tStatus">Tilbehør</Button.Success>
-          </Column>
-        </Row>
-        <br/>
+      <div className="gradient">
+      <Topnav />
+      <div id="regButtons">
+        <button type="button" id="knapp" className="btn btn-primary btn-lg knapp" onClick={this.sStatus}>Sykler</button>
+        <button type="button" id ="knapp" className="btn btn-primary btn-lg knapp" onClick={this.tStatus}>Tilbehør</button>
+      </div>
+      <div id="regBack">
+        <button type="button" id="knapp" className="btn btn-primary btn-sm regBtn" onClick={this.back}>Tilbake</button>
+      </div>
       </div>
     )
   }
@@ -42,6 +34,10 @@ export class Status extends Component {
 
   tStatus(){
     history.push("/tilbehorStatus")
+  }
+
+  back(){
+    history.push("/home")
   }
 
 }
@@ -54,7 +50,7 @@ export class SyklerStatus extends Component {
   render(){
     return(
       <div>
-        <Status />
+        <Topnav />
         <Row>
           <Column>
             <h3>Sykler</h3>
@@ -143,7 +139,7 @@ export class TilbehorStatus extends Component {
   render(){
     return(
       <div>
-        <Status />
+        <Topnav />
         <Row>
           <Column>
             <h3>Tilbehør</h3>
@@ -304,7 +300,7 @@ export class BicycleEdit extends Component {
             <div className="col-sm-6">
               <div className="inputBox ">
                 <div className="inputText">Sted</div>
-                  <select onChange={event => (this.location = event.target.value)}>
+                  <select className="custom-select" onChange={event => (this.location = event.target.value)}>
                   {this.places.map(place => (
                       <option key={place.sted_id} value={place.sted_id}>{place.sted_navn}</option>
                   ))}
@@ -315,9 +311,17 @@ export class BicycleEdit extends Component {
 
         <div className="row">
           <div className="col-sm-12">
-            <input type="submit" name="" className="button" value="Lagre" onClick={this.save}></input>
-            <input type="submit" name="" className="button" value="Slett" onClick={this.delete}></input>
-            <input type="submit" name="" className="button" value="Tilbake" onClick={this.goBack}></input>
+          <Row>
+            <Column width={1}>
+              <Button.Success onClick={this.save} id="">Lagre</Button.Success>
+            </Column>
+            <Column width={1}>
+              <Button.Danger onClick={this.delete} id="">Slett</Button.Danger>
+            </Column>
+            <Column width={1}>
+              <Button.Light onClick={this.goBack} id="bicycleBack">Tilbake</Button.Light>
+            </Column>
+          </Row>
           </div>
         </div>
     </form>
@@ -354,8 +358,12 @@ export class BicycleEdit extends Component {
   }
 
   delete() {
-    utstyrService.deleteBicycle(this.props.match.params.id, () => {
-      history.push('/syklerStatus');
+    dialog.showMessageBox(dialogOptions, i => {
+      if (i===0){
+        utstyrService.deleteBicycle(this.props.match.params.id, () => {
+          history.push('/syklerStatus');
+        });
+      }
     });
   }
 
@@ -431,7 +439,7 @@ export class EquipmentEdit extends Component {
             <div className="col-sm-6">
               <div className="inputBox ">
                 <div className="inputText">Sted</div>
-                <select onChange={event => (this.location = event.target.value)}>
+                <select className="custom-select" onChange={event => (this.location = event.target.value)}>
                 {this.places.map(place => (
                     <option key={place.sted_id} value={place.sted_id}>{place.sted_navn}</option>
                 ))}
@@ -445,9 +453,17 @@ export class EquipmentEdit extends Component {
 
         <div className="row">
           <div className="col-sm-12">
-            <input type="submit" name="" className="button" value="Lagre" onClick={this.save}></input>
-            <input type="submit" name="" className="button" value="Slett" onClick={this.delete}></input>
-            <input type="submit" name="" className="button" value="Tilbake" onClick={this.goBack}></input>
+          <Row>
+            <Column width={1}>
+              <Button.Success onClick={this.save} id="">Lagre</Button.Success>
+            </Column>
+            <Column width={1}>
+              <Button.Danger onClick={this.delete} id="">Slett</Button.Danger>
+            </Column>
+            <Column width={1}>
+              <Button.Light onClick={this.goBack} id="eqBack">Tilbake</Button.Light>
+            </Column>
+          </Row>
           </div>
         </div>
     </form>
@@ -480,8 +496,12 @@ export class EquipmentEdit extends Component {
   }
 
   delete() {
-    utstyrService.deleteEquipment(this.props.match.params.id, () => {
-      history.push('/tilbehorStatus');
+    dialog.showMessageBox(dialogOptions, i => {
+      if (i===0){
+        utstyrService.deleteEquipment(this.props.match.params.id, () => {
+          history.push('/tilbehorStatus');
+        });
+      }
     });
   }
 

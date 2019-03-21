@@ -55,6 +55,11 @@ export class OrderOverview extends Component {
             </table>
           </Column>
         </Row>
+        <Row>
+          <Column>
+            <Button.Success onClick={this.back}>Tilbake</Button.Success>
+          </Column>
+        </Row>
       </div>
     )
   }
@@ -86,5 +91,9 @@ export class OrderOverview extends Component {
 
   new() {
     history.push("/order/new/customer")
+  }
+
+  back(){
+    history.push("/home")
   }
 }

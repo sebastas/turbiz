@@ -6,8 +6,11 @@ import createHashHistory from 'history/createHashHistory';
 import {Topnav} from "./Topnav";
 import {adminService} from "../services/admin-service";
 import {userService} from "../services/user-service";
-import { Column, Row } from './widgets';
+import { Column, Row, Button } from './widgets';
 const history = createHashHistory();
+
+const {dialog} = require('electron').remote;
+const dialogOptions = {type: 'info', buttons: ['Ja', 'Nei'], message: 'Er du sikker?'};
 
 export class EmployeeEdit extends Component{
   name="";
@@ -67,10 +70,21 @@ export class EmployeeEdit extends Component{
 
         <div className="row">
           <div className="col-sm-12">
-            <input type="submit" name="" className="button" value="Lagre" onClick={this.save}></input>
-            <input type="submit" name="" className="button" value="Slett" onClick={this.delete}></input>
-            <input type="submit" name="" className="button" value="Tilbake" onClick={this.goBack}></input>
-            <input type="submit" name="" className="button" value="Reset passord" onClick={this.resetPass}></input>
+          <Row>
+            <Column width={1}>
+              <Button.Success onClick={this.save} id="">Lagre</Button.Success>
+            </Column>
+            <Column width={1}>
+              <Button.Light onClick={this.goBack} id="employeeBack">Tilbake</Button.Light>
+            </Column>
+            <Column width={1}>
+              <Button.Danger onClick={this.delete} id="">Slett</Button.Danger>
+            </Column>
+            <Column width={2}>
+              <Button.Danger onClick={this.resetPass} id="">Reset passord</Button.Danger>
+            </Column>
+          </Row>
+
           </div>
         </div>
     </form>
@@ -99,9 +113,16 @@ export class EmployeeEdit extends Component{
       }
 
       delete() {
-        adminService.deleteEmployee(this.props.match.params.id, () => {
-          history.push('/employeesOverview');
+        dialog.showMessageBox(dialogOptions, i => {
+          if (i===0){
+            adminService.deleteEmployee(this.props.match.params.id, () => {
+              history.push('/employeesOverview');
+            });
+          } else {
+            history.push("/employeesOverview")
+          }
         });
+
       }
 
       goBack() {
@@ -109,9 +130,14 @@ export class EmployeeEdit extends Component{
       };
 
       resetPass(){
-        adminService.resetPassord(this.props.match.params.id, () => {
-
-          history.push("/employeesOverview")
-        })
+        dialog.showMessageBox(dialogOptions, i => {
+          if (i===0){
+            adminService.resetPassord(this.props.match.params.id, () => {
+              history.push("/employeesOverview")
+            });
+          } else {
+            history.push("/employeesOverview")
+          }
+        });
       }
 }

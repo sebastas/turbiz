@@ -9,9 +9,14 @@ export class Registrer extends Component {
   render() {
     return(
       <div className="gradient">
-        <Topnav />
-        <button type="button" className="btn btn-primary btn-lg btn-block" onClick={this.sReg}>Sykler</button>
-        <button type="button" className="btn btn-primary btn-lg btn-block" onClick={this.tReg}>Tilbehør</button>
+      <Topnav />
+      <div id="regButtons">
+        <button type="button" id="knapp" className="btn btn-primary btn-lg knapp" onClick={this.sReg}>Sykler</button>
+        <button type="button" id ="knapp" className="btn btn-primary btn-lg knapp" onClick={this.tReg}>Tilbehør</button>
+      </div>
+      <div id="regBack">
+        <button type="button" id="knapp" className="btn btn-primary btn-sm regBtn" onClick={this.back}>Tilbake</button>
+      </div>
       </div>
     )
   }
@@ -22,6 +27,10 @@ export class Registrer extends Component {
 
   tReg(){
     history.push("/eqReg")
+  }
+
+  back() {
+    history.push("/home")
   }
 }
 
@@ -40,8 +49,7 @@ export class BicycleReg extends Component {
     return(
       <div className="gradient">
       <Topnav />
-      <button type="button" className="btn btn-primary btn-lg btn-block" onClick={this.sReg}>Sykler</button>
-      <button type="button" className="btn btn-primary btn-lg btn-block" onClick={this.tReg}>Tilbehør</button>
+
         <div className="container-fluid">
   <div className="container">
     <div className="formBox">
@@ -172,8 +180,7 @@ export class EqReg extends Component {
     return(
       <div className="gradient">
       <Topnav />
-      <button type="button" className="btn btn-primary btn-lg btn-block" onClick={this.sReg}>Sykler</button>
-      <button type="button" className="btn btn-primary btn-lg btn-block" onClick={this.tReg}>Tilbehør</button>
+
         <div className="container-fluid">
   <div className="container">
     <div className="formBox">

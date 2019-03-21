@@ -4,3 +4,33 @@ button.x{
   margin-right: 20px;
   margin-left: 20px;
 }
+
+#eqBack, #bicycleBack, #employeeBack {
+  background-color: #D3D3D3;
+}
+
+#regButtons {
+	top: 50%;
+	left: 50%;
+	margin-top: -15px;
+	margin-left: -100px;
+	position: fixed;
+	text-align: center;
+}
+
+#regBack {
+	top: 70%;
+	left: 42%;
+	margin-top: -5px;
+	margin-left: -15px;
+	position: fixed;
+	text-align: center;
+}
+
+.regBtn {
+	border-radius: 12px;
+	padding: 10px 27px;
+	display: inline;
+	margin-right: 5px;
+	background-color: #e9806e;
+}
