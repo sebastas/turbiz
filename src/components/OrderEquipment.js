@@ -68,7 +68,7 @@ export class OrderEquipment extends Component {
                               <Column width={4}>
                                 Terreng
                               </Column>
-                              <Column width={4}>
+                              <Column width={5}>
                                 <form>
                                   <div className="input-group">
                                   <span className="input-group-btn">
@@ -91,7 +91,6 @@ export class OrderEquipment extends Component {
                                   </div>
                                 </form>
                               </Column>
-                              <Column width={1}/>
                               <Column width={3}>
                                 (Ledig: {this.available.terreng} stk.)
                               </Column>
@@ -102,7 +101,7 @@ export class OrderEquipment extends Component {
                               <Column width={4}>
                                 Downhill
                               </Column>
-                              <Column width={4}>
+                              <Column width={5}>
                                 <div className="input-group">
                                   <span className="input-group-btn">
                                     <button type="button" className="btn btn-danger btn-number" datatype="minus"
@@ -123,7 +122,6 @@ export class OrderEquipment extends Component {
                                     </span>
                                 </div>
                               </Column>
-                              <Column width={1}/>
                               <Column width={3}>
                                 (Ledig: {this.available.downhill} stk.)
                               </Column>
@@ -134,7 +132,7 @@ export class OrderEquipment extends Component {
                               <Column width={4}>
                                 Racer
                               </Column>
-                              <Column width={4}>
+                              <Column width={5}>
                                 <div className="input-group">
                                   <span className="input-group-btn">
                                     <button type="button" className="btn btn-danger btn-number" datatype="minus"
@@ -155,7 +153,6 @@ export class OrderEquipment extends Component {
                                     </span>
                                 </div>
                               </Column>
-                              <Column width={1}/>
                               <Column width={3}>
                                 (Ledig: {this.available.racer} stk.)
                               </Column>
@@ -166,7 +163,7 @@ export class OrderEquipment extends Component {
                               <Column width={4}>
                                 Barnesykkel
                               </Column>
-                              <Column width={4}>
+                              <Column width={5}>
                                 <div className="input-group">
                                   <span className="input-group-btn">
                                     <button type="button" className="btn btn-danger btn-number" datatype="minus"
@@ -187,7 +184,6 @@ export class OrderEquipment extends Component {
                                     </span>
                                 </div>
                               </Column>
-                              <Column width={1}/>
                               <Column width={3}>
                                 (Ledig: {this.available.barnesykkel} stk.)
                               </Column>
@@ -198,7 +194,7 @@ export class OrderEquipment extends Component {
                               <Column width={4}>
                                 Hybrid
                               </Column>
-                              <Column width={4}>
+                              <Column width={5}>
                                 <div className="input-group">
                                   <span className="input-group-btn">
                                     <button type="button" className="btn btn-danger btn-number" datatype="minus"
@@ -219,7 +215,6 @@ export class OrderEquipment extends Component {
                                     </span>
                                 </div>
                               </Column>
-                              <Column width={1}/>
                               <Column width={3}>
                                 (Ledig: {this.available.hybrid} stk.)
                               </Column>
@@ -240,7 +235,7 @@ export class OrderEquipment extends Component {
                               <Column width={4}>
                                 Hjelm
                               </Column>
-                              <Column width={4}>
+                              <Column width={5}>
                                 <div className="input-group">
                                   <span className="input-group-btn">
                                     <button type="button" className="btn btn-danger btn-number" datatype="minus"
@@ -261,7 +256,6 @@ export class OrderEquipment extends Component {
                                     </span>
                                 </div>
                               </Column>
-                              <Column width={1}/>
                               <Column width={3}>
                                 (Ledig: {this.available.hjelm} stk.)
                               </Column>
@@ -272,7 +266,7 @@ export class OrderEquipment extends Component {
                               <Column width={4}>
                                 Lås
                               </Column>
-                              <Column width={4}>
+                              <Column width={5}>
                                 <div className="input-group">
                                   <span className="input-group-btn">
                                     <button type="button" className="btn btn-danger btn-number" datatype="minus"
@@ -293,7 +287,6 @@ export class OrderEquipment extends Component {
                                     </span>
                                 </div>
                               </Column>
-                              <Column width={1}/>
                               <Column width={3}>
                                 (Ledig: {this.available.lås} stk.)
                               </Column>
@@ -304,7 +297,7 @@ export class OrderEquipment extends Component {
                               <Column width={4}>
                                 Beskytter
                               </Column>
-                              <Column width={4}>
+                              <Column width={5}>
                                 <div className="input-group">
                                   <span className="input-group-btn">
                                     <button type="button" className="btn btn-danger btn-number" datatype="minus"
@@ -325,7 +318,6 @@ export class OrderEquipment extends Component {
                                     </span>
                                 </div>
                               </Column>
-                              <Column width={1}/>
                               <Column width={3}>
                                 (Ledig: {this.available.beskytter} stk.)
                               </Column>
@@ -336,7 +328,7 @@ export class OrderEquipment extends Component {
                               <Column width={4}>
                                 Lappesaker
                               </Column>
-                              <Column width={4}>
+                              <Column width={5}>
                                 <div className="input-group">
                                   <span className="input-group-btn">
                                     <button type="button" className="btn btn-danger btn-number" datatype="minus"
@@ -357,7 +349,6 @@ export class OrderEquipment extends Component {
                                     </span>
                                 </div>
                               </Column>
-                              <Column width={1}/>
                               <Column width={3}>
                                 (Ledig: {this.available.lappesaker} stk.)
                               </Column>
@@ -368,7 +359,7 @@ export class OrderEquipment extends Component {
                               <Column width={4}>
                                 Sykkelveske
                               </Column>
-                              <Column width={4}>
+                              <Column width={5}>
                                 <div className="input-group">
                                   <span className="input-group-btn">
                                     <button type="button" className="btn btn-danger btn-number" datatype="minus"
@@ -389,7 +380,6 @@ export class OrderEquipment extends Component {
                                     </span>
                                 </div>
                               </Column>
-                              <Column width={1}/>
                               <Column width={3}>
                                 (Ledig: {this.available.sykkelveske} stk.)
                               </Column>
@@ -400,7 +390,7 @@ export class OrderEquipment extends Component {
                               <Column width={4}>
                                 Barnehenger
                               </Column>
-                              <Column width={4}>
+                              <Column width={5}>
                                 <div className="input-group">
                                   <span className="input-group-btn">
                                     <button type="button" className="btn btn-danger btn-number" datatype="minus"
@@ -421,7 +411,6 @@ export class OrderEquipment extends Component {
                                     </span>
                                 </div>
                               </Column>
-                              <Column width={1}/>
                               <Column width={3}>
                                 (Ledig: {this.available.barnehenger} stk.)
                               </Column>
@@ -432,7 +421,7 @@ export class OrderEquipment extends Component {
                               <Column width={4}>
                                 Lastehenger
                               </Column>
-                              <Column width={4}>
+                              <Column width={5}>
                                 <div className="input-group">
                                   <span className="input-group-btn">
                                     <button type="button" className="btn btn-danger btn-number" datatype="minus"
@@ -453,7 +442,6 @@ export class OrderEquipment extends Component {
                                     </span>
                                 </div>
                               </Column>
-                              <Column width={1}/>
                               <Column width={3}>
                                 (Ledig: {this.available.lastehenger} stk.)
                               </Column>
@@ -464,7 +452,7 @@ export class OrderEquipment extends Component {
                               <Column width={4}>
                                 Barnesete
                               </Column>
-                              <Column width={4}>
+                              <Column width={5}>
                                 <div className="input-group">
                                   <span className="input-group-btn">
                                     <button type="button" className="btn btn-danger btn-number" datatype="minus"
@@ -485,7 +473,6 @@ export class OrderEquipment extends Component {
                                     </span>
                                 </div>
                               </Column>
-                              <Column width={1}/>
                               <Column width={3}>
                                 (Ledig: {this.available.barnesete} stk.)
                               </Column>
