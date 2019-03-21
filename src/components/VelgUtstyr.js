@@ -9,11 +9,7 @@ const history = createHashHistory();
 export let bestillingInfo = {};
 
 export class VelgUtstyr extends Component {
-<<<<<<< HEAD
-  bestilling = {}; // Lager et tomt objekt som skal kunne lagre verdiene som blir skrevet inn
-=======
->>>>>>> ee78a301f114aa18173eddc5e3a37e9c68bbec68
-
+  // Lager et objekt som skal kunne lagre verdiene som blir skrevet inn
   bestilling = {
     terreng: 0,
     downhill: 0,
@@ -200,18 +196,13 @@ export class VelgUtstyr extends Component {
             </ul>
           </Column>
         </Row>
-        <Button.Success onClick={this.next}>Neste</Button.Success>
+        <Button.Success onClick={this.videre}>Neste</Button.Success>
       </div>
     );
   }
-<<<<<<< HEAD
+
   videre() {
     bestillingInfo = this.bestilling; //Lagrer verdiene som blir skrevet inn.
     history.push('/home'); // Tar deg med til neste side når du klikker neste.
-=======
-  next() {
-    bestillingInfo = this.bestilling;
-    history.push('/home');
->>>>>>> ee78a301f114aa18173eddc5e3a37e9c68bbec68
   }
 }
