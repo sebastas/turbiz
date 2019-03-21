@@ -312,6 +312,41 @@ export class NewOrderDetails extends Component {
         this.equip.push(equip[i]);
       }
     });
+    orderService.getEquipForOrder(this.equipment.sted, "lås", parseInt(this.equipment.hjelm), equip => {
+      for (let i = 0; i < equip.length; i++) {
+        this.equip.push(equip[i]);
+      }
+    });
+    orderService.getEquipForOrder(this.equipment.sted, "beskytter", parseInt(this.equipment.hjelm), equip => {
+      for (let i = 0; i < equip.length; i++) {
+        this.equip.push(equip[i]);
+      }
+    });
+    orderService.getEquipForOrder(this.equipment.sted, "lappesaker", parseInt(this.equipment.hjelm), equip => {
+      for (let i = 0; i < equip.length; i++) {
+        this.equip.push(equip[i]);
+      }
+    });
+    orderService.getEquipForOrder(this.equipment.sted, "sykkelveske", parseInt(this.equipment.hjelm), equip => {
+      for (let i = 0; i < equip.length; i++) {
+        this.equip.push(equip[i]);
+      }
+    });
+    orderService.getEquipForOrder(this.equipment.sted, "barnehenger", parseInt(this.equipment.hjelm), equip => {
+      for (let i = 0; i < equip.length; i++) {
+        this.equip.push(equip[i]);
+      }
+    });
+    orderService.getEquipForOrder(this.equipment.sted, "lastehenger", parseInt(this.equipment.hjelm), equip => {
+      for (let i = 0; i < equip.length; i++) {
+        this.equip.push(equip[i]);
+      }
+    });
+    orderService.getEquipForOrder(this.equipment.sted, "barnesete", parseInt(this.equipment.hjelm), equip => {
+      for (let i = 0; i < equip.length; i++) {
+        this.equip.push(equip[i]);
+      }
+    });
   }
 
   redirectCustomer() {
@@ -322,13 +357,6 @@ export class NewOrderDetails extends Component {
   }
   redirectTime() {
     history.push("/order/new/time");
-  }
-
-  test() {
-    // console.log(this.bikes);
-    // console.log(this.equip);
-    // this.calculatePrice();
-    // this.confirmOrder();
   }
 
   checkIfMember() {
