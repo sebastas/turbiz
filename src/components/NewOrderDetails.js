@@ -312,37 +312,37 @@ export class NewOrderDetails extends Component {
         this.equip.push(equip[i]);
       }
     });
-    orderService.getEquipForOrder(this.equipment.sted, "lås", parseInt(this.equipment.hjelm), equip => {
+    orderService.getEquipForOrder(this.equipment.sted, "lås", parseInt(this.equipment.lås), equip => {
       for (let i = 0; i < equip.length; i++) {
         this.equip.push(equip[i]);
       }
     });
-    orderService.getEquipForOrder(this.equipment.sted, "beskytter", parseInt(this.equipment.hjelm), equip => {
+    orderService.getEquipForOrder(this.equipment.sted, "beskytter", parseInt(this.equipment.beskytter), equip => {
       for (let i = 0; i < equip.length; i++) {
         this.equip.push(equip[i]);
       }
     });
-    orderService.getEquipForOrder(this.equipment.sted, "lappesaker", parseInt(this.equipment.hjelm), equip => {
+    orderService.getEquipForOrder(this.equipment.sted, "lappesaker", parseInt(this.equipment.lappesaker), equip => {
       for (let i = 0; i < equip.length; i++) {
         this.equip.push(equip[i]);
       }
     });
-    orderService.getEquipForOrder(this.equipment.sted, "sykkelveske", parseInt(this.equipment.hjelm), equip => {
+    orderService.getEquipForOrder(this.equipment.sted, "sykkelveske", parseInt(this.equipment.sykkelveske), equip => {
       for (let i = 0; i < equip.length; i++) {
         this.equip.push(equip[i]);
       }
     });
-    orderService.getEquipForOrder(this.equipment.sted, "barnehenger", parseInt(this.equipment.hjelm), equip => {
+    orderService.getEquipForOrder(this.equipment.sted, "barnehenger", parseInt(this.equipment.barnehenger), equip => {
       for (let i = 0; i < equip.length; i++) {
         this.equip.push(equip[i]);
       }
     });
-    orderService.getEquipForOrder(this.equipment.sted, "lastehenger", parseInt(this.equipment.hjelm), equip => {
+    orderService.getEquipForOrder(this.equipment.sted, "lastehenger", parseInt(this.equipment.lastehenger), equip => {
       for (let i = 0; i < equip.length; i++) {
         this.equip.push(equip[i]);
       }
     });
-    orderService.getEquipForOrder(this.equipment.sted, "barnesete", parseInt(this.equipment.hjelm), equip => {
+    orderService.getEquipForOrder(this.equipment.sted, "barnesete", parseInt(this.equipment.barnesete), equip => {
       for (let i = 0; i < equip.length; i++) {
         this.equip.push(equip[i]);
       }
