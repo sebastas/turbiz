@@ -8,6 +8,7 @@ const history = createHashHistory();
 export let kundeInfo = {}; //Lager et objekt som skal lagre informasjonen med videre
 
 export class AddKunde extends Component {
+  phoneComplete = true;
   isComplete = true;
   kunde = {
     navn: "",
@@ -93,6 +94,7 @@ export class AddKunde extends Component {
                 {/*Koden under er validering over at all informasjonen du skriver inn er gylidg. Ellers vil du få en*/}
                 {/*feilmelding.*/}
                 <p style={{ display: this.isComplete ? 'none' : 'block', color: 'red' }}>Vennligst fyll inn all info</p>
+                <p style={{ display: this.phoneComplete ? 'none' : 'block', color: 'red' }}>Vennligst fyll inn 8 siffer på telefonnummer</p>
                 <div className="form-group ">
                   <button
                     type="button"
@@ -123,8 +125,9 @@ export class AddKunde extends Component {
   }
 
   create() {
-    this.isComplete = this.kunde.navn.length > 0 && this.kunde.epost.length > 0 && this.kunde.telefon.length === 8;
-    if (this.isComplete) {
+    this.isComplete = this.kunde.navn.length > 0 && this.kunde.epost.length > 0;
+    this.phoneComplete = this.kunde.telefon.length === 8;
+    if (this.isComplete && this.phoneComplete) {
       localStorage.setItem("customer", JSON.stringify(this.kunde));
       history.push('/order/new/equipment');
     }
