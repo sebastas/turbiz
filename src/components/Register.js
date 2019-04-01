@@ -133,7 +133,7 @@ export class Register extends Component {
     if (this.isComplete && !this.userExists && this.numberComplete) {
       userService.addUser(this.name, this.email, this.number, this.username, this.password, () => {
       });
-      history.push("/home");
+      history.push("/employeesOverview");
     }
   }
 }
