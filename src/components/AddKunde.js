@@ -95,7 +95,15 @@ export class AddKunde extends Component {
                 /*Koden under er validering over at all informasjonen du skriver inn er gylidg. Ellers vil du få en*/
                 /*feilmelding.*/
                 <p style={{ display: this.isComplete ? 'none' : 'block', color: 'red' }}>Vennligst fyll inn all info</p>
+<<<<<<< HEAD
                 <p style={{ display: this.numberComplete ? 'none' : 'block', color: 'red' }}>Ugyldig telefonnummer, vennligst skriv inn 8 tall</p>
+=======
+<<<<<<< HEAD
+                <p style={{ display: this.numberComplete ? 'none' : 'block', color: 'red' }}>Ugyldig telefonnummer, vennligst skriv inn 8 tall</p>
+=======
+                <p style={{ display: this.phoneComplete ? 'none' : 'block', color: 'red' }}>Vennligst fyll inn 8 siffer på telefonnummer</p>
+>>>>>>> 4d68090c108149282e7cbe28a433d380b9363331
+>>>>>>> c099fed9216cae7344078d08fe400cfb3946b914
                 <div className="form-group ">
                   <button
                     type="button"
@@ -126,9 +134,21 @@ export class AddKunde extends Component {
   }
 
   create() {
+<<<<<<< HEAD
     this.numberComplete = this.kunde.telefon.length === 8;
     this.isComplete = this.kunde.navn.length > 0 && this.kunde.epost.length > 0;
     if (this.isComplete && this.numberComplete) {
+=======
+<<<<<<< HEAD
+    this.numberComplete = this.kunde.telefon.length === 8;
+    this.isComplete = this.kunde.navn.length > 0 && this.kunde.epost.length > 0;
+    if (this.isComplete && this.numberComplete) {
+=======
+    this.isComplete = this.kunde.navn.length > 0 && this.kunde.epost.length > 0;
+    this.phoneComplete = this.kunde.telefon.length === 8;
+    if (this.isComplete && this.phoneComplete) {
+>>>>>>> 4d68090c108149282e7cbe28a433d380b9363331
+>>>>>>> c099fed9216cae7344078d08fe400cfb3946b914
       localStorage.setItem("customer", JSON.stringify(this.kunde));
       history.push('/order/new/equipment');
     }
