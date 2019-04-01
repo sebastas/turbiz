@@ -378,6 +378,7 @@ export class OrderEquipment extends Component {
                                         <span className="fa fa-plus fa"/>
                                       </button>
                                     </span>
+                                      <p id="restriction">NB! Gjelder ikke terrengsykkel</p>
                                 </div>
                               </Column>
                               <Column width={3}>
@@ -497,6 +498,7 @@ export class OrderEquipment extends Component {
           </Column>
         </Row>
       </div>
+
     )
   }
 
