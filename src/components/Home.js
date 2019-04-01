@@ -12,10 +12,20 @@ export class Home extends Component {
       <div className="gradient">
         <Topnav/>
         <div>
+          <div id="confirmationMsg">
+
+          </div>
           <div id="container">
-            <button type="button" id="knapp" className="btn btn-primary btn-lg knapp" onClick={this.bestilling}>Bestillingsoversikt</button>
+            <button type="button" id="knapp" className="btn btn-primary btn-lg knapp" onClick={this.bestilling} >Bestillingsoversikt</button>
             <button type="button" id ="knapp" className="btn btn-primary btn-lg knapp" onClick={this.statusUtstyr}>Status utstyr</button>
             <button type="button" id="knapp" className="btn btn-primary btn-lg knapp" onClick={this.utstyrReg}>Utstyrsregistrering</button>
+          <div>
+          <button type="button" id="knapp" className="btn btn-primary btn-lg knapp" onClick={this.employees}
+          style={{display: localStorage.getItem("account") === "admin" ? "" : "none"}}>Ansattoversikt</button>
+          <button type="button" id="knapp" className="btn btn-primary btn-lg knapp" onClick={this.locations}
+            style={{display: localStorage.getItem("account") === "admin" ? "" : "none"}}>Stedsoversikt</button>
+          </div>
+
           </div>
         </div>
       </div>
@@ -38,5 +48,11 @@ export class Home extends Component {
   }
   utstyrReg() {
     history.push("/registrer");
+  }
+  employees() {
+    history.push("/employeesOverview");
+  }
+  locations() {
+    history.push("/locationOverview");
   }
 }

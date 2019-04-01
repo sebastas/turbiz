@@ -67,8 +67,8 @@ export class AddLocation extends Component {
 
     if (this.isComplete) {
       adminService.addLocation(this.location, this.address, () => {
-        history.push('/locationOverview');
       });
+      history.push('/locationOverview');
     }
   }
 

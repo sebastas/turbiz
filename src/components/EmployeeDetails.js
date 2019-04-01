@@ -53,7 +53,7 @@ export class EmployeeEdit extends Component{
           <div className="col-sm-6">
             <div className="inputBox ">
               <div className="inputText">Telefon</div>
-                <input type="text" value={this.number} onChange={event => (this.number = event.target.value)} />
+                <input type="number" value={this.number} onChange={event => (this.number = event.target.value)} />
             </div>
           </div>
 
@@ -108,16 +108,16 @@ export class EmployeeEdit extends Component{
 
       save() {
         adminService.updateEmployee(this.props.match.params.id, this.name, this.email, this.number, this.username, () => {
-          history.push('/employeesOverview');
         });
+        history.push('/employeesOverview');
       }
 
       delete() {
         dialog.showMessageBox(dialogOptions, i => {
           if (i===0){
             adminService.deleteEmployee(this.props.match.params.id, () => {
-              history.push('/employeesOverview');
             });
+            history.push('/employeesOverview');
           } else {
             history.push("/employeesOverview")
           }
@@ -133,8 +133,8 @@ export class EmployeeEdit extends Component{
         dialog.showMessageBox(dialogOptions, i => {
           if (i===0){
             adminService.resetPassord(this.props.match.params.id, () => {
-              history.push("/employeesOverview")
             });
+            history.push("/employeesOverview")
           } else {
             history.push("/employeesOverview")
           }
