@@ -8,7 +8,9 @@ const history = createHashHistory();
 export let kundeInfo = {}; //Lager et objekt som skal lagre informasjonen med videre
 
 export class AddKunde extends Component {
+  phoneComplete = true;
   isComplete = true;
+  numberComplete = true;
   kunde = {
     navn: "",
     epost: "",
@@ -18,7 +20,7 @@ export class AddKunde extends Component {
   render() {
     return (
       <div>
-        {/*Under er koden for inputboksene med logo på siden.I tillegg er det stilsetting på inputboksene*/}
+        /*Under er koden for inputboksene med logo på siden.I tillegg er det stilsetting på inputboksene*/
         <Topnav />
         <div className="container">
           <div className="row main">
@@ -90,9 +92,10 @@ export class AddKunde extends Component {
                     </div>
                   </div>
                 </div>
-                {/*Koden under er validering over at all informasjonen du skriver inn er gylidg. Ellers vil du få en*/}
-                {/*feilmelding.*/}
+                /*Koden under er validering over at all informasjonen du skriver inn er gylidg. Ellers vil du få en*/
+                /*feilmelding.*/
                 <p style={{ display: this.isComplete ? 'none' : 'block', color: 'red' }}>Vennligst fyll inn all info</p>
+                <p style={{ display: this.numberComplete ? 'none' : 'block', color: 'red' }}>Ugyldig telefonnummer, vennligst skriv inn 8 tall</p>
                 <div className="form-group ">
                   <button
                     type="button"
@@ -123,8 +126,9 @@ export class AddKunde extends Component {
   }
 
   create() {
-    this.isComplete = this.kunde.navn.length > 0 && this.kunde.epost.length > 0 && this.kunde.telefon.length === 8;
-    if (this.isComplete) {
+    this.numberComplete = this.kunde.telefon.length === 8;
+    this.isComplete = this.kunde.navn.length > 0 && this.kunde.epost.length > 0;
+    if (this.isComplete && this.numberComplete) {
       localStorage.setItem("customer", JSON.stringify(this.kunde));
       history.push('/order/new/equipment');
     }
