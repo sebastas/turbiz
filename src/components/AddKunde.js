@@ -8,6 +8,7 @@ const history = createHashHistory();
 export let kundeInfo = {}; //Lager et objekt som skal lagre informasjonen med videre
 
 export class AddKunde extends Component {
+  phoneComplete = true;
   isComplete = true;
   numberComplete = true;
   kunde = {
@@ -19,7 +20,7 @@ export class AddKunde extends Component {
   render() {
     return (
       <div>
-        {/*Under er koden for inputboksene med logo på siden.I tillegg er det stilsetting på inputboksene*/}
+        /*Under er koden for inputboksene med logo på siden.I tillegg er det stilsetting på inputboksene*/
         <Topnav />
         <div className="container">
           <div className="row main">
@@ -91,8 +92,8 @@ export class AddKunde extends Component {
                     </div>
                   </div>
                 </div>
-                {/*Koden under er validering over at all informasjonen du skriver inn er gylidg. Ellers vil du få en*/}
-                {/*feilmelding.*/}
+                /*Koden under er validering over at all informasjonen du skriver inn er gylidg. Ellers vil du få en*/
+                /*feilmelding.*/
                 <p style={{ display: this.isComplete ? 'none' : 'block', color: 'red' }}>Vennligst fyll inn all info</p>
                 <p style={{ display: this.numberComplete ? 'none' : 'block', color: 'red' }}>Ugyldig telefonnummer, vennligst skriv inn 8 tall</p>
                 <div className="form-group ">
