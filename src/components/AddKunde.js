@@ -10,6 +10,7 @@ export let kundeInfo = {}; //Lager et objekt som skal lagre informasjonen med vi
 export class AddKunde extends Component {
   phoneComplete = true;
   isComplete = true;
+  numberComplete = true;
   kunde = {
     navn: "",
     epost: "",
@@ -91,10 +92,10 @@ export class AddKunde extends Component {
                     </div>
                   </div>
                 </div>
-                {/*Koden under er validering over at all informasjonen du skriver inn er gylidg. Ellers vil du få en*/}
-                {/*feilmelding.*/}
+                {/*Koden under er validering over at all informasjonen du skriver inn er gylidg. Ellers vil du få en*/
+              /*feilmelding.*/}
                 <p style={{ display: this.isComplete ? 'none' : 'block', color: 'red' }}>Vennligst fyll inn all info</p>
-                <p style={{ display: this.phoneComplete ? 'none' : 'block', color: 'red' }}>Vennligst fyll inn 8 siffer på telefonnummer</p>
+                <p style={{ display: this.numberComplete ? 'none' : 'block', color: 'red' }}>Ugyldig telefonnummer, vennligst skriv inn 8 tall</p>
                 <div className="form-group ">
                   <button
                     type="button"
@@ -125,9 +126,9 @@ export class AddKunde extends Component {
   }
 
   create() {
+    this.numberComplete = this.kunde.telefon.length === 8;
     this.isComplete = this.kunde.navn.length > 0 && this.kunde.epost.length > 0;
-    this.phoneComplete = this.kunde.telefon.length === 8;
-    if (this.isComplete && this.phoneComplete) {
+    if (this.isComplete && this.numberComplete) {
       localStorage.setItem("customer", JSON.stringify(this.kunde));
       history.push('/order/new/equipment');
     }

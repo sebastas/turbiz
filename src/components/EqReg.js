@@ -81,7 +81,7 @@ export class BicycleReg extends Component {
             <div className="col-sm-6">
               <div className="inputBox ">
                 <div className="inputText">Pris per time</div>
-                <input type="text" name="" className="input" onChange={event => (this.ppt = event.target.value)}></input>
+                <input type="number" name="" className="input" onChange={event => (this.ppt = event.target.value)}></input>
               </div>
             </div>
 
@@ -89,7 +89,7 @@ export class BicycleReg extends Component {
               <div className="col-sm-6">
                 <div className="inputBox ">
                   <div className="inputText">Pris per dag</div>
-                  <input type="text" name="" className="input" onChange={event => (this.ppd = event.target.value)}></input>
+                  <input type="number" name="" className="input" onChange={event => (this.ppd = event.target.value)}></input>
                 </div>
               </div>
             </div>
@@ -159,8 +159,8 @@ export class BicycleReg extends Component {
 
   save(){
     registrerService.addBicycle(this.props.match.params.id, this.name, this.type, this.ppt, this.ppd, this.description, this.status, this.location, () => {
-      history.push("/syklerStatus")
     });
+    history.push("/syklerStatus")
   }
 }
 
@@ -212,7 +212,7 @@ export class EqReg extends Component {
             <div className="col-sm-6">
               <div className="inputBox">
                 <div className="inputText">Pris</div>
-                <input type="text" name="" className="input" onChange={event => (this.price = event.target.value)}></input>
+                <input type="number" name="" className="input" onChange={event => (this.price = event.target.value)}></input>
               </div>
             </div>
 
@@ -283,7 +283,7 @@ export class EqReg extends Component {
 
   save(){
     registrerService.addEq(this.props.match.params.id, this.name, this.type, this.price, this.description, this.status, this.location, () => {
-      history.push("/tilbehorStatus")
     });
+    history.push("/tilbehorStatus")
   }
 }

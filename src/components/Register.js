@@ -2,6 +2,8 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import { userService} from '../services/user-service';
 import { Topnav } from './Topnav';
+import { Home } from './Home';
+
 
 import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
@@ -16,6 +18,7 @@ export class Register extends Component {
   userExists = false;
   users = [];
   isComplete = true;
+  numberComplete = true;
 
   render() {
 
@@ -54,7 +57,7 @@ export class Register extends Component {
                   <div className="cols-sm-10">
                     <div className="input-group">
                       <span className="input-group-addon"><i className="fa fa-phone fa-lg" aria-hidden="true"/></span>
-                      <input type="text" className="form-control" name="phone" id="phone"
+                      <input type="number" className="form-control" name="phone" id="phone"
                              placeholder="Telefonnummer" required={true} onChange={event => (this.number = event.target.value)}/>
                     </div>
                   </div>
@@ -84,6 +87,9 @@ export class Register extends Component {
                 </div>
 
                 <p style={{display: this.isComplete ? 'none' : 'block', color: 'red'}}>Vennligst fyll inn all info</p>
+                <p style={{display: this.numberComplete ? 'none' : 'block', color: 'red'}}>Ugyldig telefonnummer, vennligst skriv inn 8 tall</p>
+                <p style={{display: this.password.length > 4 ? 'none' : 'block', color: 'red'}}>Passord må være minst 5 karakterer</p>
+
                 <div className="form-group ">
                   <button type="button" className="btn btn-primary btn-lg btn-block login-button" id="createUser" onClick={this.create}>Opprett bruker</button>
                 </div>
@@ -114,13 +120,20 @@ export class Register extends Component {
   }
 
   create() {
-    this.isComplete = this.name.length > 0 && this.email.length > 0 && this.number.length === 8 &&
-      this.username.length > 0 && this.password.length > 4;
 
-    if (this.isComplete && !this.userExists) {
+    this.numberComplete = this.number.length === 8;
+
+    this.isComplete = this.name.length > 0 && this.email.length > 0 &&
+      this.username.length > 0;
+
+
+
+
+
+    if (this.isComplete && !this.userExists && this.numberComplete) {
       userService.addUser(this.name, this.email, this.number, this.username, this.password, () => {
-        history.push("/home");
       });
+      history.push("/employeesOverview");
     }
   }
 }

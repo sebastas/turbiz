@@ -353,16 +353,16 @@ export class BicycleEdit extends Component {
   save() {
     utstyrService.updateBicycle(this.props.match.params.id, this.name, this.type, this.ppt,
       this.ppd, this.description, this.status, this.location, () => {
-      history.push('/syklerStatus');
     });
+    history.push('/syklerStatus');
   }
 
   delete() {
     dialog.showMessageBox(dialogOptions, i => {
       if (i===0){
         utstyrService.deleteBicycle(this.props.match.params.id, () => {
-          history.push('/syklerStatus');
         });
+        history.push('/syklerStatus');
       }
     });
   }
@@ -491,16 +491,17 @@ export class EquipmentEdit extends Component {
   save() {
     utstyrService.updateEquipment(this.props.match.params.id, this.name, this.type,
       this.price, this.description, this.status, this.location, () => {
-      history.push('/tilbehorStatus');
     });
+    history.push('/tilbehorStatus');
   }
 
   delete() {
     dialog.showMessageBox(dialogOptions, i => {
       if (i===0){
         utstyrService.deleteEquipment(this.props.match.params.id, () => {
-          history.push('/tilbehorStatus');
         });
+        history.push('/tilbehorStatus');
+
       }
     });
   }

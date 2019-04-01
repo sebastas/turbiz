@@ -19,10 +19,7 @@ export class Topnav extends Component {
                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Innstillinger
               </button>
               <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a className="dropdown-item" onClick={this.employees}
-                   style={{display: localStorage.getItem("account") === "admin" ? "block" : "none"}}>Ansattoversikt</a>
-                <a className="dropdown-item" onClick={this.locations}
-                   style={{display: localStorage.getItem("account") === "admin" ? "block" : "none"}}>Stedsoversikt</a>
+                
                 <a className="dropdown-item" onClick={this.changePassword}>Endre passord</a>
                 <a className="dropdown-item" onClick={this.logOut}>Logg ut</a>
               </div>
