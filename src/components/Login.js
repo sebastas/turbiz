@@ -39,17 +39,21 @@ export class Login extends Component {
   }
 
   mounted() {
+    // Get list of users
     userService.getUsers(users => {
       this.users = users;
     });
   }
 
+  /**
+   * Iterates through list of users to check if input matches any username/password combinations. Stores logged-in
+   * account name in localStorage.
+   */
   validate() {
     for (let user of this.users) {
       if (this.username === user.brukernavn && this.password === user.passord) {
         this.loggedIn = true;
         this.wrongPass = false;
-        // account = this.username;
         localStorage.setItem("account", this.username);
       } else {
         this.wrongPass = true;

@@ -9,7 +9,7 @@ const history = createHashHistory();
 
 // for popup
 const {dialog} = require('electron').remote;
-const dialogOptions = {type: 'info', buttons: ['Ja', 'Nei'], message: 'Er du sikker?'};
+const dialogOptions = {type: 'info', buttons: ['Ja', 'Nei'], message: 'Er du sikker?', cancelId: 1};
 
 export class OrderDetails extends Component {
 
@@ -80,42 +80,6 @@ export class OrderDetails extends Component {
                       </Row>
                     </div>
                 }
-                {/*<div id="dagsleie" style={{display: this.order.hours === "0" ? 'block' : 'none'}}>*/}
-                  {/*<Row>*/}
-                    {/*<Column width={5}>*/}
-                      {/*Fra dato:*/}
-                    {/*</Column>*/}
-                    {/*<Column width={7}>*/}
-                      {/*{this.order.from}*/}
-                    {/*</Column>*/}
-                  {/*</Row>*/}
-                  {/*<Row>*/}
-                    {/*<Column width={5}>*/}
-                      {/*Til dato:*/}
-                    {/*</Column>*/}
-                    {/*<Column width={7}>*/}
-                      {/*{this.order.to}*/}
-                    {/*</Column>*/}
-                  {/*</Row>*/}
-                {/*</div>*/}
-                {/*<div id="timesleie" style={{display: this.order.hours ? 'block' : 'none'}}>*/}
-                  {/*<Row>*/}
-                    {/*<Column width={5}>*/}
-                      {/*Dato:*/}
-                    {/*</Column>*/}
-                    {/*<Column width={7}>*/}
-                      {/*{this.order.from}*/}
-                    {/*</Column>*/}
-                  {/*</Row>*/}
-                  {/*<Row>*/}
-                    {/*<Column width={5}>*/}
-                      {/*Antall timer:*/}
-                    {/*</Column>*/}
-                    {/*<Column width={7}>*/}
-                      {/*{this.order.hours}*/}
-                    {/*</Column>*/}
-                  {/*</Row>*/}
-                {/*</div>*/}
                 <Row>
                   <Column width={5}>
                     Behandler:
@@ -163,9 +127,14 @@ export class OrderDetails extends Component {
             <Column width={2}/>
             <Column width={3}>
               { this.order.delivered === 1 ?
-                <Card id="delivered">
-                  <h4>Levert</h4>
-                </Card> :
+                <div>
+                  <Card id="delivered">
+                    <h4>Levert</h4>
+                  </Card>
+                  <Card title="Slett bestilling" id="remove-order">
+                    <Button.Danger onClick={this.removeOrder}>Fjern bestilling</Button.Danger>
+                  </Card>
+                </div> :
                 <Card title="Bekreft levering" id="confirm-delivery">
                   Velg sted:
                   <select onChange={event => this.location = event.target.value} className="custom-select">
@@ -176,8 +145,8 @@ export class OrderDetails extends Component {
                     }
                   </select>
                   <Button.Success onClick={this.confirmDelivery}>Bekreft levering</Button.Success>
+                  <p>NB! Marker utstyr som levert ved å bekrefte levering. Deretter kan du fjerne bestillingen</p>
                 </Card>
-
               }
             </Column>
           </Row>
@@ -295,7 +264,6 @@ export class OrderDetails extends Component {
   confirmDelivery() {
     dialog.showMessageBox(dialogOptions, i => {
       if (i === 0) {
-        console.log("Utstyret ble bekreftet levert ved " + this.location);
         for (let bike of this.bikes) {
           orderService.updateBikeStatus(bike.sykkel_id, "Ledig", this.location, () => {});
         }
@@ -304,8 +272,16 @@ export class OrderDetails extends Component {
         }
         history.push("/order/overview");
         orderService.updateOrderStatusDelivered(this.order.id, () => {});
-      } else {
-        console.log("Godkjenn utstyr før du bekrefter");
+      }
+    });
+  }
+
+  removeOrder() {
+    dialog.showMessageBox(dialogOptions, i => {
+      if (i === 0) {
+        orderService.removeOrder(this.order.id, () => {
+        });
+        history.push("/order/overview");
       }
     });
   }

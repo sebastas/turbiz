@@ -266,9 +266,6 @@ export class NewOrderDetails extends Component {
     let time = JSON.parse(localStorage.getItem("time"));
     let from = new Date(time.start);
     let to = new Date(time.end);
-    console.log(customer);
-    console.log(equipment);
-    console.log(time);
     this.customer = customer;
     this.equipment = equipment;
     this.time = {
@@ -426,7 +423,6 @@ export class NewOrderDetails extends Component {
     // Gets the id of the newest user before performing insertions
     orderService.getLatestFromTable("Kunde", customer => {
       let customerId = customer.antall;
-      console.log(customerId);
       let time = JSON.parse(localStorage.getItem("time"));
       let from = new Date(time.start).toISOString().slice(0, 10);
       let to = new Date(time.end).toISOString().slice(0, 10);
@@ -439,7 +435,6 @@ export class NewOrderDetails extends Component {
           // Insert into Bestilling_Sykkel and Bestilling_Utstyr using the newly created orderId from the insertion above
           orderService.getLatestFromTable("Bestilling", order => {
             let orderId = order.antall;
-            console.log(orderId);
 
             // Insert every bike of this order into Bestilling_Sykkel and update it's status
             for (let bike of this.bikes) {

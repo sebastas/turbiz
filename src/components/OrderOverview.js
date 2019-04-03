@@ -68,6 +68,9 @@ export class OrderOverview extends Component {
     orderService.getOrders(orders => {
       this.orders = orders;
     });
+    localStorage.removeItem("customer");
+    localStorage.removeItem("equipment");
+    localStorage.removeItem("time");
   }
 
   search(event) {

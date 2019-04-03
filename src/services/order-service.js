@@ -208,6 +208,15 @@ class OrderService {
             success();
         });
     }
+
+    removeOrder(orderId, success) {
+        let sql = "delete from Bestilling where bestilling_id = ?";
+        connection.query(sql, [orderId], (error, results) => {
+            if (error) console.error(error);
+
+            success();
+        });
+    }
 }
 
 export let orderService = new OrderService();

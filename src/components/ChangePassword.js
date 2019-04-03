@@ -70,25 +70,29 @@ export class ChangePassword extends Component {
   }
 
   mounted() {
+    // Get user-info from db by account name (stored in localStorage)
     userService.getUser(localStorage.getItem("account"), user => {
       this.user = user;
     });
   }
 
+  /**
+   * Makes sure the two new passwords (new and confirm) are equal
+   * @param event Changes on input
+   */
   checkEqual(event) {
     this.confirmPass = event.target.value;
     this.areEqual = this.confirmPass === this.newPass;
   }
 
+  /**
+   * Makes sure the old password is correct and the two new passwords are equal. If they are, updates the user-info.
+   */
   validate() {
     if (this.user.passord === this.currentPass && this.areEqual) {
       userService.updateUser(this.user.ansatt_id, this.newPass, () => {
         history.push("/");
       })
-    } else if (this.user.passord !== this.currentPass) {
-      this.correctPass = false;
-    } else {
-      this.correctPass = true
-    }
+    } else this.correctPass = this.user.passord === this.currentPass;
   }
 }
