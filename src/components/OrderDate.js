@@ -99,6 +99,7 @@ export class OrderDate extends Component {
   }
 
   mounted() {
+    // Retrieves time/date info if already in localStorage
     let time = JSON.parse(localStorage.getItem("time"));
     if (time) {
       this.orderDate.start = new Date(time.start);
@@ -106,6 +107,7 @@ export class OrderDate extends Component {
       this.orderDate.hours = time.hours;
     }
 
+    // Switches between daily and hourly rent type depending on start and end date
     if (this.formatDate(this.orderDate.start) !== this.formatDate(this.orderDate.end)) {
       this.rentType = "daily";
       this.orderDate.hours = "0";
@@ -114,6 +116,11 @@ export class OrderDate extends Component {
     }
   }
 
+  /**
+   * Handles input changes when selection different dates in the Datepicker-element.
+   * @param {date} startDate From the Datepicker-element
+   * @param {date} endDate From the Datepicker-element
+   */
   handleChange = ({ startDate, endDate }) => {
     startDate = startDate || this.orderDate.start;
     endDate = endDate || this.orderDate.end;
@@ -138,10 +145,18 @@ export class OrderDate extends Component {
 
   handleChangeEnd = end => this.handleChange({ endDate: end });
 
+  /**
+   * Formats date object to an easy-to-read string
+   * @param {date} date To be formated
+   * @returns {string} Easy-to-read date
+   */
   formatDate(date) {
     return date.toISOString().slice(0, 10);
   }
 
+  /**
+   * Stores date/time info in localStorage to use later. Redirects to last page
+   */
   next() {
     localStorage.setItem("time", JSON.stringify(this.orderDate));
     history.push("/order/new/overview");

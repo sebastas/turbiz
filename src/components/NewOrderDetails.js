@@ -257,9 +257,12 @@ export class NewOrderDetails extends Component {
     this.getBikes();
     this.getEquip();
     this.checkIfMember();
-    setTimeout(this.calculatePrice, 250); // slight delay to get values in arrays
+    setTimeout(this.calculatePrice, 500); // slight delay to ensure price is correct
   }
 
+  /**
+   * Imports from localStorage and has to create new Date objects of the simplified string-dates in 'time'
+   */
   getImports() {
     let customer = JSON.parse(localStorage.getItem("customer"));
     let equipment = JSON.parse(localStorage.getItem("equipment"));
@@ -275,6 +278,9 @@ export class NewOrderDetails extends Component {
     };
   }
 
+  /**
+   * Gets any available bike matching location and type and limits on amount the customer wanted
+   */
   getBikes() {
     orderService.getBikesForOrder(this.equipment.sted, "terreng", this.equipment.terreng, bikes => {
       for (let i = 0; i < bikes.length; i++) {
@@ -303,6 +309,9 @@ export class NewOrderDetails extends Component {
     });
   }
 
+  /**
+   * Gets any available equipment matching location and type and limits on amount the customer wanted
+   */
   getEquip() {
     orderService.getEquipForOrder(this.equipment.sted, "hjelm", parseInt(this.equipment.hjelm), equip => {
       for (let i = 0; i < equip.length; i++) {
@@ -346,6 +355,7 @@ export class NewOrderDetails extends Component {
     });
   }
 
+  // Redirects to other pages in the new order process
   redirectCustomer() {
     history.push("/order/new/customer");
   }
@@ -356,6 +366,10 @@ export class NewOrderDetails extends Component {
     history.push("/order/new/time");
   }
 
+  /**
+   * Checks if the customer-info (email) matches any existing customer. If true, makes sure to give a discount in
+   * calculatePrice() below.
+   */
   checkIfMember() {
     orderService.getCustomers(customers => {
       for (let customer of customers) {
@@ -364,6 +378,9 @@ export class NewOrderDetails extends Component {
     });
   }
 
+  /**
+   * Calculates the price for the order.
+   */
   calculatePrice() {
     this.price = {
       days: 0,
@@ -396,7 +413,6 @@ export class NewOrderDetails extends Component {
     this.price.total = this.price.bikes + this.price.equip;
 
     // Discounts
-
     if (this.loyalMember) {
       this.price.discount += 10;
     }
@@ -412,10 +428,16 @@ export class NewOrderDetails extends Component {
 
   }
 
+  /**
+   * Adds customer to db
+   */
   addCustomer() {
     orderService.addCustomer(this.customer, () => {});
   }
 
+  /**
+   *
+   */
   confirmOrder() {
     if (!this.loyalMember) {
       this.addCustomer();
@@ -427,7 +449,7 @@ export class NewOrderDetails extends Component {
       let from = new Date(time.start).toISOString().slice(0, 10);
       let to = new Date(time.end).toISOString().slice(0, 10);
 
-      // Insert into Bestilling
+      // Insert into Bestilling with newly created customer
       userService.getUser(localStorage.getItem("account"), user => {
         let employeeId = user.ansatt_id;
         orderService.addOrder(from, to, time.hours, customerId, employeeId, this.price.total, () => {

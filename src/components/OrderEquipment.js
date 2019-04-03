@@ -503,21 +503,22 @@ export class OrderEquipment extends Component {
   }
 
   mounted() {
+    // Gets locations from db
     utstyrService.getPlace(this.bestilling.sted, locations => {
       this.locations = locations;
     });
 
-    // Get number of available bikes from specific location
+    // Get number of available bikes and equipment from specific location
     this.updateAvailable(this.bestilling.sted);
 
+    // Retrieve equipment info if already stored in localStorage (when reviewing order)
     let equipment = JSON.parse(localStorage.getItem("equipment"));
     if (equipment) this.bestilling = equipment;
   }
 
   /**
    * Resets values of equipment and updates available equipment
-   *
-   * @param {number} location id of location to get available equipment from
+   * @param {number} location The id of location to get available equipment from
    */
   updateAvailable(location) {
     this.bestilling = {
@@ -577,6 +578,9 @@ export class OrderEquipment extends Component {
     });
   }
 
+  /**
+   * Stores the selected equipment info in localStorage for later use
+   */
   next() {
     localStorage.setItem("equipment", JSON.stringify(this.bestilling));
     history.push('/order/new/time');
