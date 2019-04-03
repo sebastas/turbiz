@@ -232,6 +232,7 @@ export class OrderDetails extends Component {
   }
 
   mounted() {
+    // Gets info about the order by orderId
     orderService.getOrder(this.props.match.params.id, order => {
       this.order.id = order.bestilling_id;
       this.order.from = order.fra.toString().substring(0, 15);
@@ -242,25 +243,32 @@ export class OrderDetails extends Component {
       this.order.price = order.pris;
     });
 
+    // Gets bikes in specific order by orderId
     orderService.getBikes(this.props.match.params.id, bikes => {
       this.bikes = bikes;
     });
 
+    // Gets equipment in specific order by orderId
     orderService.getEquipment(this.props.match.params.id, equipment => {
       this.equipment = equipment;
     });
 
+    // Gets customer info by orderId
     orderService.getCustomerInfo(this.props.match.params.id, customer => {
       this.customer.name = customer.navn;
       this.customer.email = customer.epost;
       this.customer.phone = customer.tlf;
     });
 
+    // Gets available locations for delivery
     utstyrService.getPlace(1, locations => {
       this.locations = locations;
     });
   }
 
+  /**
+   * Changes status of bikes and equipment in order, and also delivery location and marks the order as delivered
+   */
   confirmDelivery() {
     dialog.showMessageBox(dialogOptions, i => {
       if (i === 0) {
@@ -276,6 +284,10 @@ export class OrderDetails extends Component {
     });
   }
 
+  /**
+   * Removes order (employee must mark order as delivered/choose a location before possible to delete order. Or else
+   * the bike/equipment status wouldn't be "Ledig")
+   */
   removeOrder() {
     dialog.showMessageBox(dialogOptions, i => {
       if (i === 0) {

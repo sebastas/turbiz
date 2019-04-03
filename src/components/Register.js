@@ -57,7 +57,7 @@ export class Register extends Component {
                   <div className="cols-sm-10">
                     <div className="input-group">
                       <span className="input-group-addon"><i className="fa fa-phone fa-lg" aria-hidden="true"/></span>
-                      <input type="number" className="form-control" name="phone" id="phone"
+                      <input type="text" className="form-control" name="phone" id="phone"
                              placeholder="Telefonnummer" required={true} onChange={event => (this.number = event.target.value)}/>
                     </div>
                   </div>
@@ -102,11 +102,16 @@ export class Register extends Component {
   }
 
   mounted() {
+    // Gets list of users already in db
     userService.getUsers(users => {
       this.users = users;
     });
   }
 
+  /**
+   * Makes sure that the username doesn't already exist
+   * @param event The input username changes on input
+   */
   validateUser(event) {
     this.username = event.target.value;
     for (let user of this.users) {
@@ -119,20 +124,14 @@ export class Register extends Component {
     }
   }
 
+  /**
+   * If form is filled out, username doesn't already exist and password is more than 4 characters long, creates the user
+   */
   create() {
-
     this.numberComplete = this.number.length === 8;
-
-    this.isComplete = this.name.length > 0 && this.email.length > 0 &&
-      this.username.length > 0;
-
-
-
-
-
+    this.isComplete = this.name.length > 0 && this.email.length > 0 && this.username.length > 0 && this.password.length > 4;
     if (this.isComplete && !this.userExists && this.numberComplete) {
-      userService.addUser(this.name, this.email, this.number, this.username, this.password, () => {
-      });
+      userService.addUser(this.name, this.email, this.number, this.username, this.password, () => {});
       history.push("/employeesOverview");
     }
   }

@@ -4,6 +4,7 @@ import { Component } from 'react-simplified';
 import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
 
+// Top navigationbar with link to Home and also some quick-settings
 export class Topnav extends Component {
 
   render() {
@@ -34,16 +35,11 @@ export class Topnav extends Component {
     history.push("/account/"+ localStorage.getItem("account") + "/edit");
   }
 
+  /**
+   * Clears the localStorage and redirects to Login to allow another user sign-in
+   */
   logOut() {
     localStorage.clear();
     history.push("/");
-  }
-
-  locations() {
-    history.push("/locationOverview");
-  }
-
-  employees() {
-    history.push("/employeesOverview");
   }
 }

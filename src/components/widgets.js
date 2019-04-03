@@ -2,6 +2,11 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 import { NavLink } from 'react-router-dom';
 
+
+/**
+ * Retrieved from Øving 7, and modified slightly
+ */
+
 // Renders an information card using Bootstrap styles
 // Attributes: title
 export class Card extends Component {

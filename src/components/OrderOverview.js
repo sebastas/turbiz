@@ -65,14 +65,20 @@ export class OrderOverview extends Component {
   }
 
   mounted() {
+    // Gets all orders in the db
     orderService.getOrders(orders => {
       this.orders = orders;
     });
+    // Removes any customer-, equipment- and time-info for any orders previously added that might have existed
     localStorage.removeItem("customer");
     localStorage.removeItem("equipment");
     localStorage.removeItem("time");
   }
 
+  /**
+   * Search for specific parameters in the table, ex. customer email, employee processor, date
+   * @param event Changes on input
+   */
   search(event) {
     let value = event.target.value.toLowerCase();
     $("#myTable tr").filter(function() {
@@ -80,6 +86,10 @@ export class OrderOverview extends Component {
     });
   }
 
+  /**
+   * Gets orderId on table row click and redirects to more detailed info about the order
+   * @param event Click on table row
+   */
   redirect(event) {
     let index = event.target.parentNode.id;
     history.push("/order/overview/" + index);
@@ -87,6 +97,9 @@ export class OrderOverview extends Component {
     root.style.cursor = 'default';
   }
 
+  /**
+   * Changes cursor to pointer when mouse hovers the table
+   */
   select() {
     let root = document.getElementById('root');
     root.style.cursor = 'pointer';

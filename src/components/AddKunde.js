@@ -5,10 +5,9 @@ import { Topnav } from './Topnav';
 import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
 
-export let kundeInfo = {}; //Lager et objekt som skal lagre informasjonen med videre
+export let kundeInfo = {}; //Lager et objekt som skal lagre informasjonen med videre | VI BRUKER IKKE DENNE LENGER
 
 export class AddKunde extends Component {
-  phoneComplete = true;
   isComplete = true;
   numberComplete = true;
   kunde = {
@@ -101,7 +100,7 @@ export class AddKunde extends Component {
                     type="button"
                     className="btn btn-primary btn-lg btn-block login-button"
                     id="Addkunde"
-                    onClick={this.create}
+                    onClick={this.next}
                   >
                     Legg til kunde
                   </button>
@@ -114,18 +113,22 @@ export class AddKunde extends Component {
     );
   }
 
-  create() {
-    kundeInfo = this.kunde; // Lagrer verdier som blir skrevet inn
+  // next() {
+  //   kundeInfo = this.kunde; // Lagrer verdier som blir skrevet inn
+  //
+  //   history.push('/velgUtstyr'); // Hendvender deg til neste side når du trykker videre
+  // }
 
-    history.push('/velgUtstyr'); // Hendvender deg til neste side når du trykker videre
-  }
-
-    mounted() {
+  mounted() {
+    // If going back to change customer info while adding an order, gets that info from localStorage and displays it
     let customer = JSON.parse(localStorage.getItem("customer"));
     if (customer) this.kunde = customer;
   }
 
-  create() {
+  /**
+   * Goes to next page in new order process if requirements are met
+   */
+  next() {
     this.numberComplete = this.kunde.telefon.length === 8;
     this.isComplete = this.kunde.navn.length > 0 && this.kunde.epost.length > 0;
     if (this.isComplete && this.numberComplete) {
