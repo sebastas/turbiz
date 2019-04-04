@@ -23,7 +23,7 @@ export class Status extends Component {
         <button type="button" id ="knapp" className="btn btn-primary btn-lg knapp" onClick={this.tStatus}>Tilbehør</button>
       </div>
       <div id="regBack">
-        <button type="button" id="knapp" className="btn btn-primary btn-sm regBtn" onClick={this.back}>Tilbake</button>
+        <Button.Light onClick={this.back}>Tilbake</Button.Light>
       </div>
       </div>
     )
