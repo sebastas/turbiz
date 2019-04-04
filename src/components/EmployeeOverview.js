@@ -9,6 +9,8 @@ import {userService} from "../services/user-service";
 import { Column, Row, Button } from './widgets';
 const history = createHashHistory();
 
+//Class for list of employees
+
 export class Employees extends Component {
   employees=[];
 
@@ -59,11 +61,13 @@ export class Employees extends Component {
   }
 
   mounted() {
+    //Gets list of current employees
     adminService.getEmployees(employees => {
       this.employees = employees;
     });
   }
 
+  //Function to search in the list of employees
   search(event) {
     let value = event.target.value.toLowerCase();
     $("#myTable tr").filter(function() {
@@ -71,6 +75,7 @@ export class Employees extends Component {
     });
   }
 
+  //Function to click on the different employees in the list and redirect them to an employee details page
   redirect(event) {
     let index = event.target.parentNode.id;
     history.push("/employeeOverview/" + index);

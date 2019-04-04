@@ -47,7 +47,7 @@ export class Status extends Component {
 }
 
 
-
+//Class for a page with list of all the bicycles in the database
 export class SyklerStatus extends Component {
   bicycles = [];
 
@@ -107,6 +107,7 @@ export class SyklerStatus extends Component {
 
   }
   mounted(){
+    //Gets a list of all the bicycles
     utstyrService.getBicycles(bicycles => {
       this.bicycles = bicycles;
     });
@@ -116,6 +117,7 @@ export class SyklerStatus extends Component {
     history.push("/status")
   }
 
+  //Function to search in the list of bicycles
   search(event) {
     let value = event.target.value.toLowerCase();
     $("#myTableB tr").filter(function() {
@@ -123,6 +125,7 @@ export class SyklerStatus extends Component {
     });
   }
 
+  //Function to click on the bicycle currently hovered over in the list of bicycles
   redirect(event) {
     let index = event.target.parentNode.id;
     history.push('/syklerStatus/' + index + '/edit');
@@ -137,6 +140,7 @@ export class SyklerStatus extends Component {
 
 }
 
+//Class for a page with list of all the equipment in the database
 export class TilbehorStatus extends Component {
   equipments=[]
 
@@ -195,6 +199,7 @@ export class TilbehorStatus extends Component {
   }
 
   mounted(){
+    //Gets a list of all the equipment from the database
     utstyrService.getEquipment(equipment => {
       this.equipments = equipment;
     });
@@ -204,6 +209,8 @@ export class TilbehorStatus extends Component {
     history.push("/status")
   }
 
+
+  //Function to search in the list of equipment
   search(event) {
     let value = event.target.value.toLowerCase();
     $("#myTableEq tr").filter(function() {
@@ -211,6 +218,8 @@ export class TilbehorStatus extends Component {
     });
   }
 
+
+  //Function to click on the equipment currently hovered over in the list of equipment
   redirect(event) {
     let index = event.target.parentNode.id;
     history.push('/tilbehorStatus/' + index + '/edit');
@@ -225,6 +234,8 @@ export class TilbehorStatus extends Component {
 
 }
 
+
+//Class for a page when clicked on the selected bicycle, where you can edit the information about it
 export class BicycleEdit extends Component {
   name="";
   type="";
@@ -339,6 +350,7 @@ export class BicycleEdit extends Component {
   }
 
   mounted() {
+    //Gets the information about the selected bicycle
     utstyrService.getBicycle(this.props.match.params.id, bicycle => {
       this.name = bicycle.navn;
       this.type = bicycle.type;
@@ -356,6 +368,7 @@ export class BicycleEdit extends Component {
   }
 
   save() {
+    //Saves the changes made and updates the information about the bicycle
     utstyrService.updateBicycle(this.props.match.params.id, this.name, this.type, this.ppt,
       this.ppd, this.description, this.status, this.location, () => {
     });
@@ -363,6 +376,7 @@ export class BicycleEdit extends Component {
   }
 
   delete() {
+    //Deletes the selected bicycle from the database, and displays a messagebox as confirmation
     dialog.showMessageBox(dialogOptions, i => {
       if (i===0){
         utstyrService.deleteBicycle(this.props.match.params.id, () => {
@@ -377,6 +391,8 @@ export class BicycleEdit extends Component {
   };
 }
 
+
+//Class for a page when clicked on the selected equipment, where you can edit the information about it
 export class EquipmentEdit extends Component {
   name="";
   type="";
@@ -480,6 +496,7 @@ export class EquipmentEdit extends Component {
   }
 
   mounted() {
+    //Gets the information about the selected equipment
     utstyrService.getEquip(this.props.match.params.id, equip => {
       this.name = equip.navn;
       this.type = equip.type;
@@ -494,6 +511,7 @@ export class EquipmentEdit extends Component {
   }
 
   save() {
+    //Saves the changes made to the information about the equipment
     utstyrService.updateEquipment(this.props.match.params.id, this.name, this.type,
       this.price, this.description, this.status, this.location, () => {
     });
@@ -501,6 +519,7 @@ export class EquipmentEdit extends Component {
   }
 
   delete() {
+    //Deletes the selected equipment from the database, and shows a messagebox to confirm the deletion
     dialog.showMessageBox(dialogOptions, i => {
       if (i===0){
         utstyrService.deleteEquipment(this.props.match.params.id, () => {
