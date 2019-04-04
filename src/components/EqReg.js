@@ -5,6 +5,8 @@ const history = createHashHistory();
 import { Topnav } from './Topnav';
 import { registrerService } from '../services/registrer-service';
 
+//Class for registrer page
+
 export class Registrer extends Component {
   render() {
     return(
@@ -34,6 +36,7 @@ export class Registrer extends Component {
   }
 }
 
+//class for registrering bicycles
 
 export class BicycleReg extends Component {
   name="";
@@ -140,6 +143,7 @@ export class BicycleReg extends Component {
   }
 
   mounted(){
+    //Gets list of the locations
     registrerService.getPlace(this.location, place => {
       this.places = place;
     })
@@ -158,6 +162,7 @@ export class BicycleReg extends Component {
   }
 
   save(){
+    //Adds bicycle to the database
     registrerService.addBicycle(this.props.match.params.id, this.name, this.type, this.ppt, this.ppd, this.description, this.status, this.location, () => {
     });
     history.push("/syklerStatus")
@@ -165,7 +170,7 @@ export class BicycleReg extends Component {
 }
 
 
-
+//Class for registrering different equipment
 
 export class EqReg extends Component {
   name="";
@@ -264,6 +269,7 @@ export class EqReg extends Component {
   }
 
   mounted(){
+    //Gets list of the location
     registrerService.getPlace(this.location, place => {
       this.places = place;
     })
@@ -282,6 +288,7 @@ export class EqReg extends Component {
   }
 
   save(){
+    //Adds equipment to the database
     registrerService.addEq(this.props.match.params.id, this.name, this.type, this.price, this.description, this.status, this.location, () => {
     });
     history.push("/tilbehorStatus")

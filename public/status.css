@@ -19,12 +19,13 @@ button.x{
 }
 
 #regBack {
-	top: 70%;
-	left: 42%;
+	top: 15%;
+	left: 5%;
 	margin-top: -5px;
 	margin-left: -15px;
 	position: fixed;
 	text-align: center;
+  
 }
 
 .regBtn {
