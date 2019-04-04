@@ -12,12 +12,17 @@ export class Registrer extends Component {
     return(
       <div className="gradient">
       <Topnav />
+
+      <div id="containerlogo">
+      <img src="../src/logo.png" id="icon" alt="User Icon"/>
+      </div>
+
       <div id="regButtons">
         <button type="button" id="knapp" className="btn btn-primary btn-lg knapp" onClick={this.sReg}>Sykler</button>
         <button type="button" id ="knapp" className="btn btn-primary btn-lg knapp" onClick={this.tReg}>Tilbehør</button>
       </div>
-      <div id="regBack">
-        <button type="button" id="knapp" className="btn btn-primary btn-sm regBtn" onClick={this.back}>Tilbake</button>
+      <div className="regBack">
+        <span className="fa fa-arrow-circle-left fa-3x back"  onClick={this.back}/>
       </div>
       </div>
     )
@@ -52,6 +57,11 @@ export class BicycleReg extends Component {
     return(
       <div className="gradient">
       <Topnav />
+      
+      <div className="regBack">
+        <a href="#/registrer" style={{color: "black"}}><span className="fa fa-arrow-circle-left fa-3x back"  onClick={this.back}/></a>
+      </div>
+
 
         <div className="container-fluid">
   <div className="container">
@@ -158,7 +168,7 @@ export class BicycleReg extends Component {
   }
 
   back() {
-    history.push("/home")
+    history.push("/registrer")
   }
 
   save(){
@@ -185,6 +195,9 @@ export class EqReg extends Component {
     return(
       <div className="gradient">
       <Topnav />
+      <div className="regBack">
+        <a href="#/registrer" style={{color: "black"}}><span className="fa fa-arrow-circle-left fa-3x back"  onClick={this.back}/></a>
+      </div>
 
         <div className="container-fluid">
   <div className="container">
@@ -255,7 +268,7 @@ export class EqReg extends Component {
 
           <div className="row">
             <div className="col-sm-12">
-              <button  className="btn btn-light" id="tilbake" onClick={this.back}>Tilbake</button>
+
               <button  className="btn btn-success" id="reg" onClick={this.save}>Registrer</button>
             </div>
           </div>
@@ -284,7 +297,7 @@ export class EqReg extends Component {
   }
 
   back() {
-    history.push("/home")
+    history.push("/registrer")
   }
 
   save(){

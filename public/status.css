@@ -11,7 +11,7 @@ button.x{
 
 #regButtons {
 	top: 50%;
-	left: 50%;
+left: 43%;
 	margin-top: -15px;
 	margin-left: -100px;
 	position: fixed;
@@ -19,13 +19,13 @@ button.x{
 }
 
 #regBack {
-	top: 15%;
-	left: 5%;
+	top: 40%;
+	left: 10%;
 	margin-top: -5px;
 	margin-left: -15px;
 	position: fixed;
 	text-align: center;
-  
+
 }
 
 .regBtn {
@@ -34,4 +34,9 @@ button.x{
 	display: inline;
 	margin-right: 5px;
 	background-color: #e9806e;
+}
+
+.back {
+  margin-top: 10px;
+  margin-left: 10px;
 }

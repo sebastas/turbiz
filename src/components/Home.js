@@ -14,15 +14,21 @@ export class Home extends Component {
         <div>
           <div id="confirmationMsg">
 
+          <div id="containerlogo">
+          <img src="../src/logo.png" id="icon" alt="User Icon"/>
+          </div>
+
           </div>
           <div id="container">
             <button type="button" id="knapp" className="btn btn-primary btn-lg knapp" onClick={this.bestilling} >Bestillingsoversikt</button>
             <button type="button" id ="knapp" className="btn btn-primary btn-lg knapp" onClick={this.statusUtstyr}>Status utstyr</button>
             <button type="button" id="knapp" className="btn btn-primary btn-lg knapp" onClick={this.utstyrReg}>Utstyrsregistrering</button>
           <div>
-          <button type="button" id="knapp" className="btn btn-primary btn-lg knapp" onClick={this.employees}
+          </div>
+          <div id="container2">
+          <button type="button" id="knapp1" className="btn btn-primary btn-lg knapp" onClick={this.employees}
           style={{display: localStorage.getItem("account") === "admin" ? "" : "none"}}>Ansattoversikt</button>
-          <button type="button" id="knapp" className="btn btn-primary btn-lg knapp" onClick={this.locations}
+          <button type="button" id="knapp1" className="btn btn-primary btn-lg knapp" onClick={this.locations}
             style={{display: localStorage.getItem("account") === "admin" ? "" : "none"}}>Stedsoversikt</button>
           </div>
 

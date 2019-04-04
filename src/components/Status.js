@@ -17,13 +17,17 @@ export class Status extends Component {
   render(){
     return(
       <div className="gradient">
+      <div id="containerlogo">
+      <img src="../src/logo.png" id="icon" alt="User Icon"/>
+      </div>
       <Topnav />
       <div id="regButtons">
+
         <button type="button" id="knapp" className="btn btn-primary btn-lg knapp" onClick={this.sStatus}>Sykler</button>
         <button type="button" id ="knapp" className="btn btn-primary btn-lg knapp" onClick={this.tStatus}>Tilbehør</button>
       </div>
-      <div id="regBack">
-        <Button.Light onClick={this.back}>Tilbake</Button.Light>
+      <div className="regBack">
+        <span className="fa fa-arrow-circle-left fa-3x back"  onClick={this.back}/>
       </div>
       </div>
     )
@@ -110,7 +114,7 @@ export class SyklerStatus extends Component {
   }
 
   goBack() {
-    history.push("/home")
+    history.push("/status")
   }
 
   //Function to search in the list of bicycles
@@ -190,6 +194,7 @@ export class TilbehorStatus extends Component {
             </Column>
           </Row>
       </div>
+      
     )
   }
 
@@ -201,7 +206,7 @@ export class TilbehorStatus extends Component {
   }
 
   goBack(){
-    history.push("/home")
+    history.push("/status")
   }
 
 
