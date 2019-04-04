@@ -9,6 +9,8 @@ import {userService} from "../services/user-service";
 import { Column, Row, Button } from './widgets';
 const history = createHashHistory();
 
+
+//Class for a list of all the locations currently in the database
 export class LocationOverview extends Component {
   locations=[];
 
@@ -55,11 +57,13 @@ export class LocationOverview extends Component {
   }
 
   mounted() {
+    //Gets a list of all the locations
     adminService.getLocations(locations => {
       this.locations = locations;
     });
   }
 
+  //Function for searching in the list of locations
   search(event) {
     let value = event.target.value.toLowerCase();
     $("#myTable tr").filter(function() {
