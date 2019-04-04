@@ -47,7 +47,7 @@ export class AddLocation extends Component {
                   </div>
                 </div>
 
-                //Validation when adding a new location, checking if all the information necessary is given
+                {/*Validation when adding a new location, checking if all the information necessary is given*/}
                 <p style={{display: this.isComplete ? 'none' : 'block', color: 'red'}}>Vennligst fyll inn info</p>
 
                 <div className="form-group ">
