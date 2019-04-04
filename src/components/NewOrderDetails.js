@@ -438,7 +438,9 @@ export class NewOrderDetails extends Component {
   }
 
   /**
-   * Adds customer to db if it doesn't already exist. Then
+   * Adds customer to db if it doesn't already exist. Then inserts a new 'Bestilling' into using either newest customer's id or
+   * existing customer's id. After creating a new 'Bestilling', then uses that id, along with selected bike ids,
+   * to insert into 'Bestilling_Sykkel'. Same goes for selected bikes and 'Bestilling_Utstyr'.
    */
   confirmOrder() {
     if (!this.loyalMember) {
@@ -450,6 +452,13 @@ export class NewOrderDetails extends Component {
       let time = JSON.parse(localStorage.getItem("time"));
       let from = new Date(time.start).toISOString().slice(0, 10);
       let to = new Date(time.end).toISOString().slice(0, 10);
+
+      // Updates customerId if customer already exists. We don't want the newest customer
+      if (this.loyalMember) {
+        orderService.getCustomerByEmail(this.customer.epost, customer => {
+          customerId = customer.kunde_id;
+        });
+      }
 
       // Insert into Bestilling with newly created customer
       userService.getUser(localStorage.getItem("account"), user => {
