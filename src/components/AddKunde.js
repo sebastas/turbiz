@@ -18,7 +18,7 @@ export class AddKunde extends Component {
 
   render() {
     return (
-      <div>
+      <div className="gradient">
         {/*Under er koden for inputboksene med logo på siden.I tillegg er det stilsetting på inputboksene*/}
         <Topnav />
         <div className="container">
