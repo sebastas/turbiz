@@ -161,7 +161,7 @@ export class OrderDetails extends Component {
                           <Column width={1}><strong>ID</strong></Column>
                           <Column width={2}><strong>Navn</strong></Column>
                           <Column width={2}><strong>Type</strong></Column>
-                          <Column width={2}><strong>Dagspris</strong></Column>
+                          <Column width={2}><strong>{this.order.hours === "0" ? 'Dagspris' : 'Timepris'}</strong></Column>
                           <Column width={2}><strong>Status</strong></Column>
                           <Column width={3}><strong>Beskrivelse</strong></Column>
                         </Row>
@@ -178,7 +178,7 @@ export class OrderDetails extends Component {
                                 <Column width={1}>{bike.sykkel_id}</Column>
                                 <Column width={2}>{bike.navn}</Column>
                                 <Column width={2}>{bike.type}</Column>
-                                <Column width={2}>{bike.ppd}</Column>
+                                <Column width={2}>{this.order.hours === "0" ? bike.ppd : bike.ppt}</Column>
                                 <Column width={2}>{bike.status}</Column>
                                 <Column width={3}>{bike.beskrivelse}</Column>
                               </Row>

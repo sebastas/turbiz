@@ -173,7 +173,7 @@ export class NewOrderDetails extends Component {
                           <Column width={1}><strong>ID</strong></Column>
                           <Column width={2}><strong>Navn</strong></Column>
                           <Column width={2}><strong>Type</strong></Column>
-                          <Column width={2}><strong> {this.time.hours === "0" ? 'Dagspris' : 'Timepris'}</strong></Column>
+                          <Column width={2}><strong>{this.time.hours === "0" ? 'Dagspris' : 'Timepris'}</strong></Column>
                           <Column width={2}><strong>Status</strong></Column>
                           <Column width={3}><strong>Beskrivelse</strong></Column>
                         </Row>
@@ -373,7 +373,9 @@ export class NewOrderDetails extends Component {
   checkIfMember() {
     orderService.getCustomers(customers => {
       for (let customer of customers) {
-        this.loyalMember = this.customer.epost === customer.epost;
+        if (this.customer.epost === customer.epost) {
+          this.loyalMember = true;
+        }
       }
     });
   }
@@ -389,7 +391,7 @@ export class NewOrderDetails extends Component {
       discount: 0,
       total: 0
     };
-    let time = JSON.parse(localStorage.getItem("time"))
+    let time = JSON.parse(localStorage.getItem("time"));
     let from = new Date(time.start);
     let to = new Date(time.end);
     this.price.days = differenceInCalendarDays(to, from); // Get number of days
@@ -436,7 +438,7 @@ export class NewOrderDetails extends Component {
   }
 
   /**
-   *
+   * Adds customer to db if it doesn't already exist. Then
    */
   confirmOrder() {
     if (!this.loyalMember) {
