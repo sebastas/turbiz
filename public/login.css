@@ -36,7 +36,7 @@
 /* FORM TYPOGRAPHY*/
 
 input[type=button], input[type=submit], input[type=reset]  {
-    background-color: #e9806e;
+    background-color: #4B92A0;
     border: none;
     color: white;
     padding: 15px 80px;
@@ -68,6 +68,7 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
     -o-transform: scale(0.95);
     -ms-transform: scale(0.95);
     transform: scale(0.95);
+
 }
 
 input[type=text], input[type=password] {
