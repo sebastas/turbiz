@@ -8,6 +8,8 @@ import {adminService} from "../services/admin-service";
 import createHashHistory from 'history/createHashHistory';
 const history = createHashHistory();
 
+
+//Class for adding a new location
 export class AddLocation extends Component {
   location="";
   address="";
@@ -45,6 +47,7 @@ export class AddLocation extends Component {
                   </div>
                 </div>
 
+                //Validation when adding a new location, checking if all the information necessary is given
                 <p style={{display: this.isComplete ? 'none' : 'block', color: 'red'}}>Vennligst fyll inn info</p>
 
                 <div className="form-group ">
@@ -63,9 +66,11 @@ export class AddLocation extends Component {
   }
 
   create() {
+    //Validation
     this.isComplete=this.location.length > 1 && this.address.length > 1;
 
     if (this.isComplete) {
+      //Adds the new location to the database
       adminService.addLocation(this.location, this.address, () => {
       });
       history.push('/locationOverview');

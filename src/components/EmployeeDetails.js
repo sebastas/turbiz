@@ -12,6 +12,8 @@ const history = createHashHistory();
 const {dialog} = require('electron').remote;
 const dialogOptions = {type: 'info', buttons: ['Ja', 'Nei'], message: 'Er du sikker?'};
 
+//Class for employees details and if needed change information about the employee
+
 export class EmployeeEdit extends Component{
   name="";
   email="";
@@ -96,6 +98,7 @@ export class EmployeeEdit extends Component{
     )
   }
       mounted() {
+        //Gets the information about the selected employee
         adminService.getEmployee(this.props.match.params.id, employee => {
           this.name = employee.navn;
           this.email = employee.epost;
@@ -107,12 +110,14 @@ export class EmployeeEdit extends Component{
       }
 
       save() {
+        //Saves the changes made for the selected employee
         adminService.updateEmployee(this.props.match.params.id, this.name, this.email, this.number, this.username, () => {
         });
         history.push('/employeesOverview');
       }
 
       delete() {
+        //Deletes the selected emplyee, and displays a messagebox as confirmation
         dialog.showMessageBox(dialogOptions, i => {
           if (i===0){
             adminService.deleteEmployee(this.props.match.params.id, () => {
@@ -130,6 +135,7 @@ export class EmployeeEdit extends Component{
       };
 
       resetPass(){
+        //Resets the password for the selected employee in case they forget it, and sets it to "default"
         dialog.showMessageBox(dialogOptions, i => {
           if (i===0){
             adminService.resetPassord(this.props.match.params.id, () => {
