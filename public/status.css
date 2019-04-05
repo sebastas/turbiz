@@ -1,39 +1,38 @@
-@import url("http://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.5.4/bootstrap-select.min.css");
+@import url('http://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.5.4/bootstrap-select.min.css');
 
-button.x{
+button.x {
   margin-right: 20px;
   margin-left: 20px;
 }
 
-#eqBack, #bicycleBack, #employeeBack {
-  background-color: #D3D3D3;
+#eqBack,
+#bicycleBack,
+#employeeBack {
+  background-color: #d3d3d3;
 }
 
 #regButtons {
-	top: 50%;
-left: 43%;
-	margin-top: -15px;
-	margin-left: -100px;
-	position: fixed;
-	text-align: center;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #regBack {
-	top: 40%;
-	left: 10%;
-	margin-top: -5px;
-	margin-left: -15px;
-	position: fixed;
-	text-align: center;
-
+  top: 40%;
+  left: 10%;
+  margin-top: -5px;
+  margin-left: -15px;
+  position: fixed;
+  text-align: center;
 }
 
 .regBtn {
-	border-radius: 12px;
-	padding: 10px 27px;
-	display: inline;
-	margin-right: 5px;
-	background-color: #e9806e;
+  border-radius: 12px;
+  padding: 10px 27px;
+  display: inline;
+  margin-right: 5px;
+  background-color: #e9806e;
 }
 
 .back {

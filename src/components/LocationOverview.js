@@ -3,22 +3,21 @@ import { Component } from 'react-simplified';
 import { account } from './Login';
 
 import createHashHistory from 'history/createHashHistory';
-import {Topnav} from "./Topnav";
-import {adminService} from "../services/admin-service";
-import {userService} from "../services/user-service";
+import { Topnav } from './Topnav';
+import { adminService } from '../services/admin-service';
+import { userService } from '../services/user-service';
 import { Column, Row, Button } from './widgets';
 const history = createHashHistory();
 
-
 //Class for a list of all the locations currently in the database
 export class LocationOverview extends Component {
-  locations=[];
+  locations = [];
 
-  render(){
-    return(
+  render() {
+    return (
       <div>
-        <Topnav/>
-        <br/>
+        <Topnav />
+        <br />
         <Row>
           <Column>
             <h3>Stedsoversikt</h3>
@@ -27,33 +26,39 @@ export class LocationOverview extends Component {
             <Button.Success onClick={this.new}>Nytt sted</Button.Success>
           </Column>
           <Column right>
-            <input id="myInput" type="text" placeholder="Search.." onChange={event => this.search(event)}/>
+            <input id="myInput" type="text" placeholder="Search.." onChange={event => this.search(event)} />
           </Column>
         </Row>
         <Row>
           <Column>
             <table className="table table-striped">
               <thead>
-              <tr>
-                <th>Steds ID</th>
-                <th>Navn</th>
-                <th>Adresse</th>
-              </tr>
+                <tr>
+                  <th>Steds ID</th>
+                  <th>Navn</th>
+                  <th>Adresse</th>
+                </tr>
               </thead>
               <tbody id="myTable">
-              {this.locations.map(location => (
-                <tr key={location.sted_id} id={location.sted_id}>
-                  <td>{location.sted_id}</td>
-                  <td>{location.sted_navn}</td>
-                  <td>{location.adresse}</td>
-                </tr>
-              ))}
+                {this.locations.map(location => (
+                  <tr key={location.sted_id} id={location.sted_id}>
+                    <td>{location.sted_id}</td>
+                    <td>{location.sted_navn}</td>
+                    <td>{location.adresse}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </Column>
         </Row>
+        <div className="regBack">
+          <a href="#/home" style={{ color: 'black' }}>
+            {' '}
+            <span className="fa fa-arrow-circle-left fa-2x back" onClick={this.back} />
+          </a>
+        </div>
       </div>
-    )
+    );
   }
 
   mounted() {
@@ -66,13 +71,17 @@ export class LocationOverview extends Component {
   //Function for searching in the list of locations
   search(event) {
     let value = event.target.value.toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    $('#myTable tr').filter(function() {
+      $(this).toggle(
+        $(this)
+          .text()
+          .toLowerCase()
+          .indexOf(value) > -1
+      );
     });
   }
 
   new() {
-    history.push("/newPlace")
+    history.push('/newPlace');
   }
-
 }
