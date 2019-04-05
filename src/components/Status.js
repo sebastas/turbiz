@@ -17,18 +17,18 @@ export class Status extends Component {
   render(){
     return(
       <div className="gradient">
-      <div id="containerlogo">
-      <img src="../src/logo.png" id="icon" alt="User Icon"/>
-      </div>
-      <Topnav />
-      <div id="regButtons">
+        <Topnav />
+        <div className="regBack">
+          <span className="fa fa-arrow-circle-left fa-3x back"  onClick={this.back}/>
+        </div>
+        <div id="containerlogo">
+          <img src="../src/logo.png" id="icon" alt="User Icon"/>
+        </div>
+        <div id="regButtons">
 
-        <button type="button" id="knapp" className="btn btn-primary btn-lg knapp" onClick={this.sStatus}>Sykler</button>
-        <button type="button" id ="knapp" className="btn btn-primary btn-lg knapp" onClick={this.tStatus}>Tilbehør</button>
-      </div>
-      <div className="regBack">
-        <span className="fa fa-arrow-circle-left fa-3x back"  onClick={this.back}/>
-      </div>
+          <button type="button" id="knapp" className="btn btn-primary btn-lg knapp" onClick={this.sStatus}>Sykler</button>
+          <button type="button" id ="knapp" className="btn btn-primary btn-lg knapp" onClick={this.tStatus}>Tilbehør</button>
+        </div>
       </div>
     )
   }
