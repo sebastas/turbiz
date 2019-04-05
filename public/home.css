@@ -1,51 +1,51 @@
 .knapp {
-	border-radius: 12px;
-	padding: 48px 24px;
-	display: inline-block;
-	/*margin-right: 5px;*/
-	background-color: #e9806e;
-	width: 200px;
-	margin: 10px;
+  border-radius: 12px;
+  padding: 48px 24px;
+  display: inline-block;
+  /*margin-right: 5px;*/
+  background-color: #e9806e;
+  width: 200px;
+  margin: 10px;
 }
 
 #container2 {
-	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #container {
-	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin-top: 2.5%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2.5%;
 }
 
 #container3 {
-	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #containerlogo {
-	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #containerlogo img {
-	/*width: 415px;*/
-	/*height: 460px;*/
-	width: 332px;
-	height: 368px;
+  /*width: 415px;*/
+  /*height: 460px;*/
+  width: 249px;
+  height: 276px;
 }
 
-#root {
-	height: 100%;
-	margin: 0;
-	overflow: scroll;
+#root  {
+  height: 100%;
+  margin: 0;
+  overflow: scroll;
 }
