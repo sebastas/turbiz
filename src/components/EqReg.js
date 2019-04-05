@@ -12,7 +12,9 @@ export class Registrer extends Component {
     return(
       <div className="gradient">
       <Topnav />
-
+        <div className="regBack">
+          <span className="fa fa-arrow-circle-left fa-3x back"  onClick={this.back}/>
+        </div>
       <div id="containerlogo">
       <img src="../src/logo.png" id="icon" alt="User Icon"/>
       </div>
@@ -20,9 +22,6 @@ export class Registrer extends Component {
       <div id="regButtons">
         <button type="button" id="knapp" className="btn btn-primary btn-lg knapp" onClick={this.sReg}>Sykler</button>
         <button type="button" id ="knapp" className="btn btn-primary btn-lg knapp" onClick={this.tReg}>Tilbehør</button>
-      </div>
-      <div className="regBack">
-        <span className="fa fa-arrow-circle-left fa-3x back"  onClick={this.back}/>
       </div>
       </div>
     )
