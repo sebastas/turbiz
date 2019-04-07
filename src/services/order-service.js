@@ -264,7 +264,7 @@ class OrderService {
      */
     addOrder(from, to, hours, customerId, employeeId, price,  success) {
         let sql = "insert into Bestilling (fra, til, timer, kunde_id, ansatt_id, pris) VALUES (?, ?, ?, ?, ?, ?)";
-        connection.query(sql, [from, to, hours, customerId, employee, price], (error, results) => {
+        connection.query(sql, [from, to, hours, customerId, employeeId, price], (error, results) => {
             if (error) console.error(error);
 
             success();
