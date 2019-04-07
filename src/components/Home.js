@@ -18,17 +18,21 @@ export class Home extends Component {
           <div id="container">
             <button type="button" className="btn btn-primary btn-lg knapp" onClick={this.newOrder}>Ny bestilling</button>
             <button type="button" className="btn btn-primary btn-lg knapp" onClick={this.bestilling}>Bestillingsoversikt</button>
+            <button type="button" className="btn btn-primary btn-lg knapp" onClick={this.employees}
+                    style={{display: localStorage.getItem("account") === "admin" ? "" : "none"}}>Ansattoversikt</button>
           </div>
           <div id="container2">
             <button type="button" className="btn btn-primary btn-lg knapp" onClick={this.statusUtstyr}>Status utstyr</button>
             <button type="button" className="btn btn-primary btn-lg knapp" onClick={this.utstyrReg}>Utstyrsregistrering</button>
-          </div>
-          <div id="container3">
-            <button type="button" className="btn btn-primary btn-lg knapp" onClick={this.employees}
-                    style={{display: localStorage.getItem("account") === "admin" ? "" : "none"}}>Ansattoversikt</button>
             <button type="button" className="btn btn-primary btn-lg knapp" onClick={this.locations}
                     style={{display: localStorage.getItem("account") === "admin" ? "" : "none"}}>Stedsoversikt</button>
           </div>
+          {/*<div id="container3">*/}
+          {/*  <button type="button" className="btn btn-primary btn-lg knapp" onClick={this.employees}*/}
+          {/*          style={{display: localStorage.getItem("account") === "admin" ? "" : "none"}}>Ansattoversikt</button>*/}
+          {/*  <button type="button" className="btn btn-primary btn-lg knapp" onClick={this.locations}*/}
+          {/*          style={{display: localStorage.getItem("account") === "admin" ? "" : "none"}}>Stedsoversikt</button>*/}
+          {/*</div>*/}
         </div>
       </div>
     )
