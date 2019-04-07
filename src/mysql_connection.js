@@ -2,12 +2,18 @@ import mysql from 'mysql';
 
 // Setup database server reconnection when server timeouts connection:
 export let connection;
+export let db = {
+  host: 'mysql-ait.stud.idi.ntnu.no',
+  user: 'g_idri1005_08',
+  password: 'DyxsPvhb',
+  database: 'g_idri1005_08'
+};
 function connect() {
   connection = mysql.createConnection({
-    host: 'mysql-ait.stud.idi.ntnu.no',
-    user: 'g_idri1005_08',
-    password: 'DyxsPvhb',
-    database: 'g_idri1005_08'
+    host: db.host,
+    user: db.user,
+    password: db.password,
+    database: db.database
   });
 
   // Connect to MySQL-server

@@ -1,4 +1,4 @@
-import { connection } from '../mysql_connection';
+import { connection, db } from '../mysql_connection';
 
 class OrderService {
 
@@ -279,7 +279,7 @@ class OrderService {
     getLatestFromTable(tableName, success) {
         let sql = "SELECT AUTO_INCREMENT-1 as antall\n" +
           "FROM  INFORMATION_SCHEMA.TABLES\n" +
-          "WHERE TABLE_SCHEMA = 'g_idri1005_08'\n" +
+          "WHERE TABLE_SCHEMA = '" + db.database + "'\n" +
           "AND   TABLE_NAME = ?";
         connection.query(sql, [tableName], (error, results) => {
             if (error) console.error(error);
