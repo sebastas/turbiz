@@ -13,12 +13,13 @@ export class Registrer extends Component {
       <div className="gradient">
         <Topnav />
         <div className="regBack">
-          <span className="fa fa-arrow-circle-left fa-3x back" onClick={this.back} />
+          <a href="#/home" style={{ color: 'black' }}>
+            <span className="fa fa-arrow-circle-left fa-3x back" onClick={this.back} />
+          </a>
         </div>
         <div id="containerlogo">
           <img src="../src/logo.png" id="icon" alt="User Icon" />
         </div>
-
         <div id="regButtons">
           <button type="button" id="knapp" className="btn btn-primary btn-lg knapp" onClick={this.sReg}>
             Sykler
@@ -63,7 +64,6 @@ export class BicycleReg extends Component {
 
         <div className="regBack">
           <a href="#/registrer" style={{ color: 'black' }}>
-            {' '}
             <span className="fa fa-arrow-circle-left fa-3x back" onClick={this.back} />
           </a>
         </div>

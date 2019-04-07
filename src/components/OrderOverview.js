@@ -47,7 +47,7 @@ export class OrderOverview extends Component {
               </thead>
               <tbody id="myTable">
               {this.orders.map(order => (
-                <tr key={order.bestilling_id} id={order.bestilling_id} onClick={event => this.redirect(event)} onMouseOver={this.select}>
+                <tr key={order.bestilling_id} id={order.bestilling_id} onClick={event => this.redirect(event)}>
                   <td>{order.bestilling_id}</td>
                   <td>{order.epost}</td>
                   <td>{order.fra.toString().substring(0, 15)}</td>
@@ -100,14 +100,6 @@ export class OrderOverview extends Component {
     history.push("/order/overview/" + index);
     let root = document.getElementById('root');
     root.style.cursor = 'default';
-  }
-
-  /**
-   * Changes cursor to pointer when mouse hovers the table
-   */
-  select() {
-    let root = document.getElementById('root');
-    root.style.cursor = 'pointer';
   }
 
   new() {

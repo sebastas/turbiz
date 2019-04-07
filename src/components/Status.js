@@ -17,9 +17,10 @@ export class Status extends Component {
     return (
       <div className="gradient">
         <Topnav />
-
         <div className="regBack">
-          <span className="fa fa-arrow-circle-left fa-3x back" onClick={this.back} />
+          <a href="#/home" style={{ color: 'black' }}>
+            <span className="fa fa-arrow-circle-left fa-3x back" onClick={this.back}/>
+          </a>
         </div>
         <div id="containerlogo">
           <img src="../src/logo.png" id="icon" alt="User Icon" />
@@ -76,36 +77,35 @@ export class SyklerStatus extends Component {
           <Column>
             <table className="table table-striped table-hover">
               <thead>
-                <tr>
-                  <th>Sykkel_id</th>
-                  <th>Navn</th>
-                  <th>Type</th>
-                  <th>Pris per time</th>
-                  <th>Pris per dag</th>
-                  <th>Beskrivelse</th>
-                  <th>Status</th>
-                  <th>Sted</th>
-                </tr>
+              <tr>
+                <th>Sykkel_id</th>
+                <th>Navn</th>
+                <th>Type</th>
+                <th>Pris per time</th>
+                <th>Pris per dag</th>
+                <th>Beskrivelse</th>
+                <th>Status</th>
+                <th>Sted</th>
+              </tr>
               </thead>
               <tbody id="myTableB">
-                {this.bicycles.map(bicycle => (
-                  <tr
-                    key={bicycle.sykkel_id}
-                    className="clickable-row"
-                    id={bicycle.sykkel_id}
-                    onClick={event => this.redirect(event)}
-                    onMouseOver={this.select}
-                  >
-                    <td>{bicycle.sykkel_id}</td>
-                    <td>{bicycle.navn}</td>
-                    <td>{bicycle.type}</td>
-                    <td>{bicycle.ppt}</td>
-                    <td>{bicycle.ppd}</td>
-                    <td>{bicycle.beskrivelse}</td>
-                    <td>{bicycle.status}</td>
-                    <td>{bicycle.sted_navn}</td>
-                  </tr>
-                ))}
+              {this.bicycles.map(bicycle => (
+                <tr
+                  key={bicycle.sykkel_id}
+                  className="clickable-row"
+                  id={bicycle.sykkel_id}
+                  onClick={event => this.redirect(event)}
+                >
+                  <td>{bicycle.sykkel_id}</td>
+                  <td>{bicycle.navn}</td>
+                  <td>{bicycle.type}</td>
+                  <td>{bicycle.ppt}</td>
+                  <td>{bicycle.ppd}</td>
+                  <td>{bicycle.beskrivelse}</td>
+                  <td>{bicycle.status}</td>
+                  <td>{bicycle.sted_navn}</td>
+                </tr>
+              ))}
               </tbody>
             </table>
           </Column>
@@ -154,11 +154,6 @@ export class SyklerStatus extends Component {
     let root = document.getElementById('root');
     root.style.cursor = 'default';
   }
-
-  select() {
-    let root = document.getElementById('root');
-    root.style.cursor = 'pointer';
-  }
 }
 
 //Class for a page with list of all the equipment in the database
@@ -189,34 +184,33 @@ export class TilbehorStatus extends Component {
           <Column>
             <table className="table table-striped table-hover">
               <thead>
-                <tr>
-                  <th>Utstyr_id</th>
-                  <th>Navn</th>
-                  <th>Type</th>
-                  <th>Pris</th>
-                  <th>Beskrivelse</th>
-                  <th>Status</th>
-                  <th>Sted</th>
-                </tr>
+              <tr>
+                <th>Utstyr_id</th>
+                <th>Navn</th>
+                <th>Type</th>
+                <th>Pris</th>
+                <th>Beskrivelse</th>
+                <th>Status</th>
+                <th>Sted</th>
+              </tr>
               </thead>
               <tbody id="myTableEq">
-                {this.equipments.map(equipment => (
-                  <tr
-                    key={equipment.utstyr_id}
-                    className="clickable-row"
-                    id={equipment.utstyr_id}
-                    onClick={event => this.redirect(event)}
-                    onMouseOver={this.select}
-                  >
-                    <td>{equipment.utstyr_id}</td>
-                    <td>{equipment.navn}</td>
-                    <td>{equipment.type}</td>
-                    <td>{equipment.pris}</td>
-                    <td>{equipment.beskrivelse}</td>
-                    <td>{equipment.status}</td>
-                    <td>{equipment.sted_navn}</td>
-                  </tr>
-                ))}
+              {this.equipments.map(equipment => (
+                <tr
+                  key={equipment.utstyr_id}
+                  className="clickable-row"
+                  id={equipment.utstyr_id}
+                  onClick={event => this.redirect(event)}
+                >
+                  <td>{equipment.utstyr_id}</td>
+                  <td>{equipment.navn}</td>
+                  <td>{equipment.type}</td>
+                  <td>{equipment.pris}</td>
+                  <td>{equipment.beskrivelse}</td>
+                  <td>{equipment.status}</td>
+                  <td>{equipment.sted_navn}</td>
+                </tr>
+              ))}
               </tbody>
             </table>
           </Column>
@@ -265,11 +259,6 @@ export class TilbehorStatus extends Component {
     history.push('/tilbehorStatus/' + index + '/edit');
     let root = document.getElementById('root');
     root.style.cursor = 'default';
-  }
-
-  select() {
-    let root = document.getElementById('root');
-    root.style.cursor = 'pointer';
   }
 }
 
