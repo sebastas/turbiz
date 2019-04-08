@@ -307,14 +307,14 @@ export class BicycleEdit extends Component {
                   <div className="col-sm-6">
                     <div className="inputBox ">
                       <div className="inputText">Pris per time</div>
-                      <input type="text" value={this.ppt} onChange={event => (this.ppt = event.target.value)} />
+                      <input type="number" value={this.ppt} onChange={event => (this.ppt = event.target.value)} />
                     </div>
                   </div>
 
                   <div className="col-sm-6">
                     <div className="inputBox ">
                       <div className="inputText">Pris per dag</div>
-                      <input type="text" value={this.ppd} onChange={event => (this.ppd = event.target.value)} />
+                      <input type="number" value={this.ppd} onChange={event => (this.ppd = event.target.value)} />
                     </div>
                   </div>
                 </div>
@@ -476,7 +476,7 @@ export class EquipmentEdit extends Component {
                   <div className="col-sm-6">
                     <div className="inputBox ">
                       <div className="inputText">Pris</div>
-                      <input type="text" value={this.price} onChange={event => (this.price = event.target.value)} />
+                      <input type="number" value={this.price} onChange={event => (this.price = event.target.value)} />
                     </div>
                   </div>
 
