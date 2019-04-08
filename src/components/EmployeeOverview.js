@@ -55,7 +55,6 @@ export class Employees extends Component {
                     key={employee.ansatt_id}
                     id={employee.ansatt_id}
                     onClick={event => this.redirect(event)}
-                    onMouseOver={this.select}
                   >
                     <td>{employee.ansatt_id}</td>
                     <td>{employee.navn}</td>
@@ -103,11 +102,6 @@ export class Employees extends Component {
     history.push('/employeeOverview/' + index);
     let root = document.getElementById('root');
     root.style.cursor = 'default';
-  }
-
-  select() {
-    let root = document.getElementById('root');
-    root.style.cursor = 'pointer';
   }
 
   new() {

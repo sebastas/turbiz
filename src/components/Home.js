@@ -27,12 +27,6 @@ export class Home extends Component {
             <button type="button" className="btn btn-primary btn-lg knapp" onClick={this.locations}
                     style={{display: localStorage.getItem("account") === "admin" ? "" : "none"}}>Stedsoversikt</button>
           </div>
-          {/*<div id="container3">*/}
-          {/*  <button type="button" className="btn btn-primary btn-lg knapp" onClick={this.employees}*/}
-          {/*          style={{display: localStorage.getItem("account") === "admin" ? "" : "none"}}>Ansattoversikt</button>*/}
-          {/*  <button type="button" className="btn btn-primary btn-lg knapp" onClick={this.locations}*/}
-          {/*          style={{display: localStorage.getItem("account") === "admin" ? "" : "none"}}>Stedsoversikt</button>*/}
-          {/*</div>*/}
         </div>
       </div>
     )

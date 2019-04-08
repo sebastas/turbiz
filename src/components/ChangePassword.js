@@ -17,7 +17,7 @@ export class ChangePassword extends Component {
   render() {
     return (
       <div>
-        <Topnav /> //Input boxes where where u write in password and validation
+        <Topnav/>
         <div className="container">
           <div className="row main">
             <div className="main-login main-center">

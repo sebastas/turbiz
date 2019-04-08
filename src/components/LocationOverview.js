@@ -46,7 +46,7 @@ export class LocationOverview extends Component {
                   <th>Adresse</th>
                 </tr>
               </thead>
-              <tbody id="myTable">
+              <tbody id="myTable3">
                 {this.locations.map(location => (
                   <tr key={location.sted_id} id={location.sted_id}>
                     <td>{location.sted_id}</td>
@@ -60,7 +60,6 @@ export class LocationOverview extends Component {
         </Row>
         <div className="regBack">
           <a href="#/home" style={{ color: 'black' }}>
-            {' '}
             <span className="fa fa-arrow-circle-left fa-2x back" onClick={this.back} />
           </a>
         </div>
@@ -78,7 +77,7 @@ export class LocationOverview extends Component {
   //Function for searching in the list of locations
   search(event) {
     let value = event.target.value.toLowerCase();
-    $('#myTable tr').filter(function() {
+    $('#myTable3 tr').filter(function() {
       $(this).toggle(
         $(this)
           .text()
