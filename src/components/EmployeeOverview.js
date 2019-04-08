@@ -17,8 +17,16 @@ export class Employees extends Component {
     return (
       <div>
         <Topnav />
+
         <br />
         <Row>
+          <Column width={1}>
+            <div className="regBack">
+              <a href="#/home" style={{ color: 'black' }}>
+                <span className="fa fa-arrow-circle-left fa-2x back" onClick={this.back} />
+              </a>
+            </div>
+          </Column>
           <Column>
             <h3>Ansattoversikt</h3>
           </Column>
@@ -33,29 +41,29 @@ export class Employees extends Component {
           <Column>
             <table className="table table-striped table-hover">
               <thead>
-              <tr>
-                <th>Ansatt ID</th>
-                <th>Navn</th>
-                <th>Epost</th>
-                <th>Tlf</th>
-                <th>Brukernavn</th>
-              </tr>
+                <tr>
+                  <th>Ansatt ID</th>
+                  <th>Navn</th>
+                  <th>Epost</th>
+                  <th>Tlf</th>
+                  <th>Brukernavn</th>
+                </tr>
               </thead>
               <tbody id="myTable">
-              {this.employees.map(employee => (
-                <tr
-                  key={employee.ansatt_id}
-                  id={employee.ansatt_id}
-                  onClick={event => this.redirect(event)}
-                  onMouseOver={this.select}
-                >
-                  <td>{employee.ansatt_id}</td>
-                  <td>{employee.navn}</td>
-                  <td>{employee.epost}</td>
-                  <td>{employee.tlf}</td>
-                  <td>{employee.brukernavn}</td>
-                </tr>
-              ))}
+                {this.employees.map(employee => (
+                  <tr
+                    key={employee.ansatt_id}
+                    id={employee.ansatt_id}
+                    onClick={event => this.redirect(event)}
+                    onMouseOver={this.select}
+                  >
+                    <td>{employee.ansatt_id}</td>
+                    <td>{employee.navn}</td>
+                    <td>{employee.epost}</td>
+                    <td>{employee.tlf}</td>
+                    <td>{employee.brukernavn}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </Column>

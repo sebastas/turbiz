@@ -2,24 +2,23 @@ import * as React from 'react';
 import { Component } from 'react-simplified';
 
 import createHashHistory from 'history/createHashHistory';
-import {Topnav} from "./Topnav";
-import {orderService} from "../services/order-service";
+import { Topnav } from './Topnav';
+import { orderService } from '../services/order-service';
 import { Column, Row, Button } from './widgets';
 const history = createHashHistory();
 
 export class OrderOverview extends Component {
-
   orders = [];
 
   render() {
-    return(
+    return (
       <div>
-        <Topnav/>
-        <br/>
+        <Topnav />
+        <br />
         <Row>
           <Column width={1}>
             <div className="regBack">
-              <span className="fa fa-arrow-circle-left fa-3x back"  onClick={this.back}/>
+              <span className="fa fa-arrow-circle-left fa-2x back" onClick={this.back} />
             </div>
           </Column>
           <Column>
@@ -29,44 +28,48 @@ export class OrderOverview extends Component {
             <Button.Success onClick={this.new}>Ny bestilling</Button.Success>
           </Column>
           <Column right>
-            <input id="myInput" type="text" placeholder="Search.." onChange={event => this.search(event)}/>
+            <input id="myInput" type="text" placeholder="Search.." onChange={event => this.search(event)} />
           </Column>
         </Row>
         <Row>
           <Column>
             <table className="table table-striped table-hover">
               <thead>
-              <tr>
-                <th>Bestilling ID</th>
-                <th>Kunde epost</th>
-                <th>Fra</th>
-                <th>Til</th>
-                <th>Behandler</th>
-                <th>Levert</th>
-              </tr>
+                <tr>
+                  <th>Bestilling ID</th>
+                  <th>Kunde epost</th>
+                  <th>Fra</th>
+                  <th>Til</th>
+                  <th>Behandler</th>
+                  <th>Levert</th>
+                </tr>
               </thead>
               <tbody id="myTable">
-              {this.orders.map(order => (
-                <tr key={order.bestilling_id} id={order.bestilling_id} onClick={event => this.redirect(event)}>
-                  <td>{order.bestilling_id}</td>
-                  <td>{order.epost}</td>
-                  <td>{order.fra.toString().substring(0, 15)}</td>
-                  <td>{order.til.toString().substring(0, 15)}</td>
-                  <td>{order.brukernavn}</td>
-                  <td>{order.levert === 1 ? '✓' : '-'}</td>
-                </tr>
-              ))}
+                {this.orders.map(order => (
+                  <tr key={order.bestilling_id} id={order.bestilling_id} onClick={event => this.redirect(event)}>
+                    <td>{order.bestilling_id}</td>
+                    <td>{order.epost}</td>
+                    <td>{order.fra.toString().substring(0, 15)}</td>
+                    <td>{order.til.toString().substring(0, 15)}</td>
+                    <td>{order.brukernavn}</td>
+                    <td>{order.levert === 1 ? '✓' : '-'}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </Column>
         </Row>
         <Row>
           <Column>
-            <Button.Success onClick={this.back}>Tilbake</Button.Success>
+            <div className="regBack">
+              <a href="#/home" style={{ color: 'black' }}>
+                <span className="fa fa-arrow-circle-left fa-2x back" onClick={this.back} />
+              </a>
+            </div>
           </Column>
         </Row>
       </div>
-    )
+    );
   }
 
   mounted() {
@@ -75,9 +78,9 @@ export class OrderOverview extends Component {
       this.orders = orders;
     });
     // Removes any customer-, equipment- and time-info for any orders previously added that might have existed
-    localStorage.removeItem("customer");
-    localStorage.removeItem("equipment");
-    localStorage.removeItem("time");
+    localStorage.removeItem('customer');
+    localStorage.removeItem('equipment');
+    localStorage.removeItem('time');
   }
 
   /**
@@ -86,8 +89,13 @@ export class OrderOverview extends Component {
    */
   search(event) {
     let value = event.target.value.toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    $('#myTable tr').filter(function() {
+      $(this).toggle(
+        $(this)
+          .text()
+          .toLowerCase()
+          .indexOf(value) > -1
+      );
     });
   }
 
@@ -97,16 +105,16 @@ export class OrderOverview extends Component {
    */
   redirect(event) {
     let index = event.target.parentNode.id;
-    history.push("/order/overview/" + index);
+    history.push('/order/overview/' + index);
     let root = document.getElementById('root');
     root.style.cursor = 'default';
   }
 
   new() {
-    history.push("/order/new/customer")
+    history.push('/order/new/customer');
   }
 
-  back(){
-    history.push("/home")
+  back() {
+    history.push('/home');
   }
 }

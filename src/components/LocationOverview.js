@@ -19,6 +19,13 @@ export class LocationOverview extends Component {
         <Topnav />
         <br />
         <Row>
+          <Column width={1}>
+            <div className="regBack">
+              <a href="#/home" style={{ color: 'black' }}>
+                <span className="fa fa-arrow-circle-left fa-2x back" onClick={this.back} />
+              </a>
+            </div>
+          </Column>
           <Column>
             <h3>Stedsoversikt</h3>
           </Column>
