@@ -84,7 +84,7 @@ export class AddKunde extends Component {
                         <i className="fa fa-phone fa-lg" aria-hidden="true" />
                       </span>
                       <input
-                        type="text"
+                        type="number"
                         className="form-control"
                         name="phone"
                         id="phone"
