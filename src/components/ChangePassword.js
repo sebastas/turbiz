@@ -18,6 +18,11 @@ export class ChangePassword extends Component {
     return (
       <div>
         <Topnav/>
+        <div className="regBack">
+          <a href="#/home" style={{ color: 'black' }}>
+            <span className="fa fa-arrow-circle-left fa-3x back" onClick={this.back} />
+          </a>
+        </div>
         <div className="container">
           <div className="row main">
             <div className="main-login main-center">
@@ -134,5 +139,9 @@ export class ChangePassword extends Component {
         history.push('/');
       });
     } else this.correctPass = this.user.passord === this.currentPass;
+  }
+
+  back(){
+    history.push('/home');
   }
 }
