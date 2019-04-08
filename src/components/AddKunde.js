@@ -11,9 +11,9 @@ export class AddKunde extends Component {
   isComplete = true;
   numberComplete = true;
   kunde = {
-    navn: "",
-    epost: "",
-    telefon: ""
+    navn: '',
+    epost: '',
+    telefon: ''
   };
 
   render() {
@@ -21,6 +21,11 @@ export class AddKunde extends Component {
       <div className="gradient">
         {/*Under er koden for inputboksene med logo på siden.I tillegg er det stilsetting på inputboksene*/}
         <Topnav />
+        <div className="regBack">
+          <a href="#/order/overview" style={{ color: 'black' }}>
+            <span className="fa fa-arrow-circle-left fa-3x back" onClick={this.back} />
+          </a>
+        </div>
         <div className="container">
           <div className="row main">
             <div className="main-login main-center">
@@ -92,9 +97,11 @@ export class AddKunde extends Component {
                   </div>
                 </div>
                 {/*Koden under er validering over at all informasjonen du skriver inn er gylidg. Ellers vil du få en*/
-              /*feilmelding.*/}
+                /*feilmelding.*/}
                 <p style={{ display: this.isComplete ? 'none' : 'block', color: 'red' }}>Vennligst fyll inn all info</p>
-                <p style={{ display: this.numberComplete ? 'none' : 'block', color: 'red' }}>Ugyldig telefonnummer, vennligst skriv inn 8 tall</p>
+                <p style={{ display: this.numberComplete ? 'none' : 'block', color: 'red' }}>
+                  Ugyldig telefonnummer, vennligst skriv inn 8 tall
+                </p>
                 <div className="form-group ">
                   <button
                     type="button"
@@ -121,7 +128,7 @@ export class AddKunde extends Component {
 
   mounted() {
     // If going back to change customer info while adding an order, gets that info from localStorage and displays it
-    let customer = JSON.parse(localStorage.getItem("customer"));
+    let customer = JSON.parse(localStorage.getItem('customer'));
     if (customer) this.kunde = customer;
   }
 
@@ -132,7 +139,7 @@ export class AddKunde extends Component {
     this.numberComplete = this.kunde.telefon.length === 8;
     this.isComplete = this.kunde.navn.length > 0 && this.kunde.epost.length > 0;
     if (this.isComplete && this.numberComplete) {
-      localStorage.setItem("customer", JSON.stringify(this.kunde));
+      localStorage.setItem('customer', JSON.stringify(this.kunde));
       history.push('/order/new/equipment');
     }
   }
