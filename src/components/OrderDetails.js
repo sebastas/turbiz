@@ -42,7 +42,7 @@ export class OrderDetails extends Component {
                   </Column>
                 </Row>
                 {
-                  this.order.hours === "0" || this.order.hours === null ?
+                  this.order.hours === 0 || this.order.hours === null ?
                     <div id="dagsleie">
                       <Row>
                         <Column width={5}>
