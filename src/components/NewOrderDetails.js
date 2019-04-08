@@ -122,6 +122,16 @@ export class NewOrderDetails extends Component {
                     </Column>
                   </Row>
                 </div>
+                <div style={{color: 'green', display: this.bikes.length >= 3 ? 'block' : 'none'}}>
+                  <Row>
+                    <Column width={5}>
+                      Grupperabatt:
+                    </Column>
+                    <Column width={7}>
+                      {this.loyalMember ?  this.price.discount - 10 : this.price.discount}% rabatt lagt til
+                    </Column>
+                  </Row>
+                </div>
               </Card>
             </Column>
             <Column width={2}/>
