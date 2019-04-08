@@ -173,9 +173,11 @@ export class BicycleReg extends Component {
 
                 <div className="row">
                   <div className="col-sm-12">
+                  <div className="regDiv">
                     <button className="btn btn-success" onClick={this.save}>
                       Registrer
                     </button>
+                    </div>
                   </div>
                 </div>
               </form>
@@ -334,9 +336,11 @@ export class EqReg extends Component {
 
                 <div className="row">
                   <div className="col-sm-12">
+                  <div className="regDiv">
                     <button className="btn btn-success" id="reg" onClick={this.save}>
                       Registrer
                     </button>
+                    </div>
                   </div>
                 </div>
               </form>

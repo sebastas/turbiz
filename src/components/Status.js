@@ -356,6 +356,7 @@ export class BicycleEdit extends Component {
 
                 <div className="row">
                   <div className="col-sm-12">
+                    <div className="regDiv">
                     <Row>
                       <Column width={1}>
                         <Button.Success onClick={this.save} id="">
@@ -373,6 +374,7 @@ export class BicycleEdit extends Component {
                         </Button.Light>
                       </Column>
                     </Row>
+                    </div>
                   </div>
                 </div>
               </form>
@@ -514,6 +516,7 @@ export class EquipmentEdit extends Component {
 
                 <div className="row">
                   <div className="col-sm-12">
+                  <div className="regDiv">
                     <Row>
                       <Column width={1}>
                         <Button.Success onClick={this.save} id="">
@@ -531,6 +534,7 @@ export class EquipmentEdit extends Component {
                         </Button.Light>
                       </Column>
                     </Row>
+                    </div>
                   </div>
                 </div>
               </form>
