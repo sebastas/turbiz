@@ -8,6 +8,8 @@
   margin: 10px;
 }
 
+/* When minimalize application window, prevents buttons collapsing ontop on eachother */
+
 #container2 {
   width: 100%;
   display: flex;
@@ -23,12 +25,6 @@
   margin-top: 2.5%;
 }
 
-#container3 {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 #containerlogo {
   width: 100%;
