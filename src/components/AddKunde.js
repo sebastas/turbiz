@@ -120,12 +120,6 @@ export class AddKunde extends Component {
     );
   }
 
-  // next() {
-  //   kundeInfo = this.kunde; // Lagrer verdier som blir skrevet inn
-  //
-  //   history.push('/velgUtstyr'); // Hendvender deg til neste side når du trykker videre
-  // }
-
   mounted() {
     // If going back to change customer info while adding an order, gets that info from localStorage and displays it
     let customer = JSON.parse(localStorage.getItem('customer'));
